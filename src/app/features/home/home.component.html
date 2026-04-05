@@ -1,0 +1,163 @@
+<div class="relative">
+  <div
+    class="pointer-events-none absolute inset-0 bg-grid-slate bg-[length:48px_48px] [mask-image:linear-gradient(180deg,transparent,black_12%,black_88%,transparent)]"
+    aria-hidden="true"
+  ></div>
+
+  <section
+    id="inicio"
+    class="relative scroll-mt-24 mx-auto max-w-5xl px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pt-24"
+    aria-labelledby="hero-heading"
+  >
+    <p
+      class="mb-4 inline-flex items-center rounded-full border border-slate-700/80 bg-slate-900/50 px-3 py-1 text-xs font-medium text-brand-400"
+    >
+      Disponible para nuevas oportunidades
+    </p>
+    <h1
+      id="hero-heading"
+      class="text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+    >
+      Hola, soy
+      <span
+        class="bg-gradient-to-r from-brand-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent"
+        >{{ site.name }}</span
+      >
+    </h1>
+    <p class="mt-2 text-lg font-medium text-slate-400 sm:text-xl">
+      {{ site.title }} · {{ site.location }}
+    </p>
+    <p
+      class="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-slate-400 sm:text-lg"
+    >
+      {{ site.tagline }}
+    </p>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a
+        href="#proyectos"
+        (click)="goTo($event, 'proyectos')"
+        class="inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg shadow-brand-500/20 transition hover:bg-brand-400"
+      >
+        Ver proyectos
+      </a>
+      <a
+        href="#contacto"
+        (click)="goTo($event, 'contacto')"
+        class="inline-flex items-center justify-center rounded-xl border border-slate-600 bg-slate-900/40 px-5 py-2.5 text-sm font-semibold text-slate-100 backdrop-blur transition hover:border-slate-500 hover:bg-slate-800/60"
+      >
+        Contacto
+      </a>
+      <a
+        href="#que-mostrar"
+        (click)="goTo($event, 'que-mostrar')"
+        class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-slate-400 underline-offset-4 hover:text-brand-400 hover:underline"
+      >
+        Qué incluir en un portafolio
+      </a>
+    </div>
+  </section>
+
+  <section
+    id="que-mostrar"
+    class="relative scroll-mt-24 border-y border-slate-800/80 bg-slate-900/30 py-16 sm:py-20"
+    aria-labelledby="ideas-heading"
+    tabindex="-1"
+  >
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2
+        id="ideas-heading"
+        class="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+      >
+        Qué conviene mostrar en tu portafolio
+      </h2>
+      <p class="mt-3 max-w-2xl text-slate-400">
+        Usa esta sección como guía mientras rellenas el sitio: cada tarjeta es algo
+        que suelen buscar reclutadores y equipos técnicos.
+      </p>
+      <ul
+        class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        role="list"
+      >
+        @for (idea of portfolioIdeas; track idea.title) {
+          <li
+            class="group rounded-2xl border border-slate-800 bg-slate-950/60 p-5 shadow-sm transition hover:border-slate-700 hover:bg-slate-900/40"
+          >
+            <span
+              class="mb-2 block h-1 w-10 rounded-full bg-gradient-to-r from-brand-500 to-cyan-400 transition group-hover:w-14"
+              aria-hidden="true"
+            ></span>
+            <h3 class="text-base font-semibold text-white">{{ idea.title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500">
+              {{ idea.body }}
+            </p>
+          </li>
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section
+    id="proyectos"
+    class="relative scroll-mt-24 py-16 sm:py-20"
+    aria-labelledby="projects-heading"
+    tabindex="-1"
+  >
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <h2
+        id="projects-heading"
+        class="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+      >
+        Proyectos destacados
+      </h2>
+      <p class="mt-3 max-w-2xl text-slate-400">
+        Aquí irán 2–4 proyectos con imagen, descripción corta y enlaces. Mientras
+        tanto, este bloque es el contenedor listo para cuando los añadas.
+      </p>
+      <div
+        class="mt-10 flex min-h-[200px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-700 bg-slate-900/20 px-6 py-16 text-center"
+      >
+        <p class="text-sm font-medium text-slate-400">
+          Zona de proyectos — crea componentes o rutas y enlázalos desde aquí.
+        </p>
+        <p class="mt-2 max-w-md text-xs text-slate-600">
+          Tip: un card por proyecto con stack en badges, captura y botones
+          “Código” / “Demo”.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="contacto"
+    class="relative scroll-mt-24 pb-20 pt-4 sm:pb-24"
+    aria-labelledby="contact-heading"
+    tabindex="-1"
+  >
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div
+        class="overflow-hidden rounded-2xl border border-slate-800 bg-gradient-to-br from-slate-900/90 to-slate-950 p-8 sm:p-10"
+      >
+        <h2
+          id="contact-heading"
+          class="text-2xl font-bold tracking-tight text-white sm:text-3xl"
+        >
+          Hablemos
+        </h2>
+        <p class="mt-3 max-w-xl text-slate-400">
+          Sustituye el correo en
+          <code class="rounded bg-slate-800 px-1.5 py-0.5 text-xs text-brand-400"
+            >site.ts</code
+          >
+          y enlaza tus redes reales en el pie de página.
+        </p>
+        <a
+          class="mt-8 inline-flex items-center gap-2 text-lg font-semibold text-brand-400 transition hover:text-brand-300"
+          [href]="'mailto:' + site.email"
+        >
+          {{ site.email }}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,25 @@
+# Dependencies
+/node_modules
+
+# Build and cache
+/dist
+/.angular
+.sass-cache/
+
+# Logs
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Tests
+/coverage
