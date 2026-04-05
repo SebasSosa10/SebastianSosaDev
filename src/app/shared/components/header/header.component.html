@@ -1,90 +1,196 @@
 <header
-  class="sticky top-0 z-50 border-b border-slate-800/80 bg-slate-950/85 backdrop-blur-md"
+  class="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/90 backdrop-blur-md dark:border-neutral-900 dark:bg-black/90"
 >
   <div
-    class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-4 sm:px-5 sm:py-3 lg:px-8"
   >
     <a
       href="/"
-      class="group flex flex-col leading-tight"
+      class="group flex min-w-0 items-center gap-3"
       (click)="onBrandClick($event)"
     >
-      <span
-        class="text-sm font-semibold tracking-tight text-white transition group-hover:text-brand-400"
-        >{{ site.name }}</span
-      >
-      <span class="text-xs text-slate-500">{{ site.title }}</span>
+      <img
+        [src]="site.headerAvatar"
+        width="44"
+        height="44"
+        class="h-11 w-11 shrink-0 rounded-xl border border-brand-500/35 object-cover object-top shadow-sm ring-1 ring-black/5 transition duration-300 group-hover:border-brand-500/55 dark:ring-white/10"
+        [attr.alt]="
+          locale.t('hero.photoAlt', { name: site.fullName })
+        "
+        decoding="async"
+      />
+      <div class="flex min-w-0 flex-col leading-tight">
+        <span
+          class="truncate text-sm font-semibold tracking-tight text-neutral-900 transition duration-300 ease-out group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400"
+          >{{ site.name }}</span
+        >
+        <span
+          class="truncate text-xs text-neutral-600 dark:text-neutral-500"
+          >{{ 'roleTitle' | i18n }}</span
+        >
+      </div>
     </a>
 
-    <nav
-      class="hidden items-center gap-1 md:flex"
-      aria-label="Principal"
-    >
-      @for (item of site.nav; track item.sectionId) {
-        <a
-          [attr.href]="'#' + item.sectionId"
-          (click)="onNavClick($event, item.sectionId)"
-          class="rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition hover:bg-slate-800/60 hover:text-slate-100"
-        >
-          {{ item.label }}
-        </a>
-      }
-    </nav>
+    <div class="flex shrink-0 items-center gap-2 sm:gap-3 md:gap-4">
+      <nav
+        class="hidden items-center gap-0.5 md:flex"
+        [attr.aria-label]="'ui.navMain' | i18n"
+      >
+        @for (item of site.nav; track item.sectionId) {
+          <a
+            [attr.href]="'#' + item.sectionId"
+            (click)="onNavClick($event, item.sectionId)"
+            class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-600 transition duration-200 ease-out hover:-translate-y-px hover:bg-neutral-100 hover:text-brand-700 dark:text-neutral-400 dark:hover:bg-neutral-900/80 dark:hover:text-brand-200 motion-reduce:hover:translate-y-0"
+          >
+            {{ locale.navLabel(item) }}
+          </a>
+        }
+      </nav>
 
-    <button
-      type="button"
-      class="inline-flex items-center justify-center rounded-lg border border-slate-700 p-2 text-slate-300 transition hover:border-slate-600 hover:bg-slate-800/50 hover:text-white md:hidden"
-      (click)="toggleMenu()"
-      [attr.aria-expanded]="menuOpen()"
-      aria-controls="mobile-nav"
-      aria-label="Abrir menú"
-    >
-      @if (menuOpen()) {
-        <svg
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+      <div
+        class="hidden h-8 w-px shrink-0 bg-neutral-200 dark:bg-neutral-800 sm:block"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        class="flex items-center rounded-full border border-neutral-200 bg-neutral-100/80 p-0.5 dark:border-neutral-700 dark:bg-neutral-900/60"
+        role="group"
+        [attr.aria-label]="'ui.themeGroup' | i18n"
+      >
+        <button
+          type="button"
+          class="rounded-full p-1.5 text-amber-500 transition hover:bg-white hover:shadow-sm dark:text-amber-400/80 dark:hover:bg-neutral-800"
+          [ngClass]="
+            !theme.isDark()
+              ? 'bg-white shadow-sm ring-2 ring-brand-500/40'
+              : ''
+          "
+          (click)="theme.setLight()"
+          [attr.aria-label]="'ui.themeLight' | i18n"
+          [attr.aria-pressed]="!theme.isDark()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      } @else {
-        <svg
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
+          <svg
+            class="h-4 w-4"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+            />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="rounded-full p-1.5 text-neutral-500 transition hover:bg-neutral-100 dark:text-indigo-200 dark:hover:bg-neutral-800"
+          [ngClass]="
+            theme.isDark() ? 'bg-neutral-800 ring-2 ring-brand-500/40' : ''
+          "
+          (click)="theme.setDark()"
+          [attr.aria-label]="'ui.themeDark' | i18n"
+          [attr.aria-pressed]="theme.isDark()"
         >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-      }
-    </button>
+          <svg
+            class="h-4 w-4"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <button
+        type="button"
+        class="flex flex-col items-center gap-0.5 rounded-lg px-2 py-1 ring-2 ring-brand-500/50 transition hover:bg-neutral-100 dark:hover:bg-neutral-900/80 sm:px-3"
+        (click)="toggleLanguage()"
+        [attr.aria-label]="
+          locale.lang() === 'es'
+            ? ('ui.switchToEnglish' | i18n)
+            : ('ui.switchToSpanish' | i18n)
+        "
+      >
+        @if (locale.lang() === 'es') {
+          <span
+            class="text-[0.65rem] font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400"
+            >{{ 'ui.labelSpanish' | i18n }}</span
+          >
+          <span class="text-lg leading-none" role="img" aria-hidden="true"
+            >🇨🇴</span
+          >
+        } @else {
+          <span
+            class="text-[0.65rem] font-semibold uppercase tracking-wide text-neutral-600 dark:text-neutral-400"
+            >{{ 'ui.labelEnglish' | i18n }}</span
+          >
+          <span class="text-lg leading-none" role="img" aria-hidden="true"
+            >🇺🇸</span
+          >
+        }
+      </button>
+
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-lg border border-neutral-300 p-2 text-neutral-700 transition hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:bg-neutral-900/70 dark:hover:text-white md:hidden"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-nav"
+        [attr.aria-label]="
+          menuOpen() ? ('ui.menuClose' | i18n) : ('ui.menuOpen' | i18n)
+        "
+      >
+        @if (menuOpen()) {
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        } @else {
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        }
+      </button>
+    </div>
   </div>
 
   @if (menuOpen()) {
     <nav
       id="mobile-nav"
-      class="border-t border-slate-800 bg-slate-950 px-4 py-4 md:hidden"
-      aria-label="Móvil"
+      class="border-t border-neutral-200 bg-white px-4 py-4 dark:border-neutral-900 dark:bg-black md:hidden"
+      [attr.aria-label]="'ui.navMobile' | i18n"
     >
       <div class="flex flex-col gap-1">
         @for (item of site.nav; track item.sectionId) {
           <a
             [attr.href]="'#' + item.sectionId"
             (click)="onNavClick($event, item.sectionId)"
-            class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800/80"
+            class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 transition duration-200 ease-out active:scale-[0.99] hover:bg-neutral-100 hover:text-brand-700 dark:text-neutral-300 dark:hover:bg-neutral-900/80 dark:hover:text-brand-200"
           >
-            {{ item.label }}
+            {{ locale.navLabel(item) }}
           </a>
         }
       </div>

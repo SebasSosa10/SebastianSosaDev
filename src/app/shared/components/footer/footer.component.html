@@ -1,14 +1,21 @@
-<footer class="border-t border-slate-800 bg-slate-950">
+<footer
+  class="border-t border-neutral-200 bg-white dark:border-neutral-900 dark:bg-black"
+>
   <div
     class="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
   >
     <div class="space-y-2">
-      <p class="text-sm font-semibold text-white">{{ site.name }}</p>
-      <p class="max-w-sm text-sm text-slate-500">
-        Portafolio personal — reemplaza enlaces y textos en
-        <code class="rounded bg-slate-800 px-1 py-0.5 text-xs text-brand-400"
+      <p
+        class="text-sm font-semibold text-neutral-900 dark:text-white"
+      >
+        {{ site.name }}
+      </p>
+      <p class="max-w-sm text-sm text-neutral-600 dark:text-neutral-500">
+        {{ 'footer.blurbBefore' | i18n }}
+        <code
+          class="rounded bg-neutral-200 px-1 py-0.5 text-xs text-brand-700 dark:bg-neutral-900 dark:text-brand-400"
           >shared/data/site.ts</code
-        >.
+        >{{ 'footer.blurbAfter' | i18n }}
       </p>
     </div>
 
@@ -17,9 +24,9 @@
         <a
           [attr.href]="'#' + item.sectionId"
           (click)="onNavClick($event, item.sectionId)"
-          class="text-sm text-slate-400 transition hover:text-brand-400"
+          class="text-sm text-neutral-600 transition hover:text-brand-600 dark:text-neutral-400 dark:hover:text-brand-400"
         >
-          {{ item.label }}
+          {{ locale.navLabel(item) }}
         </a>
       }
     </div>
@@ -30,7 +37,7 @@
           [href]="link.href"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium text-slate-400 transition hover:text-white"
+          class="text-sm font-medium text-neutral-600 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
         >
           {{ link.label }}
         </a>
@@ -38,11 +45,11 @@
     </div>
   </div>
 
-  <div class="border-t border-slate-800/80">
+  <div class="border-t border-neutral-200 dark:border-neutral-900">
     <p
-      class="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-slate-600 sm:px-6 lg:px-8"
+      class="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-neutral-500 dark:text-neutral-600 sm:px-6 lg:px-8"
     >
-      © {{ year }} {{ site.name }}. Hecho con Angular y Tailwind.
+      © {{ year }} {{ site.name }}. {{ 'footer.copyright' | i18n }}
     </p>
   </div>
 </footer>

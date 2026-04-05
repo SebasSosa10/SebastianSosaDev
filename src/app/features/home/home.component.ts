@@ -3,49 +3,45 @@ import {
   AfterViewInit,
   Component,
   PLATFORM_ID,
+  computed,
   inject,
 } from '@angular/core';
 import { site } from '../../shared/data/site';
+import { messagesFor } from '../../shared/i18n/messages';
+import { I18nPipe } from '../../shared/pipes/i18n.pipe';
+import { LocaleService } from '../../shared/services/locale.service';
 import { ScrollNavService } from '../../shared/services/scroll-nav.service';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [I18nPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements AfterViewInit {
   private readonly scrollNav = inject(ScrollNavService);
   private readonly platformId = inject(PLATFORM_ID);
+  readonly locale = inject(LocaleService);
 
   readonly site = site;
 
-  readonly portfolioIdeas = [
-    {
-      title: 'Quién eres y qué ofreces',
-      body: 'Una frase clara: rol, años o foco (backend, frontend, full stack, datos) y el tipo de problemas que resuelves.',
-    },
-    {
-      title: 'Stack y herramientas',
-      body: 'Lenguajes, frameworks, nube y prácticas (tests, CI/CD, accesibilidad). Prioriza lo que realmente usas en producción.',
-    },
-    {
-      title: 'Proyectos con historia',
-      body: 'Contexto breve, tu responsabilidad, decisiones técnicas y enlaces a repo o demo. Capturas o GIF ayudan mucho.',
-    },
-    {
-      title: 'Resultados o aprendizajes',
-      body: 'Métricas si las hay (rendimiento, usuarios, tiempo ahorrado). Si no, qué aprendiste o qué harías distinto.',
-    },
-    {
-      title: 'Cómo trabajas',
-      body: 'Código limpio, revisiones, documentación, trabajo en equipo. Sirve para que te imaginen en su día a día.',
-    },
-    {
-      title: 'Contacto visible',
-      body: 'Email, LinkedIn o formulario. Facilita que reclutadores o clientes lleguen sin fricción.',
-    },
-  ] as const;
+  /** Primera línea del h1 — depende del idioma */
+  readonly heroHeadingLine1Chars = computed(() => {
+    const line = messagesFor(this.locale.lang()).hero.line1;
+    return [...line].map((char, index) => ({ char, delayIndex: index }));
+  });
+
+  readonly heroHeadingLine2Chars = computed(() => {
+    const offset = messagesFor(this.locale.lang()).hero.line1.length;
+    return [...site.name].map((char, index) => ({
+      char,
+      delayIndex: offset + index,
+    }));
+  });
+
+  readonly portfolioIdeas = computed(
+    () => messagesFor(this.locale.lang()).portfolioIdeas,
+  );
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {

@@ -7,3 +7,54 @@
     scroll-behavior: smooth;
   }
 }
+
+/** Color “reposo” del título animado del hero (claro / oscuro) */
+html.dark {
+  --hero-letter-rest: #ffffff;
+}
+
+html:not(.dark) {
+  --hero-letter-rest: #171717;
+}
+
+@keyframes hero-letter-pulse {
+  0%,
+  100% {
+    color: var(--hero-letter-rest);
+  }
+  50% {
+    color: #d4af37;
+  }
+}
+
+.hero-letter-anim {
+  animation: hero-letter-pulse 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-letter-anim {
+    animation: none;
+  }
+}
+
+/**
+ * Altura del hero = ventana visible menos header (~4.5rem).
+ * Fallbacks: vh → svh (móvil estable) → dvh (barras dinámicas).
+ */
+@layer utilities {
+  .min-h-hero {
+    min-height: calc(100vh - 4.5rem);
+  }
+
+  @supports (height: 100svh) {
+    .min-h-hero {
+      min-height: calc(100svh - 4.5rem);
+    }
+  }
+
+  @supports (height: 100dvh) {
+    .min-h-hero {
+      min-height: calc(100dvh - 4.5rem);
+    }
+  }
+}

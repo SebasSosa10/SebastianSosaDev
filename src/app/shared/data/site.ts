@@ -1,14 +1,24 @@
 export interface NavItem {
   label: string;
+  labelEn: string;
   /** id del elemento en la home; coincide con los `id` de las secciones */
   sectionId: string;
 }
 
 export const site = {
-  name: 'Sebastián Sosa',
-  title: 'Ingeniero de software',
+  /** Nombre corto (menú, titulares, hero) */
+  name: 'Sebastian Sosa',
+  /** Nombre completo (alt de la foto, metadatos) */
+  fullName: 'Joan Sebastian Sosa Bedoya',
+  /** Archivo en `public/` — se sirve como /nombre.webp */
+  heroPhoto: '/SebastianSosa.webp',
+  /** Foto pequeña en el header — `public/sebastian-header.webp` */
+  headerAvatar: '/sebastian-header.webp',
+  /** Texto del badge bajo la foto del hero */
+  heroAvailability: 'DISPONIBLE',
+  title: 'Desarrollador de software',
   tagline:
-    'Construyo productos web claros, mantenibles y centrados en la experiencia del usuario.',
+    'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
   email: 'tu-email@ejemplo.com',
   location: 'Colombia',
   social: [
@@ -20,9 +30,13 @@ export const site = {
   ] as const,
   /** Enlaces del menú: solo mueven la vista dentro del home */
   nav: [
-    { label: 'Inicio', sectionId: 'inicio' },
-    { label: 'Qué mostrar', sectionId: 'que-mostrar' },
-    { label: 'Proyectos', sectionId: 'proyectos' },
-    { label: 'Contacto', sectionId: 'contacto' },
+    { label: 'Inicio', labelEn: 'Home', sectionId: 'inicio' },
+    {
+      label: 'Qué mostrar',
+      labelEn: 'What to show',
+      sectionId: 'que-mostrar',
+    },
+    { label: 'Proyectos', labelEn: 'Projects', sectionId: 'proyectos' },
+    { label: 'Contacto', labelEn: 'Contact', sectionId: 'contacto' },
   ] satisfies NavItem[],
 };
