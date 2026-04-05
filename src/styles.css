@@ -17,6 +17,15 @@ html:not(.dark) {
   --hero-letter-rest: #171717;
 }
 
+/**
+ * Carrusel de tecnologías: iconos Simple Icons (Serverless, OpenAI, etc.).
+ * Debe ser global: con encapsulado del componente, `.dark .…` no coincide con `html.dark`.
+ */
+html.dark img.tech-marquee-icon--mono {
+  filter: invert(1);
+  opacity: 1;
+}
+
 @keyframes hero-letter-pulse {
   0%,
   100% {

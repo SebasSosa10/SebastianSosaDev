@@ -19,13 +19,23 @@ export const site = {
   title: 'Desarrollador de software',
   tagline:
     'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
-  email: 'tu-email@ejemplo.com',
+  email: 'joansebastiansosa10@gmail.com',
   location: 'Colombia',
+  /** Enlaces directos para iconos del hero */
+  links: {
+    github: 'https://github.com/SebasSosa10',
+    linkedin: 'https://www.linkedin.com/in/sebastiansosa10/',
+  },
+  /** CV en `public/` — descarga desde el hero */
+  resume: {
+    path: '/cv-joan-sebastian-sosa-bedoya.png',
+    downloadName: 'CV-Joan-Sebastian-Sosa-Bedoya.png',
+  },
   social: [
     { label: 'GitHub', href: 'https://github.com/SebasSosa10' },
     {
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/joansebastiansosabedoya-software-engineer/?locale=es-ES',
+      href: 'https://www.linkedin.com/in/sebastiansosa10/',
     },
   ] as const,
   /** Enlaces del menú: solo mueven la vista dentro del home */

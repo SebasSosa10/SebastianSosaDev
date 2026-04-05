@@ -25,6 +25,9 @@ export type Messages = {
     ctaProjects: string;
     ctaContact: string;
     photoAlt: string;
+    githubAria: string;
+    linkedinAria: string;
+    downloadCv: string;
   };
   sections: {
     ideasHeading: string;
@@ -36,6 +39,9 @@ export type Messages = {
     contactHeading: string;
     contactBodyBefore: string;
     contactBodyAfter: string;
+    techHeading: string;
+    techIntro: string;
+    techMarqueeAria: string;
   };
   portfolioIdeas: readonly PortfolioIdea[];
   footer: {
@@ -73,6 +79,9 @@ function es(): Messages {
       ctaProjects: 'Ver proyectos reales',
       ctaContact: 'Hablemos',
       photoAlt: 'Retrato de {name}',
+      githubAria: 'Perfil de GitHub (se abre en una pestaña nueva)',
+      linkedinAria: 'Perfil de LinkedIn (se abre en una pestaña nueva)',
+      downloadCv: 'Descargar hoja de vida',
     },
     sections: {
       ideasHeading: 'Qué conviene mostrar en tu portafolio',
@@ -88,6 +97,9 @@ function es(): Messages {
       contactHeading: 'Hablemos',
       contactBodyBefore: 'Sustituye el correo en',
       contactBodyAfter: 'y enlaza tus redes reales en el pie de página.',
+      techHeading: 'Tecnologías con las que trabajo',
+      techIntro: 'Herramientas modernas para soluciones modernas',
+      techMarqueeAria: 'Lista de tecnologías y herramientas',
     },
     portfolioIdeas: [
       {
@@ -151,6 +163,9 @@ function en(): Messages {
       ctaProjects: 'View real projects',
       ctaContact: "Let's talk",
       photoAlt: 'Portrait of {name}',
+      githubAria: 'GitHub profile (opens in a new tab)',
+      linkedinAria: 'LinkedIn profile (opens in a new tab)',
+      downloadCv: 'Download resume',
     },
     sections: {
       ideasHeading: 'What to show in your portfolio',
@@ -166,6 +181,9 @@ function en(): Messages {
       contactHeading: "Let's talk",
       contactBodyBefore: 'Replace the email in',
       contactBodyAfter: 'and link your real social profiles in the footer.',
+      techHeading: 'Technologies I Work With',
+      techIntro: 'Modern tools for modern solutions',
+      techMarqueeAria: 'Technologies and tools list',
     },
     portfolioIdeas: [
       {
