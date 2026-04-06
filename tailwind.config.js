@@ -57,6 +57,18 @@ module.exports = {
           '0%, 100%': { filter: 'brightness(1)' },
           '50%': { filter: 'brightness(1.15)' },
         },
+        techMarquee: {
+          to: { transform: 'translate3d(-50%, 0, 0)' },
+        },
+        aboutCardIn: {
+          '0%': { opacity: '0', transform: 'translateY(18px) scale(0.97)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        /** Brillo que cruza la barra de progreso (efecto “cargando” dorado) */
+        progressGoldSheen: {
+          '0%': { transform: 'translateX(-120%)' },
+          '100%': { transform: 'translateX(420%)' },
+        },
       },
       animation: {
         'hero-fade-up': 'heroFadeUp 0.7s ease-out both',
@@ -75,6 +87,13 @@ module.exports = {
         'gentle-shine': 'gentleShine 4s ease-in-out infinite',
         'gold-shimmer': 'goldShimmer 3s ease-in-out infinite',
         'card-enter': 'heroFadeUp 0.55s ease-out both',
+        'tech-marquee': 'techMarquee 55s linear infinite',
+        'tech-head-line': 'lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both',
+        'about-card-in':
+          'aboutCardIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'about-line-secondary':
+          'lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both',
+        'progress-gold-sheen': 'progressGoldSheen 1.75s linear infinite',
       },
     },
   },

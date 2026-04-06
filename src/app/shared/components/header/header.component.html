@@ -1,5 +1,8 @@
+<!-- Barra superior fija (solo primera fila; el menú móvil va aparte) -->
 <header
-  class="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/90 backdrop-blur-md dark:border-neutral-900 dark:bg-black/90"
+  #toolbar
+  role="banner"
+  class="fixed left-0 right-0 top-0 z-50 border-b border-neutral-200/80 bg-white/95 shadow-sm backdrop-blur-md dark:border-neutral-900 dark:bg-black/95"
 >
   <div
     class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:gap-4 sm:px-5 sm:py-3 lg:px-8"
@@ -176,24 +179,59 @@
       </button>
     </div>
   </div>
-
-  @if (menuOpen()) {
-    <nav
-      id="mobile-nav"
-      class="border-t border-neutral-200 bg-white px-4 py-4 backdrop-blur-md dark:border-neutral-900 dark:bg-black/90 md:hidden"
-      [attr.aria-label]="'ui.navMobile' | i18n"
-    >
-      <div class="flex flex-col gap-1">
-        @for (item of site.nav; track item.sectionId) {
-          <a
-            [attr.href]="'#' + item.sectionId"
-            (click)="onNavClick($event, item.sectionId)"
-            class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 transition duration-200 ease-out active:scale-[0.99] hover:bg-neutral-100 hover:text-brand-700 dark:text-neutral-300 dark:hover:bg-neutral-900/80 dark:hover:text-brand-200"
-          >
-            {{ locale.navLabel(item) }}
-          </a>
-        }
-      </div>
-    </nav>
-  }
 </header>
+
+<!-- Borde fijo dorado bajo el header: progreso hasta el final del footer -->
+<div
+  class="pointer-events-none fixed left-0 right-0 z-[60] box-border border-b border-brand-500/20 bg-gradient-to-b from-neutral-200/95 to-neutral-300/90 px-0 py-px shadow-[0_1px_0_rgba(212,175,55,0.12)] dark:border-brand-500/15 dark:from-neutral-950 dark:to-black"
+  [style.top.px]="toolbarHeightPx()"
+  [style.height.px]="progressBarOuterPx"
+>
+  <div
+    class="relative mx-auto h-full max-w-[100vw] overflow-hidden"
+    role="presentation"
+  >
+    <div
+      class="relative h-full min-h-[4px] overflow-hidden transition-[width] duration-100 ease-linear motion-reduce:transition-none"
+      [style.width]="scrollProgressWidth()"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="scrollProgressRounded()"
+      [attr.aria-label]="'ui.readingProgressAria' | i18n"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-[#7a6218] via-brand-400 to-brand-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_0_14px_rgba(212,175,55,0.5)] dark:from-[#5c4a12] dark:via-brand-400 dark:to-brand-300 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_0_12px_rgba(212,175,55,0.45)]"
+      ></div>
+      <div
+        class="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <div
+          class="absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-90 motion-safe:animate-progress-gold-sheen motion-reduce:animate-none dark:via-white/40"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (menuOpen()) {
+  <nav
+    id="mobile-nav"
+    class="fixed left-0 right-0 z-[55] border-t border-neutral-200 bg-white px-4 py-4 shadow-lg backdrop-blur-md dark:border-neutral-900 dark:bg-black/95 md:hidden"
+    [style.top.px]="toolbarHeightPx() + progressBarOuterPx"
+    [attr.aria-label]="'ui.navMobile' | i18n"
+  >
+    <div class="flex flex-col gap-1">
+      @for (item of site.nav; track item.sectionId) {
+        <a
+          [attr.href]="'#' + item.sectionId"
+          (click)="onNavClick($event, item.sectionId)"
+          class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 transition duration-200 ease-out active:scale-[0.99] hover:bg-neutral-100 hover:text-brand-700 dark:text-neutral-300 dark:hover:bg-neutral-900/80 dark:hover:text-brand-200"
+        >
+          {{ locale.navLabel(item) }}
+        </a>
+      }
+    </div>
+  </nav>
+}

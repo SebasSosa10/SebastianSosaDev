@@ -106,6 +106,10 @@ export class HomeComponent implements AfterViewInit {
     () => messagesFor(this.locale.lang()).portfolioIdeas,
   );
 
+  readonly aboutDeliveryCards = computed(
+    () => messagesFor(this.locale.lang()).aboutDeliveryCards,
+  );
+
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
       return;
@@ -119,9 +123,5 @@ export class HomeComponent implements AfterViewInit {
         this.scrollNav.goToSection(id);
       }
     });
-  }
-
-  goTo(event: Event, sectionId: string): void {
-    this.scrollNav.handleClick(event, sectionId);
   }
 }

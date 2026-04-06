@@ -41,6 +41,7 @@ export const site = {
   /** Enlaces del menú: solo mueven la vista dentro del home */
   nav: [
     { label: 'Inicio', labelEn: 'Home', sectionId: 'inicio' },
+    { label: 'Sobre mí', labelEn: 'About', sectionId: 'sobre-mi' },
     {
       label: 'Qué mostrar',
       labelEn: 'What to show',

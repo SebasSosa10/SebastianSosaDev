@@ -12,13 +12,6 @@
 .tech-marquee-track {
   display: flex;
   width: max-content;
-  animation: tech-marquee 55s linear infinite;
-}
-
-@keyframes tech-marquee {
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
 }
 
 .tech-marquee-icon {
@@ -59,7 +52,6 @@
   }
 
   .tech-marquee-track {
-    animation: none;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;

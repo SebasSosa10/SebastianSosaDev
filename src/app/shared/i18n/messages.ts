@@ -2,6 +2,12 @@ export type AppLocale = 'es' | 'en';
 
 export type PortfolioIdea = { title: string; body: string };
 
+export type AboutDeliveryCard = {
+  title: string;
+  intro: string;
+  bullets: readonly string[];
+};
+
 export type Messages = {
   meta: { title: string };
   ui: {
@@ -17,13 +23,12 @@ export type Messages = {
     labelSpanish: string;
     switchToEnglish: string;
     switchToSpanish: string;
+    readingProgressAria: string;
   };
   hero: {
     line1: string;
     tagline: string;
     availability: string;
-    ctaProjects: string;
-    ctaContact: string;
     photoAlt: string;
     githubAria: string;
     linkedinAria: string;
@@ -42,7 +47,11 @@ export type Messages = {
     techHeading: string;
     techIntro: string;
     techMarqueeAria: string;
+    aboutHeading: string;
+    aboutLead: string;
+    aboutDeliveryHeading: string;
   };
+  aboutDeliveryCards: readonly AboutDeliveryCard[];
   portfolioIdeas: readonly PortfolioIdea[];
   footer: {
     blurbBefore: string;
@@ -70,14 +79,13 @@ function es(): Messages {
       labelSpanish: 'Español',
       switchToEnglish: 'Cambiar a inglés',
       switchToSpanish: 'Cambiar a español',
+      readingProgressAria: 'Progreso de lectura de la página',
     },
     hero: {
       line1: 'Hola, soy',
       tagline:
         'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
       availability: 'DISPONIBLE',
-      ctaProjects: 'Ver proyectos reales',
-      ctaContact: 'Hablemos',
       photoAlt: 'Retrato de {name}',
       githubAria: 'Perfil de GitHub (se abre en una pestaña nueva)',
       linkedinAria: 'Perfil de LinkedIn (se abre en una pestaña nueva)',
@@ -100,7 +108,79 @@ function es(): Messages {
       techHeading: 'Tecnologías con las que trabajo',
       techIntro: 'Herramientas modernas para soluciones modernas',
       techMarqueeAria: 'Lista de tecnologías y herramientas',
+      aboutHeading: 'Sobre mí',
+      aboutLead:
+        'Soy desarrollador de software y me centro en soluciones escalables, eficientes y pensadas para producción: sistemas mantenibles, claros y con margen para crecer. Abordo cada reto de punta a punta—entender el contexto, integrar lo necesario, decidir con criterio y dejar entregas que se sostienen en el tiempo.',
+      aboutDeliveryHeading: 'Lo que entrego',
     },
+    aboutDeliveryCards: [
+      {
+        title: 'Experiencia de uso e integración',
+        intro:
+          'Pantallas y recorridos que explican el sistema en lugar de pelear con él: claridad primero, rendimiento alineado al negocio.',
+        bullets: [
+          'Diseño de interfaces coherentes con el dominio y las personas que las usan',
+          'Experiencias que funcionan bien en distintos dispositivos y contextos',
+          'Conexión estable con servicios y datos reales, sin quedarse en prototipos eternos',
+          'Soluciones pensadas para evolucionar sin volver a empezar cada vez',
+        ],
+      },
+      {
+        title: 'Servicios, datos e integración entre sistemas',
+        intro:
+          'Acuerdos claros entre equipos y piezas: lo que expongo al exterior es predecible, seguro y fácil de consumir.',
+        bullets: [
+          'Contratos de servicio estables y comprensibles para quien integra',
+          'Acceso por roles, mínimo privilegio y buenas prácticas de exposición',
+          'Modelado y persistencia alineados al problema de negocio',
+          'Documentación que reduce idas y vueltas y acelera adopción',
+        ],
+      },
+      {
+        title: 'Análisis y automatización',
+        intro:
+          'Pasar de “lo hago a mano” a “lo mido y lo repito bien”: menos error humano, más señal para decidir.',
+        bullets: [
+          'Tratamiento y validación de información para que sea confiable',
+          'Automatización de lo repetitivo para liberar tiempo de valor',
+          'Indicadores ligados a objetivos, no a vanidad',
+          'Procesos más visibles, auditables y fáciles de mejorar',
+        ],
+      },
+      {
+        title: 'Ingeniería de software',
+        intro:
+          'Estructura y disciplina técnica para que el producto crezca sin derrumbarse: lo que construyo está pensado para equipos, no solo para hoy.',
+        bullets: [
+          'Organización del código en capas y límites que se entienden meses después',
+          'Pruebas, revisión y convenciones que reducen regresiones',
+          'Entornos y despliegues repetibles entre desarrollo y producción',
+          'Entregas en ciclos cortos con foco en valor y aprendizaje',
+        ],
+      },
+      {
+        title: 'Inteligencia artificial con sentido',
+        intro:
+          'IA donde aporta de verdad: asistencia y automatización que encajan en el flujo, sin sustituir el criterio ni la responsabilidad.',
+        bullets: [
+          'Capacidades inteligentes integradas en tareas concretas del negocio',
+          'Opciones que escalan el coste solo cuando hace falta, sin sobre-arquitectura',
+          'Resultados medibles y un dueño claro del caso de uso',
+          'Datos, contexto y permisos tratados con cuidado desde el diseño',
+        ],
+      },
+      {
+        title: 'Soluciones listas para producción y escala',
+        intro:
+          'Lo que entrego está pensado para uso real: carga, continuidad y equipos que operan el sistema día a día.',
+        bullets: [
+          'Infraestructura y piezas de rendimiento cuando el contexto lo exige',
+          'Crecimiento de usuarios, tráfico y datos con cabeza fría y plan',
+          'Integración ordenada con otros sistemas o clientes externos',
+          'Visibilidad operativa: qué pasa, cuándo y cómo mejorarlo',
+        ],
+      },
+    ],
     portfolioIdeas: [
       {
         title: 'Quién eres y qué ofreces',
@@ -154,14 +234,13 @@ function en(): Messages {
       labelSpanish: 'Spanish',
       switchToEnglish: 'Switch to English',
       switchToSpanish: 'Switch to Spanish',
+      readingProgressAria: 'Page reading progress',
     },
     hero: {
       line1: "Hello, I'm",
       tagline:
         'I build modern, scalable web applications that drive results and improve user experience.',
       availability: 'AVAILABLE',
-      ctaProjects: 'View real projects',
-      ctaContact: "Let's talk",
       photoAlt: 'Portrait of {name}',
       githubAria: 'GitHub profile (opens in a new tab)',
       linkedinAria: 'LinkedIn profile (opens in a new tab)',
@@ -184,7 +263,79 @@ function en(): Messages {
       techHeading: 'Technologies I Work With',
       techIntro: 'Modern tools for modern solutions',
       techMarqueeAria: 'Technologies and tools list',
+      aboutHeading: 'About me',
+      aboutLead:
+        "I'm a software developer focused on scalable, efficient solutions built for production—systems that stay maintainable, clear, and ready to grow. I tackle each challenge end to end: understand the context, integrate what's needed, decide with sound judgment, and ship work that holds up over time.",
+      aboutDeliveryHeading: 'What I deliver',
     },
+    aboutDeliveryCards: [
+      {
+        title: 'User experience & integration',
+        intro:
+          'Screens and flows that explain the system instead of fighting it—clarity first, performance aligned with the business.',
+        bullets: [
+          'Coherent UI design tied to the domain and the people using it',
+          'Experiences that work well across devices and contexts',
+          'Reliable connections to real services and data—not endless prototypes',
+          'Solutions meant to evolve without starting from scratch each time',
+        ],
+      },
+      {
+        title: 'Services, data & system integration',
+        intro:
+          'Clear agreements between teams and components: what you expose is predictable, safe, and easy to consume.',
+        bullets: [
+          'Stable, understandable service contracts for integrators',
+          'Role-based access, least privilege, and sensible exposure practices',
+          'Modeling and persistence aligned to the business problem',
+          'Documentation that cuts back-and-forth and speeds adoption',
+        ],
+      },
+      {
+        title: 'Analysis & automation',
+        intro:
+          'From “I do it by hand” to “I measure and repeat it well”: less human error, more signal to decide.',
+        bullets: [
+          'Treating and validating information so it can be trusted',
+          'Automating the repetitive to free time for higher-value work',
+          'Indicators tied to goals—not vanity metrics',
+          'Processes that are easier to see, audit, and improve',
+        ],
+      },
+      {
+        title: 'Software engineering',
+        intro:
+          'Structure and technical discipline so the product can grow without collapsing—what I build is meant for teams, not just for today.',
+        bullets: [
+          'Code organized in layers and boundaries that still make sense months later',
+          'Tests, review, and conventions that reduce regressions',
+          'Repeatable environments and deployments from dev to production',
+          'Short delivery cycles focused on value and learning',
+        ],
+      },
+      {
+        title: 'Artificial intelligence with purpose',
+        intro:
+          'AI where it truly helps—assistance and automation that fit the flow, without replacing judgment or accountability.',
+        bullets: [
+          'Intelligent capabilities embedded in concrete business tasks',
+          'Options where cost scales only when needed—without over-architecting',
+          'Measurable outcomes and a clear owner for each use case',
+          'Data, context, and permissions handled carefully by design',
+        ],
+      },
+      {
+        title: 'Production-ready, scalable solutions',
+        intro:
+          'What I ship is meant for real use: load, continuity, and teams operating the system every day.',
+        bullets: [
+          'Infrastructure and performance pieces when the context calls for it',
+          'Growing users, traffic, and data with a cool head and a plan',
+          'Orderly integration with other systems or external clients',
+          'Operational visibility: what happens, when, and how to improve it',
+        ],
+      },
+    ],
     portfolioIdeas: [
       {
         title: 'Who you are and what you offer',
