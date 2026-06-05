@@ -2,12 +2,19 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  HostListener,
   PLATFORM_ID,
   computed,
   inject,
+  signal,
 } from '@angular/core';
 import { site } from '../../shared/data/site';
-import { messagesFor } from '../../shared/i18n/messages';
+import {
+  message,
+  messagesFor,
+  type ExperienceEntry,
+  type FeaturedProject,
+} from '../../shared/i18n/messages';
 import { I18nPipe } from '../../shared/pipes/i18n.pipe';
 import { LocaleService } from '../../shared/services/locale.service';
 import { ScrollNavService } from '../../shared/services/scroll-nav.service';
@@ -102,13 +109,165 @@ export class HomeComponent implements AfterViewInit {
     }));
   });
 
-  readonly portfolioIdeas = computed(
-    () => messagesFor(this.locale.lang()).portfolioIdeas,
+  readonly experienceEntries = computed(
+    () => messagesFor(this.locale.lang()).experienceEntries,
   );
+
+  readonly featuredProjects = computed(
+    () => messagesFor(this.locale.lang()).featuredProjects,
+  );
+
+  /** Ancho mínimo del carril: columnas iguales y seguidas (scroll horizontal en móvil). */
+  readonly experienceTimelineMinWidthPx = computed(() => {
+    const n = messagesFor(this.locale.lang()).experienceEntries.length;
+    return Math.max(320, n * 152 + 48);
+  });
+
+  /**
+   * Columnas ordenadas cronológicamente (izquierda → derecha).
+   * Solo año visible; `contentAbove`: bloque completo (año + texto) arriba del eje; si no, abajo (zigzag).
+   */
+  readonly experienceTimelineNodes = computed(() => {
+    const entries = messagesFor(this.locale.lang()).experienceEntries;
+
+    const ranges = entries.map((entry, entryIndex) => {
+      const startIdx = HomeComponent.monthIndex(
+        entry.timelineFrom.year,
+        entry.timelineFrom.month,
+      );
+      const isoFrom = `${entry.timelineFrom.year}-${String(entry.timelineFrom.month).padStart(2, '0')}-01`;
+      return { entryIndex, entry, startIdx, isoFrom };
+    });
+
+    const sorted = [...ranges].sort((a, b) => a.startIdx - b.startIdx);
+
+    return sorted.map((r, visualIndex) => ({
+      entryIndex: r.entryIndex,
+      entry: r.entry,
+      isoFrom: r.isoFrom,
+      yearLabel: String(r.entry.timelineFrom.year),
+      contentAbove: visualIndex % 2 === 0,
+    }));
+  });
+
+  /** Mes absoluto para ordenar: año×12 + mes (1–12). */
+  private static monthIndex(year: number, month: number): number {
+    return year * 12 + month;
+  }
+
+  readonly selectedExperienceIndex = signal<number | null>(null);
+
+  readonly selectedExperience = computed(() => {
+    const idx = this.selectedExperienceIndex();
+    if (idx === null) {
+      return null;
+    }
+    const list = messagesFor(this.locale.lang()).experienceEntries;
+    return list[idx] ?? null;
+  });
+
+  readonly selectedProjectIndex = signal<number | null>(null);
+
+  readonly selectedFeaturedProject = computed(() => {
+    const idx = this.selectedProjectIndex();
+    if (idx === null) {
+      return null;
+    }
+    const list = messagesFor(this.locale.lang()).featuredProjects;
+    return list[idx] ?? null;
+  });
+
+  openExperienceModal(index: number): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    this.selectedProjectIndex.set(null);
+    this.selectedExperienceIndex.set(index);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeExperienceModal(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    this.selectedExperienceIndex.set(null);
+    document.body.style.overflow = '';
+  }
+
+  openProjectModal(index: number): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    this.selectedExperienceIndex.set(null);
+    this.selectedProjectIndex.set(index);
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeProjectModal(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    this.selectedProjectIndex.set(null);
+    document.body.style.overflow = '';
+  }
+
+  experienceCardAria(entry: ExperienceEntry): string {
+    const hint = message(this.locale.lang(), 'sections.experienceModalHint');
+    return `${entry.title}, ${entry.company}. ${hint}`;
+  }
+
+  featuredProjectCardAria(project: FeaturedProject): string {
+    const hint = message(this.locale.lang(), 'sections.projectModalHint');
+    return `${project.title}. ${hint}`;
+  }
+
+  @HostListener('document:keydown.escape')
+  onDocumentEscape(): void {
+    if (this.selectedProjectIndex() !== null) {
+      this.closeProjectModal();
+      return;
+    }
+    if (this.selectedExperienceIndex() !== null) {
+      this.closeExperienceModal();
+    }
+  }
+
+  /** Iniciales para el avatar cuando aún no hay logo de empresa. */
+  companyInitials(company: string): string {
+    const parts = company.trim().split(/\s+/).filter(Boolean);
+    if (parts.length === 0) {
+      return '?';
+    }
+    if (parts.length === 1) {
+      return parts[0].slice(0, 2).toUpperCase();
+    }
+    return (
+      parts[0].charAt(0) + parts[parts.length - 1].charAt(0)
+    ).toUpperCase();
+  }
 
   readonly aboutDeliveryCards = computed(
     () => messagesFor(this.locale.lang()).aboutDeliveryCards,
   );
+
+  readonly contactEmailCopied = signal(false);
+  private contactCopyResetTimer: ReturnType<typeof setTimeout> | null = null;
+
+  copyContactEmail(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    void navigator.clipboard.writeText(this.site.email).then(() => {
+      if (this.contactCopyResetTimer !== null) {
+        clearTimeout(this.contactCopyResetTimer);
+      }
+      this.contactEmailCopied.set(true);
+      this.contactCopyResetTimer = setTimeout(() => {
+        this.contactEmailCopied.set(false);
+        this.contactCopyResetTimer = null;
+      }, 2000);
+    });
+  }
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {

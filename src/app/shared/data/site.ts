@@ -43,9 +43,9 @@ export const site = {
     { label: 'Inicio', labelEn: 'Home', sectionId: 'inicio' },
     { label: 'Sobre mí', labelEn: 'About', sectionId: 'sobre-mi' },
     {
-      label: 'Qué mostrar',
-      labelEn: 'What to show',
-      sectionId: 'que-mostrar',
+      label: 'Experiencia',
+      labelEn: 'Experience',
+      sectionId: 'experiencia',
     },
     { label: 'Proyectos', labelEn: 'Projects', sectionId: 'proyectos' },
     { label: 'Contacto', labelEn: 'Contact', sectionId: 'contacto' },

@@ -1,11 +1,52 @@
 export type AppLocale = 'es' | 'en';
 
-export type PortfolioIdea = { title: string; body: string };
+/** Cada bloque aparece en el modal al pulsar la experiencia. */
+export type ExperienceDetail = {
+  description: string;
+  technologies: readonly string[];
+  outcome?: string;
+};
+
+/** Mes 1–12; usado para colocar el punto en la línea de tiempo horizontal. */
+export type ExperienceTimelineBounds = {
+  year: number;
+  month: number;
+};
+
+/** Logos opcionales: `public/experience-logos/` → `/experience-logos/archivo.webp`. */
+export type ExperienceEntry = {
+  logoSrc?: string;
+  period: string;
+  title: string;
+  company: string;
+  summary: string;
+  details: readonly ExperienceDetail[];
+  timelineFrom: ExperienceTimelineBounds;
+  timelineTo?: ExperienceTimelineBounds;
+  /** Si true, el tramo llega hasta la fecha actual en el layout */
+  timelineOngoing?: boolean;
+};
 
 export type AboutDeliveryCard = {
   title: string;
   intro: string;
   bullets: readonly string[];
+};
+
+export type FeaturedProjectSection = {
+  heading: string;
+  bullets: readonly string[];
+};
+
+export type FeaturedProject = {
+  title: string;
+  subtitle: string;
+  period: string;
+  summary: string;
+  imageSrc: string;
+  imageAlt: string;
+  stack: readonly string[];
+  sections: readonly FeaturedProjectSection[];
 };
 
 export type Messages = {
@@ -35,28 +76,38 @@ export type Messages = {
     downloadCv: string;
   };
   sections: {
-    ideasHeading: string;
-    ideasIntro: string;
+    experienceHeading: string;
     projectsHeading: string;
-    projectsIntro: string;
-    projectsPlaceholder1: string;
-    projectsPlaceholder2: string;
+    projectsStackHeading: string;
+    /** Etiqueta de accesibilidad al pulsar una tarjeta de proyecto */
+    projectModalHint: string;
+    /** Texto auxiliar bajo el resumen en la tarjeta */
+    projectsCardTapHint: string;
+    projectsGridAria: string;
     contactHeading: string;
-    contactBodyBefore: string;
-    contactBodyAfter: string;
+    contactIntro: string;
+    contactOpenMailAria: string;
+    contactCopyEmail: string;
+    contactCopyEmailDone: string;
     techHeading: string;
     techIntro: string;
     techMarqueeAria: string;
     aboutHeading: string;
     aboutLead: string;
     aboutDeliveryHeading: string;
+    experienceModalClose: string;
+    experienceModalTech: string;
+    experienceModalImpact: string;
+    experienceModalHint: string;
   };
   aboutDeliveryCards: readonly AboutDeliveryCard[];
-  portfolioIdeas: readonly PortfolioIdea[];
+  experienceEntries: readonly ExperienceEntry[];
+  featuredProjects: readonly FeaturedProject[];
   footer: {
-    blurbBefore: string;
-    blurbAfter: string;
-    copyright: string;
+    blurb: string;
+    navHeading: string;
+    socialHeading: string;
+    navAria: string;
   };
   roleTitle: string;
 };
@@ -92,19 +143,18 @@ function es(): Messages {
       downloadCv: 'Descargar hoja de vida',
     },
     sections: {
-      ideasHeading: 'Qué conviene mostrar en tu portafolio',
-      ideasIntro:
-        'Usa esta sección como guía mientras rellenas el sitio: cada tarjeta es algo que suelen buscar reclutadores y equipos técnicos.',
+      experienceHeading: 'Experiencia laboral',
       projectsHeading: 'Proyectos destacados',
-      projectsIntro:
-        'Aquí irán 2–4 proyectos con imagen, descripción corta y enlaces. Mientras tanto, este bloque es el contenedor listo para cuando los añadas.',
-      projectsPlaceholder1:
-        'Zona de proyectos — crea componentes o rutas y enlázalos desde aquí.',
-      projectsPlaceholder2:
-        'Tip: un card por proyecto con stack en badges, captura y botones “Código” / “Demo”.',
+      projectsStackHeading: 'Stack principal',
+      projectModalHint: 'Abrir detalles del proyecto en una ventana emergente',
+      projectsCardTapHint: 'Pulsa para ver el detalle completo',
+      projectsGridAria: 'Lista de proyectos destacados en cuadrícula',
       contactHeading: 'Hablemos',
-      contactBodyBefore: 'Sustituye el correo en',
-      contactBodyAfter: 'y enlaza tus redes reales en el pie de página.',
+      contactIntro:
+        '¿Quieres lanzar algo, sumar refuerzos al equipo o aún no sabes ni cómo llamarlo? Da igual el tamaño del reto: si hay que hacerlo bien, hablemos. Escríbeme y te respondo en cuanto pueda.',
+      contactOpenMailAria: 'Abrir cliente de correo para escribir a esta dirección',
+      contactCopyEmail: 'Copiar correo',
+      contactCopyEmailDone: '¡Copiado!',
       techHeading: 'Tecnologías con las que trabajo',
       techIntro: 'Herramientas modernas para soluciones modernas',
       techMarqueeAria: 'Lista de tecnologías y herramientas',
@@ -112,6 +162,10 @@ function es(): Messages {
       aboutLead:
         'Soy desarrollador de software y me centro en soluciones escalables, eficientes y pensadas para producción: sistemas mantenibles, claros y con margen para crecer. Abordo cada reto de punta a punta—entender el contexto, integrar lo necesario, decidir con criterio y dejar entregas que se sostienen en el tiempo.',
       aboutDeliveryHeading: 'Lo que entrego',
+      experienceModalClose: 'Cerrar',
+      experienceModalTech: 'Tecnologías',
+      experienceModalImpact: 'Resultado',
+      experienceModalHint: 'Ver detalles, tecnologías y resultados',
     },
     aboutDeliveryCards: [
       {
@@ -181,36 +235,379 @@ function es(): Messages {
         ],
       },
     ],
-    portfolioIdeas: [
+    experienceEntries: [
       {
-        title: 'Quién eres y qué ofreces',
-        body: 'Una frase clara: rol, años o foco (backend, frontend, full stack, datos) y el tipo de problemas que resuelves.',
+        logoSrc: '/experience-logos/logo_edeq.webp',
+        period: 'nov. 2025 — actualidad',
+        title: 'Desarrollador de software',
+        company: 'EDEQ Grupo EPM',
+        timelineFrom: { year: 2025, month: 11 },
+        timelineOngoing: true,
+        summary:
+          'Portal web integral para la Subgerencia de Distribución: centralización de procesos, integración de sistemas y optimización de la operación de más de 10 equipos. Armenia, Quindío · presencial · jornada completa.',
+        details: [
+          {
+            description:
+              'Backend con Python y FastAPI bajo arquitectura de microservicios escalable.',
+            technologies: ['Python', 'FastAPI'],
+          },
+          {
+            description:
+              'Despliegue en Docker y orquestación con Kubernetes para alta disponibilidad.',
+            technologies: ['Docker', 'Kubernetes'],
+          },
+          {
+            description:
+              'Frontend con Angular: interfaces modernas, dinámicas y centradas en la experiencia de usuario.',
+            technologies: ['Angular', 'TypeScript', 'HTML', 'CSS'],
+          },
+          {
+            description:
+              'PQRS con inteligencia artificial para automatizar respuestas y mejorar tiempos de atención.',
+            technologies: ['Python', 'IA'],
+          },
+          {
+            description:
+              'Integración de sistemas empresariales (MAXIMO, SAC, SP7) mediante APIs.',
+            technologies: ['REST', 'Integración empresarial'],
+          },
+          {
+            description:
+              'Módulos contables para la gestión financiera de la subgerencia.',
+            technologies: [],
+          },
+          {
+            description:
+              'Dashboards interactivos para visualización de datos en tiempo real.',
+            technologies: [],
+          },
+          {
+            description:
+              'Trabajo bajo Scrum y control de versiones con Git.',
+            technologies: ['Scrum', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Stack y herramientas',
-        body: 'Lenguajes, frameworks, nube y prácticas (tests, CI/CD, accesibilidad). Prioriza lo que realmente usas en producción.',
+        logoSrc: '/experience-logos/Konex.svg',
+        period: 'oct. 2025 — dic. 2025',
+        title: 'Full Stack Developer',
+        company: 'Konex Innovation',
+        timelineFrom: { year: 2025, month: 10 },
+        timelineTo: { year: 2025, month: 12 },
+        summary:
+          'Plataforma web de apuestas: rendimiento, seguridad y escalabilidad, con UX fluida. Armenia, Quindío · remoto · profesional independiente.',
+        details: [
+          {
+            description:
+              'Backend con Java y Spring Boot: APIs REST seguras y eficientes.',
+            technologies: ['Java', 'Spring Boot', 'REST'],
+          },
+          {
+            description:
+              'Frontend con Angular: interfaces dinámicas, responsivas y centradas en el usuario.',
+            technologies: ['Angular', 'TypeScript', 'HTML', 'CSS'],
+          },
+          {
+            description:
+              'Lógica de negocio para apuestas, validación de transacciones, control de usuarios e integración de bases de datos.',
+            technologies: ['SQL'],
+          },
+          {
+            description:
+              'Corrección de bugs críticos, optimización de tiempos de respuesta, autenticación y control de acceso.',
+            technologies: [],
+          },
+          {
+            description:
+              'Scrum, Azure DevOps (tareas e incidencias) y Git para trabajo colaborativo.',
+            technologies: ['Scrum', 'Azure DevOps', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Proyectos con historia',
-        body: 'Contexto breve, tu responsabilidad, decisiones técnicas y enlaces a repo o demo. Capturas o GIF ayudan mucho.',
+        logoSrc: '/experience-logos/logo_edeq.webp',
+        period: 'abr. 2025 — oct. 2025',
+        title: 'Practicante universitario',
+        company: 'EDEQ Grupo EPM · Prácticas',
+        timelineFrom: { year: 2025, month: 4 },
+        timelineTo: { year: 2025, month: 10 },
+        summary:
+          'Aplicación interna de PQR con Python y FastAPI, arquitectura basada en servicios y control de acceso por roles; automatización y trazabilidad.',
+        details: [
+          {
+            description:
+              'APIs REST eficientes y seguras para el flujo de peticiones, quejas y reclamos.',
+            technologies: ['Python', 'FastAPI', 'REST'],
+            outcome: 'Reducción del 35% en tiempos de respuesta.',
+          },
+          {
+            description:
+              'Automatización con Selenium y Pandas para tareas operativas manuales.',
+            technologies: ['Selenium', 'Pandas'],
+            outcome:
+              'Más de 20 horas semanales eliminadas, con ~95% de precisión.',
+          },
+          {
+            description:
+              'Optimización de la gestión y trazabilidad de datos del equipo.',
+            technologies: ['Python', 'FastAPI'],
+            outcome: 'Aumento de productividad en torno a un 40%.',
+          },
+          {
+            description:
+              'PEP8, tipado y pruebas unitarias para reducir defectos en producción.',
+            technologies: ['PEP8', 'Typing', 'Testing'],
+            outcome: 'Disminución del 25% de errores en producción.',
+          },
+          {
+            description:
+              'Scrum y Git para entregas iterativas y documentadas.',
+            technologies: ['Scrum', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Resultados o aprendizajes',
-        body: 'Métricas si las hay (rendimiento, usuarios, tiempo ahorrado). Si no, qué aprendiste o qué harías distinto.',
+        logoSrc: '/experience-logos/astra-dev.png',
+        period: 'ago. 2024 — actualidad',
+        title: 'Desarrollador back-end (freelance)',
+        company: 'Profesional independiente · Astra Dev',
+        timelineFrom: { year: 2024, month: 8 },
+        timelineOngoing: true,
+        summary:
+          'Soluciones a medida en remoto: APIs REST, bases de datos, JWT, Docker y mejora de rendimiento con Clean Code y diseño modular.',
+        details: [
+          {
+            description:
+              'Back-end con Java (Spring Boot) y Python (FastAPI): APIs REST e integración con PostgreSQL y MySQL.',
+            technologies: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'REST'],
+          },
+          {
+            description:
+              'Autenticación con JWT y despliegue en contenedores Docker.',
+            technologies: ['JWT', 'Docker'],
+          },
+          {
+            description:
+              'Optimización de consultas SQL y principios de Clean Code en sistemas existentes.',
+            technologies: ['PostgreSQL', 'MySQL', 'SQL'],
+          },
+          {
+            description:
+              'Metodologías ágiles y control de versiones con Git.',
+            technologies: ['Git'],
+          },
+        ],
       },
       {
-        title: 'Cómo trabajas',
-        body: 'Código limpio, revisiones, documentación, trabajo en equipo. Sirve para que te imaginen en su día a día.',
+        logoSrc: '/experience-logos/becall.webp',
+        period: 'jul. 2022 — ene. 2023',
+        title: 'Técnico de sistemas',
+        company: 'Be Call Group',
+        timelineFrom: { year: 2022, month: 7 },
+        timelineTo: { year: 2023, month: 1 },
+        summary:
+          'Diseño, desarrollo y mantenimiento de aplicaciones internas para optimizar gestión técnica y experiencia de usuario. Prácticas · presencial.',
+        details: [
+          {
+            description:
+              'Aplicaciones de escritorio y backend con alto volumen diario de registros sin errores críticos.',
+            technologies: [],
+          },
+          {
+            description:
+              'Arquitectura escalable y optimización de recursos.',
+            technologies: [],
+            outcome:
+              'Mejora de alrededor del 30% en eficiencia del sistema.',
+          },
+          {
+            description:
+              'Mayor usabilidad de herramientas internas con HTML, CSS y JavaScript.',
+            technologies: ['HTML', 'CSS', 'JavaScript'],
+          },
+          {
+            description:
+              'Scrum y Git para continuidad del ecosistema tecnológico.',
+            technologies: ['Scrum', 'Git'],
+            outcome:
+              'Contribución a alta disponibilidad (~99,9%) del ecosistema.',
+          },
+          {
+            description:
+              'Soporte y documentación de entornos técnicos para continuidad operativa entre equipos.',
+            technologies: [],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        title: 'SegurApp',
+        subtitle: 'Plataforma de Seguridad Ciudadana',
+        period: 'feb. 2025 — actualidad',
+        summary:
+          'Aplicación móvil con Kotlin y Jetpack Compose (Android Studio), orientada a seguridad ciudadana y bienestar comunitario: reportar riesgos y emergencias en tiempo real, ver alertas cercanas y colaborar con la comunidad.',
+        imageSrc: '/projects/segurapp-hero.png',
+        imageAlt:
+          'SegurApp — mockups con mapa de reportes, inicio de sesión, categorías y notificaciones',
+        stack: [
+          'Kotlin',
+          'Jetpack Compose',
+          'Android Studio',
+          'Firebase Authentication',
+          'Firebase Cloud Messaging',
+          'Google Maps / Mapbox',
+          'Cloudinary · AWS S3 · GCP Storage',
+        ],
+        sections: [],
       },
       {
-        title: 'Contacto visible',
-        body: 'Email, LinkedIn o formulario. Facilita que reclutadores o clientes lleguen sin fricción.',
+        title: 'Golden Egg',
+        subtitle: 'Sistema ERP Lite',
+        period: 'feb. 2025 — actualidad',
+        summary:
+          'ERP lite para una empresa avícola dedicada a comercializar y distribuir huevos. Centraliza inventario, ventas y facturación para digitalizar operaciones y automatizar procesos comerciales clave.',
+        imageSrc: '/projects/golden-egg-erp-hero.png',
+        imageAlt:
+          'Golden Egg ERP — pantallas de panel, inventario, pedidos, facturas e informes',
+        stack: [
+          'Angular',
+          'Spring Boot',
+          'JWT',
+          'REST API',
+          'PostgreSQL',
+          'PDF · Excel',
+        ],
+        sections: [
+          {
+            heading: 'Usuarios y seguridad',
+            bullets: [
+              'Autenticación con JWT (JSON Web Tokens).',
+              'Acceso basado en roles: Administrador y Empleado.',
+              'Registro, actualización y eliminación de usuarios.',
+            ],
+          },
+          {
+            heading: 'Inventarios y productos',
+            bullets: [
+              'Operaciones CRUD para huevos y catálogo.',
+              'Inventarios con registros de entradas, salidas y pérdidas.',
+              'Gestión de proveedores con contacto y vínculo a productos.',
+            ],
+          },
+          {
+            heading: 'Pedidos, facturación y pagos',
+            bullets: [
+              'Pedidos de ventas con seguimiento de estado.',
+              'Generación de facturas y registro de pagos.',
+              'Varios métodos de pago y control de fechas de vencimiento.',
+            ],
+          },
+          {
+            heading: 'Informes y monitoreo',
+            bullets: [
+              'Informes financieros mensuales automatizados.',
+              'Exportación a PDF y Excel.',
+              'Informes de ventas, inventarios, proveedores y clientes.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Agenda de Contactos',
+        subtitle: 'Aplicación de escritorio · Agenda Digital',
+        period: 'Proyecto de escritorio · Python',
+        summary:
+          'Aplicación de escritorio en Python con SQLite y Tkinter para gestionar contactos personales, organizarlos por categorías y marcar favoritos; interfaz clara y flujos para búsqueda y filtrado.',
+        imageSrc: '/projects/agenda-contactos-hero.png',
+        imageAlt:
+          'Agenda de Contactos — inicio de sesión, lista de contactos, formulario de alta, búsqueda y categorías',
+        stack: ['Python', 'Tkinter', 'SQLite', 'Git'],
+        sections: [
+          {
+            heading: 'Registro y autenticación',
+            bullets: [
+              'Registro de usuarios con validación de datos.',
+              'Inicio de sesión con autenticación básica segura.',
+            ],
+          },
+          {
+            heading: 'Gestión de contactos',
+            bullets: [
+              'Alta, búsqueda, eliminación y edición de contactos.',
+              'Filtros por nombre, número y favoritos.',
+            ],
+          },
+          {
+            heading: 'Almacenamiento',
+            bullets: [
+              'SQLite como almacenamiento persistente para contactos y usuarios.',
+            ],
+          },
+          {
+            heading: 'Uso',
+            bullets: [
+              'Ejecutar Main.py para abrir la pantalla de inicio de sesión.',
+              'Registrarse o iniciar sesión con una cuenta existente.',
+              'Agregar contactos y organizarlos en la agenda.',
+              'Usar filtros para localizar contactos con rapidez.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Plataforma de Blogs',
+        subtitle: 'API REST con Spring Boot',
+        period: 'Backend · Java 17+',
+        summary:
+          'Backend de una plataforma de blogs en Spring Boot: gestión de usuarios y publicaciones, interacción entre autores y un modelo de roles (ADMIN / AUTHOR) para administrar el contenido con claridad y control de acceso.',
+        imageSrc: '/projects/blog-platform-hero.png',
+        imageAlt:
+          'Diagrama técnico: arquitectura Spring Boot, JWT, endpoints REST y modelo de datos del blog',
+        stack: [
+          'Java',
+          'Spring Boot',
+          'Spring Security',
+          'JWT',
+          'Spring Data JPA',
+          'Hibernate',
+          'MySQL · PostgreSQL',
+          'Maven',
+        ],
+        sections: [
+          {
+            heading: 'Usuarios y seguridad',
+            bullets: [
+              'Registro e inicio de sesión con JWT.',
+              'Roles ADMIN (usuarios y contenido) y AUTHOR (crear y administrar sus publicaciones).',
+              'Perfiles de usuario editables.',
+            ],
+          },
+          {
+            heading: 'Publicaciones y administración',
+            bullets: [
+              'CRUD de publicaciones con categorías y etiquetas; publicar o despublicar.',
+              'Panel de administración para usuarios, publicaciones y comentarios.',
+            ],
+          },
+          {
+            heading: 'Interacción y búsqueda',
+            bullets: [
+              'Comentarios con moderación por administradores.',
+              'Reacciones «me gusta» y «no me gusta».',
+              'Búsqueda y filtros por autor, categoría, fecha y popularidad.',
+            ],
+          },
+        ],
       },
     ],
     footer: {
-      blurbBefore: 'Portafolio personal — reemplaza enlaces y textos en',
-      blurbAfter: '.',
-      copyright: 'Hecho con Angular y Tailwind.',
+      blurb:
+        'Desarrollador de software. Contacto por correo y redes sociales; enlaces actualizados en esta página.',
+      navHeading: 'Navegación',
+      socialHeading: 'Redes',
+      navAria: 'Enlaces a secciones del portafolio',
     },
     roleTitle: 'Desarrollador de software',
   };
@@ -247,19 +644,18 @@ function en(): Messages {
       downloadCv: 'Download resume',
     },
     sections: {
-      ideasHeading: 'What to show in your portfolio',
-      ideasIntro:
-        'Use this section as a guide while you fill the site: each card is something recruiters and engineering teams often look for.',
+      experienceHeading: 'Work experience',
       projectsHeading: 'Featured projects',
-      projectsIntro:
-        'This will hold 2–4 projects with image, short description, and links. For now this block is ready for when you add them.',
-      projectsPlaceholder1:
-        'Project area — create components or routes and link them from here.',
-      projectsPlaceholder2:
-        'Tip: one card per project with stack badges, screenshot, and “Code” / “Demo” buttons.',
+      projectsStackHeading: 'Core stack',
+      projectModalHint: 'Open full project details in a dialog',
+      projectsCardTapHint: 'Click for full details',
+      projectsGridAria: 'Featured projects in a grid layout',
       contactHeading: "Let's talk",
-      contactBodyBefore: 'Replace the email in',
-      contactBodyAfter: 'and link your real social profiles in the footer.',
+      contactIntro:
+        'Shipping something new, need an extra pair of hands, or still figuring out what to call it? Whatever it is—if it needs doing right, let’s talk. Email me and I’ll get back as soon as I can.',
+      contactOpenMailAria: 'Open your email app to write to this address',
+      contactCopyEmail: 'Copy email',
+      contactCopyEmailDone: 'Copied!',
       techHeading: 'Technologies I Work With',
       techIntro: 'Modern tools for modern solutions',
       techMarqueeAria: 'Technologies and tools list',
@@ -267,6 +663,10 @@ function en(): Messages {
       aboutLead:
         "I'm a software developer focused on scalable, efficient solutions built for production—systems that stay maintainable, clear, and ready to grow. I tackle each challenge end to end: understand the context, integrate what's needed, decide with sound judgment, and ship work that holds up over time.",
       aboutDeliveryHeading: 'What I deliver',
+      experienceModalClose: 'Close',
+      experienceModalTech: 'Technologies',
+      experienceModalImpact: 'Outcome',
+      experienceModalHint: 'View details, technologies, and results',
     },
     aboutDeliveryCards: [
       {
@@ -336,36 +736,378 @@ function en(): Messages {
         ],
       },
     ],
-    portfolioIdeas: [
+    experienceEntries: [
       {
-        title: 'Who you are and what you offer',
-        body: 'A clear line: role, years or focus (backend, frontend, full stack, data) and the problems you solve.',
+        logoSrc: '/experience-logos/logo_edeq.webp',
+        period: 'Nov 2025 — present',
+        title: 'Software developer',
+        company: 'EDEQ Grupo EPM',
+        timelineFrom: { year: 2025, month: 11 },
+        timelineOngoing: true,
+        summary:
+          'End-to-end web portal for the Distribution sub-management: process centralization, enterprise system integration, and operations for 10+ teams. Armenia, Quindío · on-site · full-time.',
+        details: [
+          {
+            description:
+              'Python and FastAPI backend with a scalable microservices architecture.',
+            technologies: ['Python', 'FastAPI'],
+          },
+          {
+            description:
+              'Containerized services with Docker and Kubernetes orchestration for high availability.',
+            technologies: ['Docker', 'Kubernetes'],
+          },
+          {
+            description:
+              'Angular frontend: modern, dynamic UIs focused on user experience.',
+            technologies: ['Angular', 'TypeScript', 'HTML', 'CSS'],
+          },
+          {
+            description:
+              'PQRS flows with AI to automate responses and shorten handling times.',
+            technologies: ['Python', 'AI'],
+          },
+          {
+            description:
+              'Integration with enterprise systems (MAXIMO, SAC, SP7) via APIs.',
+            technologies: ['REST', 'Enterprise integration'],
+          },
+          {
+            description:
+              'Accounting modules for the sub-management’s financial operations.',
+            technologies: [],
+          },
+          {
+            description:
+              'Interactive dashboards for near real-time data visualization.',
+            technologies: [],
+          },
+          {
+            description:
+              'Scrum and Git for delivery and version control.',
+            technologies: ['Scrum', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Stack and tools',
-        body: 'Languages, frameworks, cloud, and practices (tests, CI/CD, accessibility). Prioritize what you actually use in production.',
+        logoSrc: '/experience-logos/Konex.svg',
+        period: 'Oct 2025 — Dec 2025',
+        title: 'Full Stack Developer',
+        company: 'Konex Innovation',
+        timelineFrom: { year: 2025, month: 10 },
+        timelineTo: { year: 2025, month: 12 },
+        summary:
+          'Betting web platform focused on performance, security, and scale with a smooth UX. Armenia, Quindío · remote · independent contractor.',
+        details: [
+          {
+            description:
+              'Java and Spring Boot backend with secure, efficient REST APIs.',
+            technologies: ['Java', 'Spring Boot', 'REST'],
+          },
+          {
+            description:
+              'Angular frontend: dynamic, responsive, user-centered interfaces.',
+            technologies: ['Angular', 'TypeScript', 'HTML', 'CSS'],
+          },
+          {
+            description:
+              'Business logic for betting, transaction validation, user controls, and database integration.',
+            technologies: ['SQL'],
+          },
+          {
+            description:
+              'Critical bug fixes, faster response times, authentication, and access control.',
+            technologies: [],
+          },
+          {
+            description:
+              'Scrum, Azure DevOps for work items and incidents, and Git for collaboration.',
+            technologies: ['Scrum', 'Azure DevOps', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Projects with a story',
-        body: 'Brief context, your responsibility, technical decisions, and links to repo or demo. Screenshots or GIFs help a lot.',
+        logoSrc: '/experience-logos/logo_edeq.webp',
+        period: 'Apr 2025 — Oct 2025',
+        title: 'University intern',
+        company: 'EDEQ Grupo EPM · Internship',
+        timelineFrom: { year: 2025, month: 4 },
+        timelineTo: { year: 2025, month: 10 },
+        summary:
+          'Internal PQR app with Python and FastAPI, service-based architecture and role-based access; automation and traceability.',
+        details: [
+          {
+            description:
+              'Efficient, secure REST APIs for petitions, complaints, and claims.',
+            technologies: ['Python', 'FastAPI', 'REST'],
+            outcome: '35% faster response times.',
+          },
+          {
+            description:
+              'Automation with Selenium and Pandas for manual operational work.',
+            technologies: ['Selenium', 'Pandas'],
+            outcome:
+              '20+ hours per week removed with ~95% accuracy.',
+          },
+          {
+            description:
+              'Better data handling and traceability for the team.',
+            technologies: ['Python', 'FastAPI'],
+            outcome: 'Roughly 40% productivity gain.',
+          },
+          {
+            description:
+              'PEP8, typing, and unit tests to reduce production defects.',
+            technologies: ['PEP8', 'Typing', 'Testing'],
+            outcome: '25% fewer production errors.',
+          },
+          {
+            description:
+              'Scrum and Git for iterative, documented releases.',
+            technologies: ['Scrum', 'Git'],
+          },
+        ],
       },
       {
-        title: 'Outcomes or learnings',
-        body: 'Metrics if you have them (performance, users, time saved). If not, what you learned or what you would do differently.',
+        logoSrc: '/experience-logos/astra-dev.png',
+        period: 'Aug 2024 — present',
+        title: 'Back-end developer (freelance)',
+        company: 'Independent professional · Astra Dev',
+        timelineFrom: { year: 2024, month: 8 },
+        timelineOngoing: true,
+        summary:
+          'Remote custom solutions: REST APIs, databases, JWT, Docker, and performance work with Clean Code and modular design.',
+        details: [
+          {
+            description:
+              'Back-end with Java (Spring Boot) and Python (FastAPI): REST APIs plus PostgreSQL and MySQL integration.',
+            technologies: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'REST'],
+          },
+          {
+            description:
+              'JWT authentication and Docker-based deployments.',
+            technologies: ['JWT', 'Docker'],
+          },
+          {
+            description:
+              'SQL query tuning, Clean Code, and modular design on existing systems.',
+            technologies: ['PostgreSQL', 'MySQL', 'SQL'],
+          },
+          {
+            description:
+              'Agile practices and Git for version control.',
+            technologies: ['Git'],
+          },
+        ],
       },
       {
-        title: 'How you work',
-        body: 'Clean code, reviews, documentation, teamwork. Helps others picture you in their day to day.',
+        logoSrc: '/experience-logos/becall.webp',
+        period: 'Jul 2022 — Jan 2023',
+        title: 'Systems technician',
+        company: 'Be Call Group',
+        timelineFrom: { year: 2022, month: 7 },
+        timelineTo: { year: 2023, month: 1 },
+        summary:
+          'Design, development, and maintenance of internal apps to improve technical operations and UX. Internship · on-site.',
+        details: [
+          {
+            description:
+              'Desktop and backend apps handling large daily record volumes without critical failures.',
+            technologies: [],
+          },
+          {
+            description:
+              'Scalable architecture and resource optimization.',
+            technologies: [],
+            outcome: 'About 30% better system efficiency.',
+          },
+          {
+            description:
+              'Improved internal tool usability with HTML, CSS, and JavaScript.',
+            technologies: ['HTML', 'CSS', 'JavaScript'],
+          },
+          {
+            description:
+              'Scrum and Git to keep the technology ecosystem running.',
+            technologies: ['Scrum', 'Git'],
+            outcome:
+              'Contributed to ~99.9% ecosystem availability.',
+          },
+          {
+            description:
+              'Technical environment support and documentation for operational continuity across teams.',
+            technologies: [],
+          },
+        ],
+      },
+    ],
+    featuredProjects: [
+      {
+        title: 'SegurApp',
+        subtitle: 'Citizen Safety Platform',
+        period: 'Feb 2025 — present',
+        summary:
+          'Mobile app with Kotlin and Jetpack Compose (Android Studio), focused on citizen safety and community wellbeing: report risks and emergencies in real time, see nearby alerts, and collaborate with the community.',
+        imageSrc: '/projects/segurapp-hero.png',
+        imageAlt:
+          'SegurApp mockups showing map, login, incident categories, and notifications',
+        stack: [
+          'Kotlin',
+          'Jetpack Compose',
+          'Android Studio',
+          'Firebase Authentication',
+          'Firebase Cloud Messaging',
+          'Google Maps / Mapbox',
+          'Cloudinary · AWS S3 · GCP Storage',
+        ],
+        sections: [],
       },
       {
-        title: 'Visible contact',
-        body: 'Email, LinkedIn, or a form. Make it easy for recruiters or clients to reach you.',
+        title: 'Golden Egg',
+        subtitle: 'Lite ERP system',
+        period: 'Feb 2025 — present',
+        summary:
+          'A lightweight ERP for a poultry business focused on marketing and distributing eggs. It centralizes inventory, sales, and billing to digitize ops and automate core commercial workflows.',
+        imageSrc: '/projects/golden-egg-erp-hero.png',
+        imageAlt:
+          'Golden Egg ERP — dashboard, inventory, orders, invoicing, and reports',
+        stack: [
+          'Angular',
+          'Spring Boot',
+          'JWT',
+          'REST API',
+          'PostgreSQL',
+          'PDF · Excel',
+        ],
+        sections: [
+          {
+            heading: 'Users & security',
+            bullets: [
+              'Authentication with JWT (JSON Web Tokens).',
+              'Role-based access: Administrator and Employee.',
+              'User registration, updates, and removal.',
+            ],
+          },
+          {
+            heading: 'Inventory & products',
+            bullets: [
+              'Full CRUD for eggs and catalog items.',
+              'Stock tracking with inbound, outbound, and loss entries.',
+              'Supplier management with contact data and linked products.',
+            ],
+          },
+          {
+            heading: 'Orders, billing & payments',
+            bullets: [
+              'Sales orders with status tracking.',
+              'Invoice generation and payment recording.',
+              'Multiple payment methods and due dates.',
+            ],
+          },
+          {
+            heading: 'Reports & monitoring',
+            bullets: [
+              'Automated monthly financial reports.',
+              'Export to PDF and Excel.',
+              'Reports on sales, inventory, suppliers, and customers.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Contact Agenda',
+        subtitle: 'Desktop app · Digital agenda',
+        period: 'Desktop project · Python',
+        summary:
+          'A desktop Python app with SQLite and Tkinter to manage personal contacts, group them into categories, and mark favorites—with a straightforward UI plus search and filter flows.',
+        imageSrc: '/projects/agenda-contactos-hero.png',
+        imageAlt:
+          'Contact agenda app — login, contact list, add form, search, and categories',
+        stack: ['Python', 'Tkinter', 'SQLite', 'Git'],
+        sections: [
+          {
+            heading: 'Sign-up & authentication',
+            bullets: [
+              'User registration with data validation.',
+              'Secure login with basic authentication.',
+            ],
+          },
+          {
+            heading: 'Contact management',
+            bullets: [
+              'Create, search, delete, and update contacts.',
+              'Filters by name, phone number, and favorites.',
+            ],
+          },
+          {
+            heading: 'Persistence',
+            bullets: [
+              'SQLite backend for persistent contacts and users.',
+            ],
+          },
+          {
+            heading: 'Getting started',
+            bullets: [
+              'Run Main.py to open the sign-in screen.',
+              'Register a new account or sign in.',
+              'Add contacts and keep them organized in the agenda.',
+              'Use filters to find contacts quickly.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Blog platform',
+        subtitle: 'REST API with Spring Boot',
+        period: 'Backend · Java 17+',
+        summary:
+          'Spring Boot backend for blogs: manage users and posts, author interactions, and ADMIN / AUTHOR roles—keeping content workflows secure and predictable.',
+        imageSrc: '/projects/blog-platform-hero.png',
+        imageAlt:
+          'Technical overview: Spring Boot layers, JWT flow, REST endpoints, and domain model',
+        stack: [
+          'Java',
+          'Spring Boot',
+          'Spring Security',
+          'JWT',
+          'Spring Data JPA',
+          'Hibernate',
+          'MySQL · PostgreSQL',
+          'Maven',
+        ],
+        sections: [
+          {
+            heading: 'Users & security',
+            bullets: [
+              'Sign-up and login with JWT.',
+              'ADMIN manages users and content; AUTHOR owns their posts.',
+              'Editable user profiles.',
+            ],
+          },
+          {
+            heading: 'Posts & administration',
+            bullets: [
+              'Full CRUD with categories and tags; publish/unpublish workflows.',
+              'Management panel for users, posts, and comments.',
+            ],
+          },
+          {
+            heading: 'Engagement & search',
+            bullets: [
+              'Comments moderated by admins.',
+              'Like/dislike reactions.',
+              'Search and filters by author, category, date, and popularity.',
+            ],
+          },
+        ],
       },
     ],
     footer: {
-      blurbBefore: 'Personal portfolio — replace links and copy in',
-      blurbAfter: '.',
-      copyright: 'Built with Angular and Tailwind.',
+      blurb:
+        'Software developer. Reach me by email or social—links on this site are kept up to date.',
+      navHeading: 'Navigate',
+      socialHeading: 'Social',
+      navAria: 'Portfolio section links',
     },
     roleTitle: 'Software developer',
   };
@@ -376,7 +1118,7 @@ const byLang: Record<AppLocale, Messages> = {
   en: en(),
 };
 
-/** Acceso por ruta con puntos, p. ej. `sections.ideasHeading` */
+/** Acceso por ruta con puntos, p. ej. `sections.experienceHeading` */
 export function message(lang: AppLocale, path: string): string {
   const parts = path.split('.');
   let cur: unknown = byLang[lang];

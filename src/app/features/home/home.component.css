@@ -41,6 +41,95 @@
   opacity: 0.92;
 }
 
+@keyframes experience-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes experience-modal-pop {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .experience-modal-backdrop-anim {
+    animation: experience-modal-fade 0.2s ease-out;
+  }
+
+  .experience-modal-panel-anim {
+    animation: experience-modal-pop 0.25s ease-out;
+  }
+}
+
+.experience-timeline-h-scroll {
+  scrollbar-gutter: stable;
+}
+
+.experience-timeline-h-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.experience-timeline-h-scroll::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background-color: rgb(212 175 55 / 0.45);
+}
+
+.experience-timeline-h-scroll::-webkit-scrollbar-track {
+  border-radius: 9999px;
+  background-color: rgb(0 0 0 / 0.06);
+}
+
+.dark .experience-timeline-h-scroll::-webkit-scrollbar-track {
+  background-color: rgb(255 255 255 / 0.06);
+}
+
+/* Logos centrados y con tamaño uniforme dentro del círculo */
+.experience-timeline-logo-slot {
+  display: flex;
+  height: 2.375rem;
+  width: 2.375rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  background-color: transparent;
+}
+
+@media (min-width: 640px) {
+  .experience-timeline-logo-slot {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+}
+
+.experience-timeline-logo-img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  max-height: 1.75rem;
+  max-width: 1.75rem;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 640px) {
+  .experience-timeline-logo-img {
+    max-height: 1.875rem;
+    max-width: 1.875rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tech-marquee-dup {
     display: none;

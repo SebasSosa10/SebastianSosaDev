@@ -4,7 +4,7 @@ import { LocaleService } from '../services/locale.service';
 
 /**
  * Traducción reactiva según {@link LocaleService#lang} (pipe impura).
- * Clave con puntos, p. ej. `hero.tagline`, `sections.ideasHeading`.
+ * Clave con puntos, p. ej. `hero.tagline`, `sections.experienceHeading`.
  */
 @Pipe({
   name: 'i18n',

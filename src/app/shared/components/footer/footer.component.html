@@ -1,56 +1,122 @@
 <footer
   id="site-footer"
-  class="border-t border-neutral-200 bg-white dark:border-neutral-900 dark:bg-black"
+  class="border-t border-neutral-200/90 bg-gradient-to-b from-neutral-50/90 via-white to-neutral-100/40 dark:border-neutral-800/90 dark:from-neutral-950 dark:via-black dark:to-neutral-950/80"
 >
   <div
-    class="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8"
+    class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16"
   >
-    <div class="space-y-2">
-      <p
-        class="text-sm font-semibold text-neutral-900 dark:text-white"
-      >
-        {{ site.name }}
-      </p>
-      <p class="max-w-sm text-sm text-neutral-600 dark:text-neutral-500">
-        {{ 'footer.blurbBefore' | i18n }}
-        <code
-          class="rounded bg-neutral-200 px-1 py-0.5 text-xs text-brand-700 dark:bg-neutral-900 dark:text-brand-400"
-          >shared/data/site.ts</code
-        >{{ 'footer.blurbAfter' | i18n }}
-      </p>
-    </div>
-
-    <div class="flex flex-wrap items-center gap-6">
-      @for (item of site.nav; track item.sectionId) {
-        <a
-          [attr.href]="'#' + item.sectionId"
-          (click)="onNavClick($event, item.sectionId)"
-          class="text-sm text-neutral-600 transition hover:text-brand-600 dark:text-neutral-400 dark:hover:text-brand-400"
-        >
-          {{ locale.navLabel(item) }}
-        </a>
-      }
-    </div>
-
-    <div class="flex items-center gap-4">
-      @for (link of site.social; track link.label) {
-        <a
-          [href]="link.href"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm font-medium text-neutral-600 transition hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
-        >
-          {{ link.label }}
-        </a>
-      }
-    </div>
-  </div>
-
-  <div class="border-t border-neutral-200 dark:border-neutral-900">
-    <p
-      class="mx-auto max-w-5xl px-4 py-6 text-center text-xs text-neutral-500 dark:text-neutral-600 sm:px-6 lg:px-8"
+    <div
+      class="grid gap-12 border-b border-neutral-200/70 pb-12 dark:border-neutral-800/80 sm:gap-14 sm:pb-14 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-start lg:gap-16 lg:pb-16"
     >
-      © {{ year }} {{ site.name }}. {{ 'footer.copyright' | i18n }}
+      <div>
+        <span
+          class="mb-4 block h-0.5 w-10 rounded-full bg-gradient-to-r from-brand-500 to-brand-400 shadow-[0_0_10px_rgba(212,175,55,0.35)] sm:mb-5 sm:w-12"
+          aria-hidden="true"
+        ></span>
+        <p
+          class="text-xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-2xl"
+        >
+          {{ site.name }}
+        </p>
+        <p
+          class="mt-1 text-sm font-semibold text-brand-600 dark:text-brand-400 sm:text-base"
+        >
+          {{ 'roleTitle' | i18n }}
+        </p>
+        <p
+          class="mt-4 max-w-lg text-pretty text-sm leading-relaxed text-neutral-600 dark:text-neutral-400 sm:text-[0.9375rem] sm:leading-relaxed"
+        >
+          {{ 'footer.blurb' | i18n }}
+        </p>
+      </div>
+
+      <div
+        class="grid gap-10 sm:grid-cols-2 sm:gap-8 lg:gap-10"
+      >
+        <nav
+          class="min-w-0"
+          [attr.aria-label]="'footer.navAria' | i18n"
+        >
+          <p
+            class="mb-4 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500"
+          >
+            {{ 'footer.navHeading' | i18n }}
+          </p>
+          <ul class="m-0 flex flex-col gap-2.5 p-0 sm:gap-3" role="list">
+            @for (item of site.nav; track item.sectionId) {
+              <li>
+                <a
+                  [attr.href]="'#' + item.sectionId"
+                  (click)="onNavClick($event, item.sectionId)"
+                  class="group inline-flex items-center gap-1 text-sm font-medium text-neutral-700 transition hover:text-brand-600 dark:text-neutral-300 dark:hover:text-brand-400"
+                >
+                  <span
+                    class="h-px w-0 rounded-full bg-brand-500 transition-all duration-300 group-hover:w-4 dark:bg-brand-400"
+                    aria-hidden="true"
+                  ></span>
+                  {{ locale.navLabel(item) }}
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
+
+        <div class="min-w-0">
+          <p
+            class="mb-4 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-neutral-400 dark:text-neutral-500"
+          >
+            {{ 'footer.socialHeading' | i18n }}
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            <a
+              [href]="site.links.github"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-300/90 bg-white text-neutral-700 shadow-sm transition hover:border-brand-500/50 hover:text-brand-700 hover:shadow-md hover:shadow-brand-500/10 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:text-brand-300"
+              [attr.aria-label]="'hero.githubAria' | i18n"
+            >
+              <svg
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                />
+              </svg>
+            </a>
+            <a
+              [href]="site.links.linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-300/90 bg-white text-neutral-700 shadow-sm transition hover:border-brand-500/50 hover:text-brand-700 hover:shadow-md hover:shadow-brand-500/10 dark:border-neutral-700 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:text-brand-300"
+              [attr.aria-label]="'hero.linkedinAria' | i18n"
+            >
+              <svg
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.07 2.07 0 01-2.063-2.065 2.072 2.072 0 114.126 0 2.07 2.07 0 01-2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p
+      class="m-0 pt-8 text-center text-sm tabular-nums tracking-tight text-neutral-600 dark:text-neutral-400 sm:pt-10"
+    >
+      <span class="font-semibold text-neutral-900 dark:text-neutral-100"
+        >© {{ year }} {{ site.name }}</span
+      >
     </p>
   </div>
 </footer>
