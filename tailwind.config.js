@@ -69,6 +69,28 @@ module.exports = {
           '0%': { transform: 'translateX(-120%)' },
           '100%': { transform: 'translateX(420%)' },
         },
+        /** Pasada de luz dorada que cruza un botón al hacer hover */
+        ctaShine: {
+          '0%': { transform: 'translateX(-150%) skewX(-20deg)', opacity: '0' },
+          '40%': { opacity: '1' },
+          '100%': { transform: 'translateX(250%) skewX(-20deg)', opacity: '0' },
+        },
+        /** Anillo dorado que se expande pulsando, para llamar la atención */
+        goldRingPulse: {
+          '0%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0.55)' },
+          '70%': { boxShadow: '0 0 0 10px rgba(212, 175, 55, 0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(212, 175, 55, 0)' },
+        },
+        /** Reveal suave al entrar en viewport */
+        revealUp: {
+          '0%': { opacity: '0', transform: 'translateY(28px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        /** Flotación lenta para badges/iconos pequeños */
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-3px)' },
+        },
       },
       animation: {
         'hero-fade-up': 'heroFadeUp 0.7s ease-out both',
@@ -94,6 +116,10 @@ module.exports = {
         'about-line-secondary':
           'lineReveal 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both',
         'progress-gold-sheen': 'progressGoldSheen 1.75s linear infinite',
+        'cta-shine': 'ctaShine 1.1s ease-out',
+        'gold-ring-pulse': 'goldRingPulse 2.2s ease-out infinite',
+        'reveal-up': 'revealUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'float-slow': 'floatSlow 4s ease-in-out infinite',
       },
     },
   },

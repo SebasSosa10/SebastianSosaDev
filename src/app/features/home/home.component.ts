@@ -1,12 +1,14 @@
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgClass } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  ElementRef,
   HostListener,
   PLATFORM_ID,
   computed,
   inject,
   signal,
+  viewChild,
 } from '@angular/core';
 import { site } from '../../shared/data/site';
 import {
@@ -37,7 +39,7 @@ type TechStackItem = {
 
 @Component({
   selector: 'app-home',
-  imports: [I18nPipe],
+  imports: [I18nPipe, NgClass],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -125,7 +127,7 @@ export class HomeComponent implements AfterViewInit {
 
   /**
    * Columnas ordenadas cronológicamente (izquierda → derecha).
-   * Solo año visible; `contentAbove`: bloque completo (año + texto) arriba del eje; si no, abajo (zigzag).
+   * Cada nodo expone año inicial, año final (o "actualidad") y zigzag.
    */
   readonly experienceTimelineNodes = computed(() => {
     const entries = messagesFor(this.locale.lang()).experienceEntries;
@@ -141,13 +143,25 @@ export class HomeComponent implements AfterViewInit {
 
     const sorted = [...ranges].sort((a, b) => a.startIdx - b.startIdx);
 
-    return sorted.map((r, visualIndex) => ({
-      entryIndex: r.entryIndex,
-      entry: r.entry,
-      isoFrom: r.isoFrom,
-      yearLabel: String(r.entry.timelineFrom.year),
-      contentAbove: visualIndex % 2 === 0,
-    }));
+    return sorted.map((r, visualIndex) => {
+      const yearFrom = r.entry.timelineFrom.year;
+      const yearToRaw = r.entry.timelineTo?.year ?? null;
+      const isOngoing = !!r.entry.timelineOngoing;
+      const yearToLabel = isOngoing
+        ? null
+        : yearToRaw !== null && yearToRaw !== yearFrom
+          ? String(yearToRaw)
+          : null;
+      return {
+        entryIndex: r.entryIndex,
+        entry: r.entry,
+        isoFrom: r.isoFrom,
+        yearFromLabel: String(yearFrom),
+        yearToLabel,
+        isOngoing,
+        contentAbove: visualIndex % 2 === 0,
+      };
+    });
   });
 
   /** Mes absoluto para ordenar: año×12 + mes (1–12). */
@@ -176,6 +190,68 @@ export class HomeComponent implements AfterViewInit {
     const list = messagesFor(this.locale.lang()).featuredProjects;
     return list[idx] ?? null;
   });
+
+  readonly projectsCarousel =
+    viewChild<ElementRef<HTMLDivElement>>('projectsCarousel');
+
+  readonly projectsAtStart = signal(true);
+  readonly projectsAtEnd = signal(false);
+  readonly activeProjectIndex = signal(0);
+
+  private getCardLayout(el: HTMLElement): { cardWidth: number; gap: number } {
+    const firstCard = el.querySelector<HTMLElement>('[role="listitem"]');
+    const cardWidth = firstCard?.offsetWidth ?? el.clientWidth / 2;
+    const styles = globalThis.getComputedStyle(el);
+    const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+    return { cardWidth, gap };
+  }
+
+  scrollProjects(direction: 1 | -1): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    const el = this.projectsCarousel()?.nativeElement;
+    if (!el) {
+      return;
+    }
+    const { cardWidth, gap } = this.getCardLayout(el);
+    el.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' });
+  }
+
+  scrollToProject(index: number): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    const el = this.projectsCarousel()?.nativeElement;
+    if (!el) {
+      return;
+    }
+    const { cardWidth, gap } = this.getCardLayout(el);
+    el.scrollTo({ left: index * (cardWidth + gap), behavior: 'smooth' });
+  }
+
+  onProjectsScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    const el = this.projectsCarousel()?.nativeElement;
+    if (!el) {
+      return;
+    }
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    this.projectsAtStart.set(el.scrollLeft <= 1);
+    this.projectsAtEnd.set(el.scrollLeft >= maxScroll - 1);
+    const { cardWidth, gap } = this.getCardLayout(el);
+    const step = cardWidth + gap;
+    if (step > 0) {
+      const total = this.featuredProjects().length;
+      const idx = Math.max(
+        0,
+        Math.min(total - 1, Math.round(el.scrollLeft / step)),
+      );
+      this.activeProjectIndex.set(idx);
+    }
+  }
 
   openExperienceModal(index: number): void {
     if (!isPlatformBrowser(this.platformId)) {
@@ -273,6 +349,7 @@ export class HomeComponent implements AfterViewInit {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
+    queueMicrotask(() => this.onProjectsScroll());
     const id = globalThis.location?.hash?.replace(/^#/, '') ?? '';
     if (!id) {
       return;
@@ -282,5 +359,10 @@ export class HomeComponent implements AfterViewInit {
         this.scrollNav.goToSection(id);
       }
     });
+  }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    this.onProjectsScroll();
   }
 }

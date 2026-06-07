@@ -154,11 +154,11 @@
               [href]="site.links.github"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white/80 text-neutral-700 shadow-sm transition hover:border-brand-500/60 hover:text-brand-600 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400"
+              class="group/social inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white/80 text-neutral-700 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 hover:border-brand-500/60 hover:text-brand-600 hover:shadow-md hover:shadow-brand-500/15 active:scale-95 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 dark:hover:shadow-brand-500/15"
               [attr.aria-label]="'hero.githubAria' | i18n"
             >
               <svg
-                class="h-5 w-5"
+                class="h-5 w-5 transition-transform duration-300 ease-out group-hover/social:rotate-[8deg] motion-reduce:transition-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -174,11 +174,11 @@
               [href]="site.links.linkedin"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white/80 text-neutral-700 shadow-sm transition hover:border-brand-500/60 hover:text-brand-600 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400"
+              class="group/social inline-flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white/80 text-neutral-700 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 hover:border-brand-500/60 hover:text-brand-600 hover:shadow-md hover:shadow-brand-500/15 active:scale-95 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 dark:hover:shadow-brand-500/15"
               [attr.aria-label]="'hero.linkedinAria' | i18n"
             >
               <svg
-                class="h-5 w-5"
+                class="h-5 w-5 transition-transform duration-300 ease-out group-hover/social:rotate-[-8deg] motion-reduce:transition-none"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -191,11 +191,15 @@
             <a
               [href]="site.resume.path"
               [attr.download]="site.resume.downloadName"
-              class="inline-flex min-h-[2.75rem] items-center gap-2 rounded-full border border-neutral-300 bg-white/80 px-4 py-2 text-sm font-semibold text-neutral-800 shadow-sm transition hover:border-brand-500/60 hover:text-brand-700 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-300"
+              class="group/cv relative inline-flex min-h-[2.75rem] items-center gap-2 overflow-hidden rounded-full border border-neutral-300 bg-white/80 px-4 py-2 text-sm font-semibold text-neutral-800 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/60 hover:text-brand-700 hover:shadow-md hover:shadow-brand-500/15 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-300 dark:hover:shadow-brand-500/15"
               [attr.aria-label]="'hero.downloadCv' | i18n"
             >
+              <span
+                class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-brand-400/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/cv:left-[150%] group-hover/cv:opacity-100 motion-reduce:hidden dark:via-brand-300/30"
+                aria-hidden="true"
+              ></span>
               <svg
-                class="h-5 w-5 shrink-0"
+                class="relative h-5 w-5 shrink-0 transition-transform duration-500 ease-out group-hover/cv:translate-y-0.5 motion-reduce:transition-none"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -208,7 +212,7 @@
                   d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 />
               </svg>
-              <span>{{ 'hero.downloadCv' | i18n }}</span>
+              <span class="relative">{{ 'hero.downloadCv' | i18n }}</span>
             </a>
           </div>
         </div>
@@ -416,114 +420,212 @@
           aria-hidden="true"
         ></span>
       </header>
+    </div>
+
+    <!-- Riel del eje a ancho completo del viewport, con destello móvil -->
+    <div class="relative mt-10 sm:mt-12">
+      <div
+        class="experience-timeline-axis-rail pointer-events-none absolute inset-x-0 top-1/2 z-0 h-1.5 -translate-y-1/2 overflow-hidden rounded-full"
+        aria-hidden="true"
+      >
+        <span class="experience-timeline-axis-track"></span>
+        <span class="experience-timeline-axis-comet"></span>
+      </div>
 
       <div
-        class="experience-timeline-h-scroll motion-safe:animate-card-enter motion-reduce:opacity-100 mt-10 overflow-x-auto pb-4 pt-1 [-webkit-overflow-scrolling:touch] sm:mt-12"
+        class="experience-timeline-h-scroll motion-safe:animate-card-enter motion-reduce:opacity-100 mx-auto max-w-7xl overflow-x-auto px-4 pb-4 pt-1 [-webkit-overflow-scrolling:touch] sm:px-6 lg:px-8"
         role="region"
         [attr.aria-label]="'sections.experienceHeading' | i18n"
       >
         <div
-          class="experience-timeline-h relative mx-auto flex min-h-[17rem] min-w-0 items-stretch gap-2 px-1 sm:min-h-[18rem] sm:gap-3 sm:px-3"
+          class="experience-timeline-h relative mx-auto flex min-h-[24rem] min-w-0 items-stretch gap-2 px-1 sm:min-h-[26rem] sm:gap-3 sm:px-3"
           [style.min-width.px]="experienceTimelineMinWidthPx()"
         >
-          <!-- Eje: centrado vertical en el mismo bloque donde van los círculos -->
-          <div
-            class="pointer-events-none absolute left-2 right-2 top-1/2 z-0 h-0.5 -translate-y-1/2 rounded-full bg-gradient-to-r from-neutral-300 via-brand-500/45 to-brand-500/55 dark:from-neutral-600 dark:via-brand-500/35 dark:to-brand-400/45 sm:left-3 sm:right-3"
-            aria-hidden="true"
-          ></div>
 
           @for (node of experienceTimelineNodes(); track node.entryIndex) {
             <div
-              class="relative z-[1] grid min-h-0 min-w-0 flex-1 basis-0 grid-rows-[minmax(2.75rem,1fr)_auto_minmax(2.75rem,1fr)] gap-0"
+              class="experience-timeline-col relative z-[1] grid min-h-0 min-w-0 flex-1 basis-0 grid-rows-[1fr_1fr] gap-0"
+              [class.is-above]="node.contentAbove"
             >
-              <!-- Fila superior: texto encima del eje o hueco estable -->
+              <!-- Fila superior: tarjeta + tallo cuando contentAbove -->
               <div
-                class="flex flex-col items-center justify-end gap-1 pb-4 text-center"
+                class="relative flex flex-col items-center justify-end gap-1.5 pb-0 text-center"
               >
                 @if (node.contentAbove) {
-                  <time
-                    class="text-sm font-bold tabular-nums tracking-tight text-brand-700 dark:text-brand-300 sm:text-base"
-                    [attr.datetime]="node.isoFrom"
-                  >
-                    {{ node.yearLabel }}
-                  </time>
-                  <p
-                    class="max-w-[10rem] text-[0.7rem] font-bold leading-snug text-neutral-900 dark:text-white sm:max-w-[11rem] sm:text-xs"
-                  >
-                    {{ node.entry.title }}
-                  </p>
-                  <p
-                    class="max-w-[10rem] text-[0.62rem] leading-snug text-neutral-500 dark:text-neutral-400 sm:max-w-[11rem] sm:text-[0.7rem]"
-                  >
-                    {{ node.entry.company }}
-                  </p>
-                  <p
-                    class="max-w-[10rem] text-[0.6rem] font-medium leading-snug text-brand-600/90 dark:text-brand-400/85 sm:max-w-[11rem]"
+                  <!-- Bloque de texto -->
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span
+                      class="experience-timeline-range inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/[0.08] px-2 py-0.5 text-[0.62rem] font-bold tabular-nums tracking-tight text-brand-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:border-brand-400/30 dark:bg-brand-400/[0.08] dark:text-brand-300 sm:text-[0.68rem]"
+                      aria-hidden="true"
+                    >
+                      <span>{{ node.yearFromLabel }}</span>
+                      @if (node.yearToLabel || node.isOngoing) {
+                        <svg
+                          class="h-2.5 w-2.5 opacity-70"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                        @if (node.isOngoing) {
+                          <span class="experience-timeline-now inline-flex items-center gap-1">
+                            <span class="experience-timeline-dot" aria-hidden="true"></span>
+                            {{ 'sections.experienceTimelinePresent' | i18n }}
+                          </span>
+                        } @else if (node.yearToLabel) {
+                          <span>{{ node.yearToLabel }}</span>
+                        }
+                      }
+                    </span>
+                    <time
+                      class="sr-only"
+                      [attr.datetime]="node.isoFrom"
+                    >{{ node.yearFromLabel }}</time>
+                    <p
+                      class="max-w-[11rem] text-[0.72rem] font-bold leading-snug text-neutral-900 dark:text-white sm:max-w-[12rem] sm:text-[0.78rem]"
+                    >
+                      {{ node.entry.title }}
+                    </p>
+                    <p
+                      class="max-w-[11rem] text-[0.64rem] leading-snug text-neutral-500 dark:text-neutral-400 sm:max-w-[12rem] sm:text-[0.7rem]"
+                    >
+                      {{ node.entry.company }}
+                    </p>
+                  </div>
+                  <!-- Marcador (despegado del eje) con halo -->
+                  <div class="relative mt-2 flex items-center justify-center">
+                    <span
+                      class="experience-timeline-halo pointer-events-none absolute inset-0 m-auto h-[3.6rem] w-[3.6rem] rounded-full bg-brand-500/10 blur-md transition-opacity duration-300 motion-reduce:transition-none sm:h-[4rem] sm:w-[4rem] dark:bg-brand-400/10"
+                      aria-hidden="true"
+                    ></span>
+                    <button
+                      type="button"
+                      class="experience-timeline-btn group relative flex size-[3rem] shrink-0 cursor-pointer items-center justify-center rounded-full border-[3px] border-white bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.35),0_4px_14px_rgba(0,0,0,0.12)] transition duration-200 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:hover:scale-100 dark:border-neutral-950 dark:from-brand-500 dark:to-brand-700 dark:shadow-[0_0_0_1px_rgba(212,175,55,0.25)] sm:size-[3.25rem]"
+                      (click)="openExperienceModal(node.entryIndex)"
+                      [attr.aria-label]="experienceCardAria(node.entry)"
+                    >
+                      @if (node.entry.logoSrc) {
+                        <span class="experience-timeline-logo-slot">
+                          <img
+                            [src]="node.entry.logoSrc"
+                            width="40"
+                            height="40"
+                            class="experience-timeline-logo-img pointer-events-none"
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </span>
+                      } @else {
+                        <span
+                          class="px-1 text-center text-[0.65rem] font-bold leading-tight tracking-tight sm:text-xs"
+                          aria-hidden="true"
+                        >
+                          {{ companyInitials(node.entry.company) }}
+                        </span>
+                      }
+                    </button>
+                  </div>
+                  <!-- Tallo de conexión: del círculo al eje (hacia abajo) -->
+                  <span
+                    class="experience-timeline-stem experience-timeline-stem-down"
                     aria-hidden="true"
-                  >
-                    {{ 'sections.experienceModalHint' | i18n }}
-                  </p>
+                  ></span>
                 }
               </div>
 
-              <!-- Centro: marcador siempre centrado en la rejilla (= sobre la línea) -->
-              <div class="experience-timeline-marker flex items-center justify-center py-1">
-                <button
-                  type="button"
-                  class="experience-timeline-btn group relative flex size-[3rem] shrink-0 cursor-pointer items-center justify-center rounded-full border-[3px] border-white bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.35),0_4px_14px_rgba(0,0,0,0.12)] transition duration-200 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:hover:scale-100 dark:border-neutral-950 dark:from-brand-500 dark:to-brand-700 dark:shadow-[0_0_0_1px_rgba(212,175,55,0.25)] sm:size-[3.25rem]"
-                  (click)="openExperienceModal(node.entryIndex)"
-                  [attr.aria-label]="experienceCardAria(node.entry)"
-                >
-                  @if (node.entry.logoSrc) {
-                    <span class="experience-timeline-logo-slot">
-                      <img
-                        [src]="node.entry.logoSrc"
-                        width="40"
-                        height="40"
-                        class="experience-timeline-logo-img pointer-events-none"
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </span>
-                  } @else {
-                    <span
-                      class="px-1 text-center text-[0.65rem] font-bold leading-tight tracking-tight sm:text-xs"
-                      aria-hidden="true"
-                    >
-                      {{ companyInitials(node.entry.company) }}
-                    </span>
-                  }
-                </button>
-              </div>
-
-              <!-- Fila inferior: texto bajo el eje o hueco -->
+              <!-- Fila inferior: tallo + tarjeta cuando !contentAbove -->
               <div
-                class="flex flex-col items-center justify-start gap-1 pt-4 text-center"
+                class="relative flex flex-col items-center justify-start gap-1.5 pt-0 text-center"
               >
                 @if (!node.contentAbove) {
-                  <time
-                    class="text-sm font-bold tabular-nums tracking-tight text-brand-700 dark:text-brand-300 sm:text-base"
-                    [attr.datetime]="node.isoFrom"
-                  >
-                    {{ node.yearLabel }}
-                  </time>
-                  <p
-                    class="max-w-[10rem] text-[0.7rem] font-bold leading-snug text-neutral-900 dark:text-white sm:max-w-[11rem] sm:text-xs"
-                  >
-                    {{ node.entry.title }}
-                  </p>
-                  <p
-                    class="max-w-[10rem] text-[0.62rem] leading-snug text-neutral-500 dark:text-neutral-400 sm:max-w-[11rem] sm:text-[0.7rem]"
-                  >
-                    {{ node.entry.company }}
-                  </p>
-                  <p
-                    class="max-w-[10rem] text-[0.6rem] font-medium leading-snug text-brand-600/90 dark:text-brand-400/85 sm:max-w-[11rem]"
+                  <!-- Tallo de conexión: del eje al círculo (hacia arriba/abajo) -->
+                  <span
+                    class="experience-timeline-stem experience-timeline-stem-up"
                     aria-hidden="true"
-                  >
-                    {{ 'sections.experienceModalHint' | i18n }}
-                  </p>
+                  ></span>
+                  <!-- Marcador (despegado del eje) con halo -->
+                  <div class="relative mb-2 flex items-center justify-center">
+                    <span
+                      class="experience-timeline-halo pointer-events-none absolute inset-0 m-auto h-[3.6rem] w-[3.6rem] rounded-full bg-brand-500/10 blur-md transition-opacity duration-300 motion-reduce:transition-none sm:h-[4rem] sm:w-[4rem] dark:bg-brand-400/10"
+                      aria-hidden="true"
+                    ></span>
+                    <button
+                      type="button"
+                      class="experience-timeline-btn group relative flex size-[3rem] shrink-0 cursor-pointer items-center justify-center rounded-full border-[3px] border-white bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-[0_0_0_1px_rgba(212,175,55,0.35),0_4px_14px_rgba(0,0,0,0.12)] transition duration-200 hover:scale-105 hover:shadow-[0_0_20px_rgba(212,175,55,0.45)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:hover:scale-100 dark:border-neutral-950 dark:from-brand-500 dark:to-brand-700 dark:shadow-[0_0_0_1px_rgba(212,175,55,0.25)] sm:size-[3.25rem]"
+                      (click)="openExperienceModal(node.entryIndex)"
+                      [attr.aria-label]="experienceCardAria(node.entry)"
+                    >
+                      @if (node.entry.logoSrc) {
+                        <span class="experience-timeline-logo-slot">
+                          <img
+                            [src]="node.entry.logoSrc"
+                            width="40"
+                            height="40"
+                            class="experience-timeline-logo-img pointer-events-none"
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </span>
+                      } @else {
+                        <span
+                          class="px-1 text-center text-[0.65rem] font-bold leading-tight tracking-tight sm:text-xs"
+                          aria-hidden="true"
+                        >
+                          {{ companyInitials(node.entry.company) }}
+                        </span>
+                      }
+                    </button>
+                  </div>
+                  <!-- Bloque de texto -->
+                  <div class="flex flex-col items-center gap-1.5">
+                    <span
+                      class="experience-timeline-range inline-flex items-center gap-1.5 rounded-full border border-brand-500/30 bg-brand-500/[0.08] px-2 py-0.5 text-[0.62rem] font-bold tabular-nums tracking-tight text-brand-700 shadow-[0_1px_2px_rgba(0,0,0,0.04)] dark:border-brand-400/30 dark:bg-brand-400/[0.08] dark:text-brand-300 sm:text-[0.68rem]"
+                      aria-hidden="true"
+                    >
+                      <span>{{ node.yearFromLabel }}</span>
+                      @if (node.yearToLabel || node.isOngoing) {
+                        <svg
+                          class="h-2.5 w-2.5 opacity-70"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M5 12h14M13 6l6 6-6 6" />
+                        </svg>
+                        @if (node.isOngoing) {
+                          <span class="experience-timeline-now inline-flex items-center gap-1">
+                            <span class="experience-timeline-dot" aria-hidden="true"></span>
+                            {{ 'sections.experienceTimelinePresent' | i18n }}
+                          </span>
+                        } @else if (node.yearToLabel) {
+                          <span>{{ node.yearToLabel }}</span>
+                        }
+                      }
+                    </span>
+                    <time
+                      class="sr-only"
+                      [attr.datetime]="node.isoFrom"
+                    >{{ node.yearFromLabel }}</time>
+                    <p
+                      class="max-w-[11rem] text-[0.72rem] font-bold leading-snug text-neutral-900 dark:text-white sm:max-w-[12rem] sm:text-[0.78rem]"
+                    >
+                      {{ node.entry.title }}
+                    </p>
+                    <p
+                      class="max-w-[11rem] text-[0.64rem] leading-snug text-neutral-500 dark:text-neutral-400 sm:max-w-[12rem] sm:text-[0.7rem]"
+                    >
+                      {{ node.entry.company }}
+                    </p>
+                  </div>
                 }
               </div>
             </div>
@@ -668,7 +770,7 @@
     aria-labelledby="projects-heading"
     tabindex="-1"
   >
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <header class="mx-auto max-w-3xl text-center">
         <h2
           id="projects-heading"
@@ -683,18 +785,77 @@
       </header>
       @if (featuredProjects().length > 0) {
         <div
-          class="motion-safe:animate-hero-fade-up-delay-2 motion-reduce:opacity-100 mt-10 grid grid-cols-2 gap-4 sm:mt-12 sm:gap-8"
-          role="list"
-          [attr.aria-label]="'sections.projectsGridAria' | i18n"
+          class="motion-safe:animate-hero-fade-up-delay-2 motion-reduce:opacity-100 mt-10 sm:mt-12"
         >
+          <div class="relative sm:px-14 lg:px-16">
+            <button
+              type="button"
+              class="group/cbtn absolute left-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200/90 bg-white/85 text-neutral-800 shadow-lg shadow-neutral-900/10 backdrop-blur-md ring-1 ring-black/5 transition-all duration-300 ease-out hover:-translate-x-0.5 hover:scale-105 hover:border-brand-500/60 hover:bg-white hover:text-brand-700 hover:shadow-xl hover:shadow-brand-500/25 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-0 disabled:hover:translate-x-0 motion-reduce:transition-none motion-reduce:hover:translate-x-0 motion-reduce:hover:scale-100 dark:border-neutral-700/70 dark:bg-neutral-900/75 dark:text-neutral-100 dark:shadow-black/40 dark:ring-white/10 dark:hover:border-brand-400/60 dark:hover:bg-neutral-900/95 dark:hover:text-brand-300 dark:hover:shadow-brand-500/20 sm:flex lg:left-1"
+              (click)="scrollProjects(-1)"
+              [attr.aria-label]="'sections.projectsCarouselPrev' | i18n"
+              [disabled]="projectsAtStart()"
+            >
+              <svg
+                class="h-5 w-5 transition-transform duration-300 ease-out group-hover/cbtn:-translate-x-0.5 motion-reduce:transition-none"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              class="group/cbtn absolute right-0 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200/90 bg-white/85 text-neutral-800 shadow-lg shadow-neutral-900/10 backdrop-blur-md ring-1 ring-black/5 transition-all duration-300 ease-out hover:translate-x-0.5 hover:scale-105 hover:border-brand-500/60 hover:bg-white hover:text-brand-700 hover:shadow-xl hover:shadow-brand-500/25 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-0 disabled:hover:translate-x-0 motion-reduce:transition-none motion-reduce:hover:translate-x-0 motion-reduce:hover:scale-100 dark:border-neutral-700/70 dark:bg-neutral-900/75 dark:text-neutral-100 dark:shadow-black/40 dark:ring-white/10 dark:hover:border-brand-400/60 dark:hover:bg-neutral-900/95 dark:hover:text-brand-300 dark:hover:shadow-brand-500/20 sm:flex lg:right-1"
+              (click)="scrollProjects(1)"
+              [attr.aria-label]="'sections.projectsCarouselNext' | i18n"
+              [disabled]="projectsAtEnd()"
+            >
+              <svg
+                class="h-5 w-5 transition-transform duration-300 ease-out group-hover/cbtn:translate-x-0.5 motion-reduce:transition-none"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+
+            <div
+              #projectsCarousel
+              class="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-4 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:mx-0 sm:gap-8 sm:px-0 [&::-webkit-scrollbar]:hidden"
+              role="list"
+              [attr.aria-label]="'sections.projectsGridAria' | i18n"
+              (scroll)="onProjectsScroll()"
+            >
         @for (
           project of featuredProjects();
           track project.imageSrc;
           let pIdx = $index
         ) {
-          <div role="listitem" class="min-w-0">
+          <div
+            role="listitem"
+            class="group/card relative min-w-0 shrink-0 basis-[85%] snap-start sm:basis-[calc(50%-1rem)]"
+          >
+            <span
+              class="pointer-events-none absolute -inset-px rounded-[1.05rem] bg-gradient-to-br from-brand-500/0 via-brand-400/0 to-brand-500/0 opacity-0 blur-md transition duration-500 ease-out group-hover/card:from-brand-500/40 group-hover/card:via-brand-400/30 group-hover/card:to-brand-500/40 group-hover/card:opacity-100 motion-reduce:transition-none"
+              aria-hidden="true"
+            ></span>
             <article
-              class="flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm outline-none transition hover:border-brand-500/35 hover:shadow-lg hover:shadow-brand-500/5 focus-visible:border-brand-500 focus-visible:ring-2 focus-visible:ring-brand-500/50 dark:border-neutral-800 dark:bg-neutral-950/50 dark:hover:border-brand-500/20 dark:focus-visible:border-brand-400 dark:focus-visible:ring-brand-400/35"
+              class="relative flex h-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm outline-none transition-all duration-300 ease-out hover:-translate-y-1 hover:border-brand-500/45 hover:shadow-xl hover:shadow-brand-500/10 focus-visible:border-brand-500 focus-visible:ring-2 focus-visible:ring-brand-500/50 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-800 dark:bg-neutral-950/60 dark:hover:border-brand-400/35 dark:hover:shadow-brand-500/15 dark:focus-visible:border-brand-400 dark:focus-visible:ring-brand-400/35"
               tabindex="0"
               aria-haspopup="dialog"
               [attr.aria-label]="featuredProjectCardAria(project)"
@@ -709,11 +870,19 @@
                   [src]="project.imageSrc"
                   width="880"
                   height="605"
-                  class="absolute inset-0 h-full w-full object-contain object-center p-2 sm:p-3"
+                  class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover/card:scale-[1.06] motion-reduce:transition-none"
                   loading="lazy"
                   decoding="async"
                   [attr.alt]="project.imageAlt"
                 />
+                <span
+                  class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/55 via-neutral-950/0 to-neutral-950/0 opacity-0 transition-opacity duration-500 ease-out group-hover/card:opacity-100 motion-reduce:transition-none"
+                  aria-hidden="true"
+                ></span>
+                <span
+                  class="pointer-events-none absolute -inset-x-1/2 -top-1/2 h-full w-full rotate-12 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/card:translate-x-[150%] group-hover/card:opacity-100 motion-reduce:hidden dark:via-white/10"
+                  aria-hidden="true"
+                ></span>
               </figure>
               <div class="flex min-h-0 flex-1 flex-col px-3 pb-4 pt-3 sm:px-5 sm:pb-5 sm:pt-4">
                 <p
@@ -745,7 +914,7 @@
                   @for (tag of project.stack; track tag) {
                     <li>
                       <span
-                        class="inline-block rounded-full border border-brand-500/35 bg-brand-500/[0.09] px-2 py-0.5 text-[0.65rem] font-semibold text-brand-950 dark:border-brand-400/25 dark:bg-brand-500/[0.12] dark:text-brand-100 sm:px-2.5 sm:py-1 sm:text-xs"
+                        class="inline-block rounded-full border border-brand-500/35 bg-brand-500/[0.09] px-2 py-0.5 text-[0.65rem] font-semibold text-brand-950 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-brand-500/55 hover:bg-brand-500/[0.18] hover:shadow-sm hover:shadow-brand-500/20 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/25 dark:bg-brand-500/[0.12] dark:text-brand-100 dark:hover:border-brand-400/55 dark:hover:bg-brand-500/[0.22] sm:px-2.5 sm:py-1 sm:text-xs"
                       >
                         {{ tag }}
                       </span>
@@ -753,15 +922,61 @@
                   }
                 </ul>
                 <p
-                  class="mt-3 text-[0.65rem] font-medium text-brand-600/90 dark:text-brand-400/90 sm:mt-4 sm:text-xs"
+                  class="mt-3 inline-flex items-center gap-1 text-[0.65rem] font-medium text-brand-600/90 transition-all duration-300 ease-out group-hover/card:gap-2 group-hover/card:text-brand-700 motion-reduce:transition-none dark:text-brand-400/90 dark:group-hover/card:text-brand-300 sm:mt-4 sm:text-xs"
                   aria-hidden="true"
                 >
                   {{ 'sections.projectsCardTapHint' | i18n }}
+                  <svg
+                    class="h-3 w-3 transition-transform duration-300 ease-out group-hover/card:translate-x-0.5 motion-reduce:transition-none sm:h-3.5 sm:w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 12h14M13 5l7 7-7 7"
+                    />
+                  </svg>
                 </p>
               </div>
             </article>
           </div>
         }
+            </div>
+          </div>
+
+          <ol
+            class="mt-6 flex items-center justify-center gap-2 sm:mt-8"
+            [attr.aria-label]="'sections.projectsCarouselGoTo' | i18n"
+          >
+            @for (
+              project of featuredProjects();
+              track project.imageSrc;
+              let pIdx = $index
+            ) {
+              <li>
+                <button
+                  type="button"
+                  class="block h-2 rounded-full transition-all duration-300 ease-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none"
+                  [ngClass]="
+                    activeProjectIndex() === pIdx
+                      ? 'w-8 bg-brand-500 shadow-sm shadow-brand-500/30 dark:shadow-brand-400/25'
+                      : 'w-2 bg-neutral-300 hover:scale-125 hover:bg-neutral-400 dark:bg-neutral-700 dark:hover:bg-neutral-500'
+                  "
+                  (click)="scrollToProject(pIdx)"
+                  [attr.aria-label]="
+                    ('sections.projectsCarouselGoTo' | i18n) + ' ' + (pIdx + 1)
+                  "
+                  [attr.aria-current]="
+                    activeProjectIndex() === pIdx ? 'true' : null
+                  "
+                ></button>
+              </li>
+            }
+          </ol>
         </div>
       }
     </div>
@@ -988,14 +1203,32 @@
           >
             <button
               type="button"
-              class="inline-flex min-h-[3rem] items-center gap-2.5 rounded-full border border-neutral-300 bg-white/90 px-6 py-3 text-base font-semibold text-neutral-800 shadow-sm transition hover:border-brand-500/45 hover:text-brand-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:text-brand-300"
+              class="group/copy relative inline-flex min-h-[3rem] items-center gap-2.5 overflow-hidden rounded-full border border-neutral-300 bg-white/90 px-6 py-3 text-base font-semibold text-neutral-800 shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/55 hover:text-brand-800 hover:shadow-lg hover:shadow-brand-500/15 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/55 dark:hover:text-brand-300 dark:hover:shadow-brand-500/15"
               (click)="copyContactEmail()"
             >
+              <span
+                class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-brand-400/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/copy:left-[150%] group-hover/copy:opacity-100 motion-reduce:hidden dark:via-brand-300/30"
+                aria-hidden="true"
+              ></span>
               @if (contactEmailCopied()) {
-                <span aria-live="polite">{{ 'sections.contactCopyEmailDone' | i18n }}</span>
+                <svg
+                  class="relative h-5 w-5 shrink-0 text-emerald-500 motion-safe:animate-hero-fade-up motion-reduce:animate-none dark:text-emerald-400"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span class="relative" aria-live="polite">{{ 'sections.contactCopyEmailDone' | i18n }}</span>
               } @else {
                 <svg
-                  class="h-5 w-5 shrink-0 text-neutral-500 dark:text-neutral-400"
+                  class="relative h-5 w-5 shrink-0 text-neutral-500 transition-transform duration-300 ease-out group-hover/copy:rotate-[-6deg] group-hover/copy:text-brand-600 motion-reduce:transition-none dark:text-neutral-400 dark:group-hover/copy:text-brand-400"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -1008,18 +1241,18 @@
                     d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
                   />
                 </svg>
-                <span>{{ 'sections.contactCopyEmail' | i18n }}</span>
+                <span class="relative">{{ 'sections.contactCopyEmail' | i18n }}</span>
               }
             </button>
             <a
               [href]="site.links.github"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex h-14 w-14 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-700 shadow-sm transition hover:border-brand-500/60 hover:text-brand-600 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 sm:h-[3.75rem] sm:w-[3.75rem]"
+              class="group/social-lg inline-flex h-14 w-14 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-700 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-brand-500/60 hover:text-brand-600 hover:shadow-lg hover:shadow-brand-500/20 active:scale-95 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 dark:hover:shadow-brand-500/20 sm:h-[3.75rem] sm:w-[3.75rem]"
               [attr.aria-label]="'hero.githubAria' | i18n"
             >
               <svg
-                class="h-6 w-6 sm:h-7 sm:w-7"
+                class="h-6 w-6 transition-transform duration-300 ease-out group-hover/social-lg:rotate-[10deg] motion-reduce:transition-none sm:h-7 sm:w-7"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -1035,11 +1268,11 @@
               [href]="site.links.linkedin"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex h-14 w-14 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-700 shadow-sm transition hover:border-brand-500/60 hover:text-brand-600 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 sm:h-[3.75rem] sm:w-[3.75rem]"
+              class="group/social-lg inline-flex h-14 w-14 items-center justify-center rounded-full border border-neutral-300 bg-white/90 text-neutral-700 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:border-brand-500/60 hover:text-brand-600 hover:shadow-lg hover:shadow-brand-500/20 active:scale-95 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-neutral-200 dark:hover:border-brand-400/50 dark:hover:text-brand-400 dark:hover:shadow-brand-500/20 sm:h-[3.75rem] sm:w-[3.75rem]"
               [attr.aria-label]="'hero.linkedinAria' | i18n"
             >
               <svg
-                class="h-6 w-6 sm:h-7 sm:w-7"
+                class="h-6 w-6 transition-transform duration-300 ease-out group-hover/social-lg:rotate-[-10deg] motion-reduce:transition-none sm:h-7 sm:w-7"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"

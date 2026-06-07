@@ -84,6 +84,9 @@ export type Messages = {
     /** Texto auxiliar bajo el resumen en la tarjeta */
     projectsCardTapHint: string;
     projectsGridAria: string;
+    projectsCarouselPrev: string;
+    projectsCarouselNext: string;
+    projectsCarouselGoTo: string;
     contactHeading: string;
     contactIntro: string;
     contactOpenMailAria: string;
@@ -99,6 +102,8 @@ export type Messages = {
     experienceModalTech: string;
     experienceModalImpact: string;
     experienceModalHint: string;
+    experienceTimelinePresent: string;
+    experienceTimelinePresentLabel: string;
   };
   aboutDeliveryCards: readonly AboutDeliveryCard[];
   experienceEntries: readonly ExperienceEntry[];
@@ -148,7 +153,10 @@ function es(): Messages {
       projectsStackHeading: 'Stack principal',
       projectModalHint: 'Abrir detalles del proyecto en una ventana emergente',
       projectsCardTapHint: 'Pulsa para ver el detalle completo',
-      projectsGridAria: 'Lista de proyectos destacados en cuadrícula',
+      projectsGridAria: 'Carrusel de proyectos destacados',
+      projectsCarouselPrev: 'Ver proyectos anteriores',
+      projectsCarouselNext: 'Ver proyectos siguientes',
+      projectsCarouselGoTo: 'Ir al proyecto',
       contactHeading: 'Hablemos',
       contactIntro:
         '¿Quieres lanzar algo, sumar refuerzos al equipo o aún no sabes ni cómo llamarlo? Da igual el tamaño del reto: si hay que hacerlo bien, hablemos. Escríbeme y te respondo en cuanto pueda.',
@@ -166,6 +174,8 @@ function es(): Messages {
       experienceModalTech: 'Tecnologías',
       experienceModalImpact: 'Resultado',
       experienceModalHint: 'Ver detalles, tecnologías y resultados',
+      experienceTimelinePresent: 'Hoy',
+      experienceTimelinePresentLabel: 'Actualidad',
     },
     aboutDeliveryCards: [
       {
@@ -443,6 +453,57 @@ function es(): Messages {
     ],
     featuredProjects: [
       {
+        title: 'Clínica Odontológica Dr. Cristian Valencia',
+        subtitle: 'Sitio web corporativo · Profesional independiente',
+        period: 'Profesional independiente · 2025',
+        summary:
+          'Diseño y desarrollo web corporativo para un odontólogo especializado en estética dental. Una presencia digital moderna y profesional que transmite confianza, muestra los servicios y facilita la reserva de citas vía WhatsApp.',
+        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+        imageAlt:
+          'Sitio web de la Clínica Odontológica Dr. Cristian Valencia — secciones de inicio, servicios, testimonios y contacto en versión escritorio y móvil',
+        stack: [
+          'React',
+          'Next.js',
+          'Tailwind CSS',
+          'JavaScript',
+          'Netlify',
+        ],
+        sections: [
+          {
+            heading: 'Diseño y experiencia',
+            bullets: [
+              'Diseño UI/UX completo: moderno, minimalista y alineado con un sector salud que necesita transmitir confianza.',
+              'Navegación intuitiva, pensada para pacientes que llegan buscando servicios y agendar una cita.',
+              'Identidad visual coherente: tipografía, paleta y espaciado tratados para legibilidad y limpieza.',
+            ],
+          },
+          {
+            heading: 'Frontend y responsive',
+            bullets: [
+              'Desarrollo frontend con React y Tailwind CSS, optimizado para dispositivos móviles.',
+              'Sitio totalmente responsive, probado en distintos tamaños y orientaciones de pantalla.',
+              'Despliegue en Netlify con flujo de integración continua.',
+            ],
+          },
+          {
+            heading: 'Bilingüe e integraciones',
+            bullets: [
+              'Versión bilingüe español/inglés para alcanzar pacientes locales y extranjeros.',
+              'Agendamiento de citas integrado con WhatsApp para abrir la conversación directamente con la clínica.',
+              'Integración con redes sociales para reforzar la presencia digital.',
+            ],
+          },
+          {
+            heading: 'Captación y conversión',
+            bullets: [
+              'Secciones de servicios, testimonios y contacto orientadas a generar confianza.',
+              'CTAs estratégicos pensados para convertir visitantes en pacientes.',
+              'SEO básico aplicado para mejorar el posicionamiento en búsquedas locales.',
+            ],
+          },
+        ],
+      },
+      {
         title: 'SegurApp',
         subtitle: 'Plataforma de Seguridad Ciudadana',
         period: 'feb. 2025 — actualidad',
@@ -649,7 +710,10 @@ function en(): Messages {
       projectsStackHeading: 'Core stack',
       projectModalHint: 'Open full project details in a dialog',
       projectsCardTapHint: 'Click for full details',
-      projectsGridAria: 'Featured projects in a grid layout',
+      projectsGridAria: 'Featured projects carousel',
+      projectsCarouselPrev: 'Show previous projects',
+      projectsCarouselNext: 'Show next projects',
+      projectsCarouselGoTo: 'Go to project',
       contactHeading: "Let's talk",
       contactIntro:
         'Shipping something new, need an extra pair of hands, or still figuring out what to call it? Whatever it is—if it needs doing right, let’s talk. Email me and I’ll get back as soon as I can.',
@@ -667,6 +731,8 @@ function en(): Messages {
       experienceModalTech: 'Technologies',
       experienceModalImpact: 'Outcome',
       experienceModalHint: 'View details, technologies, and results',
+      experienceTimelinePresent: 'Now',
+      experienceTimelinePresentLabel: 'Present',
     },
     aboutDeliveryCards: [
       {
@@ -942,6 +1008,57 @@ function en(): Messages {
       },
     ],
     featuredProjects: [
+      {
+        title: 'Dr. Cristian Valencia Dental Clinic',
+        subtitle: 'Corporate website · Freelance project',
+        period: 'Freelance · 2025',
+        summary:
+          'Design and development of a corporate website for a dentist specialized in cosmetic dentistry. A modern, professional digital presence that builds trust, showcases services, and streamlines appointment booking through WhatsApp.',
+        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+        imageAlt:
+          'Dr. Cristian Valencia Dental Clinic website — home, services, testimonials, and contact sections shown on desktop and mobile',
+        stack: [
+          'React',
+          'Next.js',
+          'Tailwind CSS',
+          'JavaScript',
+          'Netlify',
+        ],
+        sections: [
+          {
+            heading: 'Design & experience',
+            bullets: [
+              'Full UI/UX design—modern and minimalist—aligned with a healthcare brand that needs to project trust.',
+              'Intuitive navigation focused on patients who arrive looking for services and to book an appointment.',
+              'Cohesive visual identity: typography, palette, and spacing tuned for clarity and a clean feel.',
+            ],
+          },
+          {
+            heading: 'Frontend & responsive',
+            bullets: [
+              'Frontend built with React and Tailwind CSS, optimized for mobile devices.',
+              'Fully responsive layout, tested across multiple screen sizes and orientations.',
+              'Deployed on Netlify with a continuous integration workflow.',
+            ],
+          },
+          {
+            heading: 'Bilingual & integrations',
+            bullets: [
+              'Bilingual Spanish/English to reach both local and international patients.',
+              'Appointment booking integrated with WhatsApp for instant conversations with the clinic.',
+              'Social media integrations to reinforce the digital presence.',
+            ],
+          },
+          {
+            heading: 'Acquisition & conversion',
+            bullets: [
+              'Services, testimonials, and contact sections crafted to build trust.',
+              'Strategic CTAs designed to turn visitors into patients.',
+              'Basic SEO applied to improve visibility in local searches.',
+            ],
+          },
+        ],
+      },
       {
         title: 'SegurApp',
         subtitle: 'Citizen Safety Platform',

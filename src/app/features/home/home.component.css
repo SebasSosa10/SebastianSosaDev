@@ -130,6 +130,162 @@
   }
 }
 
+/* Tallo: línea vertical que despega el marcador del eje y se conecta a él */
+.experience-timeline-stem {
+  display: block;
+  width: 1.5px;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    to bottom,
+    rgb(212 175 55 / 0.65),
+    rgb(212 175 55 / 0.85)
+  );
+}
+@media (min-width: 640px) {
+  .experience-timeline-stem {
+    height: 1.75rem;
+  }
+}
+.experience-timeline-stem.experience-timeline-stem-up {
+  background-image: linear-gradient(
+    to top,
+    rgb(212 175 55 / 0.65),
+    rgb(212 175 55 / 0.85)
+  );
+}
+.dark .experience-timeline-stem {
+  background-image: linear-gradient(
+    to bottom,
+    rgb(212 175 55 / 0.55),
+    rgb(212 175 55 / 0.85)
+  );
+}
+.dark .experience-timeline-stem.experience-timeline-stem-up {
+  background-image: linear-gradient(
+    to top,
+    rgb(212 175 55 / 0.55),
+    rgb(212 175 55 / 0.85)
+  );
+}
+
+/* Riel del eje: contiene la línea estática y el destello que se mueve */
+.experience-timeline-axis-rail {
+  /* Sombra dorada suave bajo todo el riel para dar volumen */
+  box-shadow:
+    0 0 0 1px rgb(212 175 55 / 0.05),
+    0 6px 18px rgb(212 175 55 / 0.18);
+}
+
+/* Línea base estática: degradado dorado de borde a borde */
+.experience-timeline-axis-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    to right,
+    rgb(212 175 55 / 0) 0%,
+    rgb(212 175 55 / 0.45) 6%,
+    rgb(212 175 55 / 0.55) 50%,
+    rgb(212 175 55 / 0.45) 94%,
+    rgb(212 175 55 / 0) 100%
+  );
+}
+.dark .experience-timeline-axis-track {
+  background-image: linear-gradient(
+    to right,
+    rgb(212 175 55 / 0) 0%,
+    rgb(212 175 55 / 0.4) 6%,
+    rgb(212 175 55 / 0.55) 50%,
+    rgb(212 175 55 / 0.4) 94%,
+    rgb(212 175 55 / 0) 100%
+  );
+}
+
+/* Destello móvil: viaja de izquierda a derecha en bucle, con halo dorado */
+.experience-timeline-axis-comet {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 100%;
+  width: 22%;
+  border-radius: 9999px;
+  background-image: linear-gradient(
+    90deg,
+    rgb(212 175 55 / 0) 0%,
+    rgb(212 175 55 / 0.15) 25%,
+    rgb(212 175 55 / 0.55) 50%,
+    rgb(255 220 130 / 0.95) 70%,
+    rgb(212 175 55 / 0.4) 88%,
+    rgb(212 175 55 / 0) 100%
+  );
+  filter: blur(2px) drop-shadow(0 0 10px rgb(212 175 55 / 0.6))
+    drop-shadow(0 0 22px rgb(212 175 55 / 0.35));
+  transform: translateY(-50%) translateX(-100%);
+  animation: experience-timeline-comet 6s linear infinite;
+  will-change: transform;
+}
+
+@keyframes experience-timeline-comet {
+  0% {
+    transform: translateY(-50%) translateX(-100%);
+  }
+  100% {
+    transform: translateY(-50%) translateX(450%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-timeline-axis-comet {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Halo del marcador: aparece sutil y se intensifica al hover */
+.experience-timeline-halo {
+  opacity: 0.55;
+}
+.experience-timeline-marker:hover .experience-timeline-halo {
+  opacity: 1;
+}
+
+/* Punto pulsante para “actualidad” */
+.experience-timeline-dot {
+  display: inline-block;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  background-color: rgb(34 197 94);
+  box-shadow: 0 0 0 0 rgb(34 197 94 / 0.55);
+  animation: experience-timeline-pulse 1.8s ease-out infinite;
+}
+.experience-timeline-now {
+  color: rgb(22 163 74);
+}
+.dark .experience-timeline-now {
+  color: rgb(74 222 128);
+}
+
+@keyframes experience-timeline-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgb(34 197 94 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-timeline-dot {
+    animation: none;
+  }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   .tech-marquee-dup {
     display: none;

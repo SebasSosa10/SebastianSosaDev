@@ -12,10 +12,20 @@
 /** Color “reposo” del título animado del hero (claro / oscuro) */
 html.dark {
   --hero-letter-rest: #ffffff;
+  background-color: #000;
 }
 
 html:not(.dark) {
   --hero-letter-rest: #171717;
+}
+
+/**
+ * En tema oscuro el fondo lo provee el canvas de partículas
+ * (componente <app-particle-background />), por lo que el shell
+ * de la app debe ser transparente para no taparlo.
+ */
+html.dark body {
+  background-color: transparent;
 }
 
 /**
