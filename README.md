@@ -85,7 +85,3 @@ Puedes usar la estructura como base, pero los textos y enlaces son **personales*
 - [Angular](https://angular.dev)  
 - [CLI de Angular](https://angular.dev/tools/cli)  
 - [Tailwind](https://tailwindcss.com/docs)
-
----
-
-*Este README lo escribí en primera persona a propósito: quien entre al repo que entienda de inmediato **qué es esto y quién está detrás**.*

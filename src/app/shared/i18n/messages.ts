@@ -553,6 +553,57 @@ function es(): Messages {
         ],
       },
       {
+        title: 'Mini-GPT Sentiment Analysis',
+        subtitle: 'Análisis de sentimientos · Transformer',
+        category: 'Machine Learning · NLP',
+        summary:
+          'Mini-GPT en PyTorch para clasificar reseñas de comida como positivas o negativas mediante tokenización, embeddings, atención causal y bloques Transformer decoder inspirados en arquitecturas GPT. Proyecto académico de NLP con entrenamiento y evaluación sobre el dataset BD Food Review (Kaggle).',
+        imageSrc: '/projects/mini-gpt-sentiment-nlp.png',
+        imageAlt:
+          'Mini-GPT — pipeline NLP, arquitectura Transformer, métricas de evaluación y matriz de confusión',
+        repoUrl: 'https://github.com/SebasSosa10/mini-gpt-analisis-sentimientos',
+        stack: [
+          'Python',
+          'PyTorch',
+          'pandas',
+          'NumPy',
+          'scikit-learn',
+          'matplotlib',
+          'pytest',
+        ],
+        sections: [
+          {
+            heading: 'Características principales',
+            bullets: [
+              'Tokenización y construcción de vocabulario.',
+              'Embeddings de tokens y posiciones.',
+              'Multi-Head Self-Attention con atención causal.',
+              'Arquitectura Transformer Decoder.',
+              'Clasificación supervisada de sentimiento.',
+              'Entrenamiento y evaluación en PyTorch.',
+            ],
+          },
+          {
+            heading: 'Resultados obtenidos',
+            bullets: [
+              'Accuracy: 90.68%.',
+              'Macro F1: 90.03%.',
+              'Weighted F1: 90.66%.',
+              '26 pruebas automatizadas con pytest.',
+            ],
+          },
+          {
+            heading: 'Arquitectura del modelo',
+            bullets: [
+              'Mini-GPT didáctico con 2 capas, 4 cabezas y ~2,5M parámetros.',
+              'Vocabulario de 16.612 tokens; contexto máximo de 128.',
+              'Clasificación binaria positive/negative sobre reseñas de comida.',
+              'Predicción de frases nuevas desde consola o modo interactivo.',
+            ],
+          },
+        ],
+      },
+      {
         title: 'SegurApp',
         subtitle: 'Plataforma de Seguridad Ciudadana',
         category: 'App móvil',
@@ -1144,6 +1195,57 @@ function en(): Messages {
               'Front-end architecture with reusable components.',
               'Modern UI design for logistics operations.',
               'Simulation of real-world order tracking and monitoring flows.',
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Mini-GPT Sentiment Analysis',
+        subtitle: 'Sentiment analysis · Transformer',
+        category: 'Machine Learning · NLP',
+        summary:
+          'PyTorch Mini-GPT that classifies food reviews as positive or negative using tokenization, embeddings, causal attention, and GPT-inspired Transformer decoder blocks. Academic NLP project trained and evaluated on the BD Food Review dataset (Kaggle).',
+        imageSrc: '/projects/mini-gpt-sentiment-nlp.png',
+        imageAlt:
+          'Mini-GPT — NLP pipeline, Transformer architecture, evaluation metrics, and confusion matrix',
+        repoUrl: 'https://github.com/SebasSosa10/mini-gpt-analisis-sentimientos',
+        stack: [
+          'Python',
+          'PyTorch',
+          'pandas',
+          'NumPy',
+          'scikit-learn',
+          'matplotlib',
+          'pytest',
+        ],
+        sections: [
+          {
+            heading: 'Key features',
+            bullets: [
+              'Tokenization and vocabulary building.',
+              'Token and positional embeddings.',
+              'Multi-Head Self-Attention with causal masking.',
+              'Transformer Decoder architecture.',
+              'Supervised sentiment classification.',
+              'PyTorch training and evaluation pipeline.',
+            ],
+          },
+          {
+            heading: 'Results',
+            bullets: [
+              'Accuracy: 90.68%.',
+              'Macro F1: 90.03%.',
+              'Weighted F1: 90.66%.',
+              '26 automated tests with pytest.',
+            ],
+          },
+          {
+            heading: 'Model architecture',
+            bullets: [
+              'Educational Mini-GPT with 2 layers, 4 heads, and ~2.5M parameters.',
+              '16,612-token vocabulary; 128-token max context.',
+              'Binary positive/negative classification on food reviews.',
+              'Inference for new sentences via CLI or interactive mode.',
             ],
           },
         ],
