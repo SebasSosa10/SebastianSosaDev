@@ -73,6 +73,8 @@
 
 .experience-timeline-h-scroll {
   scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 
 .experience-timeline-h-scroll::-webkit-scrollbar {
@@ -96,8 +98,8 @@
 /* Logos centrados y con tamaño uniforme dentro del círculo */
 .experience-timeline-logo-slot {
   display: flex;
-  height: 2.375rem;
-  width: 2.375rem;
+  height: 3.75rem;
+  width: 3.75rem;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -108,8 +110,8 @@
 
 @media (min-width: 640px) {
   .experience-timeline-logo-slot {
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 4.125rem;
+    width: 4.125rem;
   }
 }
 
@@ -117,16 +119,16 @@
   display: block;
   height: 100%;
   width: 100%;
-  max-height: 1.75rem;
-  max-width: 1.75rem;
+  max-height: 2.75rem;
+  max-width: 2.75rem;
   object-fit: contain;
   object-position: center;
 }
 
 @media (min-width: 640px) {
   .experience-timeline-logo-img {
-    max-height: 1.875rem;
-    max-width: 1.875rem;
+    max-height: 3rem;
+    max-width: 3rem;
   }
 }
 
@@ -304,5 +306,9 @@
     margin-inline: auto;
     row-gap: 0.75rem;
     column-gap: 0.75rem;
+  }
+
+  .about-delivery-card:hover .about-delivery-bullet {
+    transform: none;
   }
 }

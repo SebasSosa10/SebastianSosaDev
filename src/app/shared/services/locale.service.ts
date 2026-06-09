@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { afterNextRender } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import type { NavItem } from '../data/site';
 import { message, type AppLocale } from '../i18n/messages';
 
@@ -19,6 +19,7 @@ export class LocaleService {
   private readonly document = inject(DOCUMENT);
   private readonly platformId = inject(PLATFORM_ID);
   private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
 
   readonly lang = signal<AppLocale>('es');
 
@@ -36,6 +37,22 @@ export class LocaleService {
   apply(locale: AppLocale): void {
     this.lang.set(locale);
     this.title.setTitle(message(locale, 'meta.title'));
+    this.meta.updateTag({
+      name: 'description',
+      content: message(locale, 'meta.description'),
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: message(locale, 'meta.ogTitle'),
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: message(locale, 'meta.ogDescription'),
+    });
+    this.meta.updateTag({
+      property: 'og:locale',
+      content: locale === 'en' ? 'en_US' : 'es_CO',
+    });
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }

@@ -28,6 +28,7 @@ export type ExperienceEntry = {
 };
 
 export type AboutDeliveryCard = {
+  tag: string;
   title: string;
   intro: string;
   bullets: readonly string[];
@@ -41,16 +42,23 @@ export type FeaturedProjectSection = {
 export type FeaturedProject = {
   title: string;
   subtitle: string;
-  period: string;
+  /** Etiqueta superior en tarjeta y modal (tipo o alcance del proyecto). */
+  category: string;
   summary: string;
   imageSrc: string;
   imageAlt: string;
+  repoUrl: string;
   stack: readonly string[];
   sections: readonly FeaturedProjectSection[];
 };
 
 export type Messages = {
-  meta: { title: string };
+  meta: {
+    title: string;
+    description: string;
+    ogTitle: string;
+    ogDescription: string;
+  };
   ui: {
     themeGroup: string;
     themeLight: string;
@@ -83,27 +91,35 @@ export type Messages = {
     projectModalHint: string;
     /** Texto auxiliar bajo el resumen en la tarjeta */
     projectsCardTapHint: string;
+    projectsViewGithub: string;
+    projectsViewGithubAria: string;
     projectsGridAria: string;
     projectsCarouselPrev: string;
     projectsCarouselNext: string;
     projectsCarouselGoTo: string;
     contactHeading: string;
-    contactIntro: string;
+    contactIntro: readonly string[];
     contactOpenMailAria: string;
+    contactOpenPhoneAria: string;
     contactCopyEmail: string;
     contactCopyEmailDone: string;
     techHeading: string;
     techIntro: string;
     techMarqueeAria: string;
     aboutHeading: string;
-    aboutLead: string;
+    aboutLead: readonly string[];
     aboutDeliveryHeading: string;
+    aboutDeliveryEyebrow: string;
+    aboutDeliveryIntro: string;
+    aboutDeliveryAreas: string;
     experienceModalClose: string;
     experienceModalTech: string;
     experienceModalImpact: string;
     experienceModalHint: string;
     experienceTimelinePresent: string;
     experienceTimelinePresentLabel: string;
+    experienceScrollHint: string;
+    projectsCarouselSwipeHint: string;
   };
   aboutDeliveryCards: readonly AboutDeliveryCard[];
   experienceEntries: readonly ExperienceEntry[];
@@ -114,13 +130,20 @@ export type Messages = {
     socialHeading: string;
     navAria: string;
   };
+  roleTitles: readonly string[];
   roleTitle: string;
 };
 
 function es(): Messages {
   return {
     meta: {
-      title: 'Sebastian Sosa — Desarrollador de software',
+      title: 'Sebastian Sosa — Ingeniero de software · Desarrollador Full Stack',
+      description:
+        'Portafolio de Joan Sebastian Sosa Bedoya, Ingeniero de software y Desarrollador Full Stack con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes. Disponible para proyectos en Colombia y remoto.',
+      ogTitle:
+        'Joan Sebastian Sosa Bedoya — Ingeniero de software · Desarrollador Full Stack',
+      ogDescription:
+        'Ingeniero de software y Desarrollador Full Stack con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes. Armenia, Colombia. Disponible para proyectos locales y remotos.',
     },
     ui: {
       themeGroup: 'Tema',
@@ -153,95 +176,118 @@ function es(): Messages {
       projectsStackHeading: 'Stack principal',
       projectModalHint: 'Abrir detalles del proyecto en una ventana emergente',
       projectsCardTapHint: 'Pulsa para ver el detalle completo',
+      projectsViewGithub: 'Ver en GitHub',
+      projectsViewGithubAria: 'Ver código de {title} en GitHub (se abre en una pestaña nueva)',
       projectsGridAria: 'Carrusel de proyectos destacados',
       projectsCarouselPrev: 'Ver proyectos anteriores',
       projectsCarouselNext: 'Ver proyectos siguientes',
       projectsCarouselGoTo: 'Ir al proyecto',
-      contactHeading: 'Hablemos',
-      contactIntro:
-        '¿Quieres lanzar algo, sumar refuerzos al equipo o aún no sabes ni cómo llamarlo? Da igual el tamaño del reto: si hay que hacerlo bien, hablemos. Escríbeme y te respondo en cuanto pueda.',
+      contactHeading: '¿Tienes una idea, un proyecto o un reto por resolver?',
+      contactIntro: [
+        'Me interesa construir soluciones bien pensadas, escalables y enfocadas en generar impacto real.',
+        'Disfruto trabajar en productos donde la tecnología, la experiencia y la operación se conectan para resolver problemas de verdad. Desde plataformas empresariales hasta automatización de procesos y sistemas listos para producción.',
+        'Si buscas sumar a alguien con visión técnica, enfoque en calidad y capacidad para convertir necesidades complejas en soluciones claras y mantenibles, estaré encantado de conversar.',
+      ],
       contactOpenMailAria: 'Abrir cliente de correo para escribir a esta dirección',
+      contactOpenPhoneAria: 'Llamar o escribir al número de celular',
       contactCopyEmail: 'Copiar correo',
       contactCopyEmailDone: '¡Copiado!',
       techHeading: 'Tecnologías con las que trabajo',
       techIntro: 'Herramientas modernas para soluciones modernas',
       techMarqueeAria: 'Lista de tecnologías y herramientas',
       aboutHeading: 'Sobre mí',
-      aboutLead:
-        'Soy desarrollador de software y me centro en soluciones escalables, eficientes y pensadas para producción: sistemas mantenibles, claros y con margen para crecer. Abordo cada reto de punta a punta—entender el contexto, integrar lo necesario, decidir con criterio y dejar entregas que se sostienen en el tiempo.',
-      aboutDeliveryHeading: 'Lo que entrego',
+      aboutLead: [
+        'Ingeniero de Software & Full Stack Developer especializado en el desarrollo de soluciones web escalables, modernas y orientadas a producción.',
+        'Cuento con experiencia construyendo plataformas empresariales con Python, FastAPI, Java, Spring Boot, Angular y React, trabajando bajo arquitecturas de microservicios, integración de sistemas corporativos y despliegues automatizados con Docker, Kubernetes y pipelines CI/CD.',
+        'Mi enfoque combina arquitectura de software, rendimiento y experiencia de usuario para desarrollar aplicaciones mantenibles, seguras y preparadas para crecer. He participado en proyectos enfocados en automatización de procesos, integración de plataformas empresariales, APIs de alto rendimiento y optimización operativa en entornos reales.',
+        'Disfruto transformar necesidades complejas en soluciones técnicas claras, eficientes y alineadas con objetivos de negocio.',
+      ],
+      aboutDeliveryHeading: 'Construyendo software pensado para producción',
+      aboutDeliveryEyebrow: 'Stack de servicios',
+      aboutDeliveryIntro:
+        'Seis áreas donde convierto necesidades de negocio en soluciones escalables, mantenibles y listas para operar en entornos reales.',
+      aboutDeliveryAreas: '6 áreas',
       experienceModalClose: 'Cerrar',
       experienceModalTech: 'Tecnologías',
       experienceModalImpact: 'Resultado',
       experienceModalHint: 'Ver detalles, tecnologías y resultados',
       experienceTimelinePresent: 'Hoy',
       experienceTimelinePresentLabel: 'Actualidad',
+      experienceScrollHint:
+        'Desliza horizontalmente para ver toda la experiencia',
+      projectsCarouselSwipeHint: 'Desliza para ver más proyectos',
     },
     aboutDeliveryCards: [
       {
-        title: 'Experiencia de uso e integración',
+        tag: 'UX · UI',
+        title: 'Experiencia e interfaces',
         intro:
-          'Pantallas y recorridos que explican el sistema en lugar de pelear con él: claridad primero, rendimiento alineado al negocio.',
+          'Interfaces claras, funcionales y alineadas al negocio.',
         bullets: [
-          'Diseño de interfaces coherentes con el dominio y las personas que las usan',
-          'Experiencias que funcionan bien en distintos dispositivos y contextos',
-          'Conexión estable con servicios y datos reales, sin quedarse en prototipos eternos',
-          'Soluciones pensadas para evolucionar sin volver a empezar cada vez',
+          'Experiencias modernas y multi-dispositivo',
+          'Diseño coherente con usuarios y procesos reales',
+          'Integración estable con APIs y servicios',
+          'Interfaces preparadas para crecer',
         ],
       },
       {
-        title: 'Servicios, datos e integración entre sistemas',
+        tag: 'API · DATA',
+        title: 'Servicios e integración',
         intro:
-          'Acuerdos claros entre equipos y piezas: lo que expongo al exterior es predecible, seguro y fácil de consumir.',
+          'APIs y estructuras de datos diseñadas para ser seguras, predecibles y mantenibles.',
         bullets: [
-          'Contratos de servicio estables y comprensibles para quien integra',
-          'Acceso por roles, mínimo privilegio y buenas prácticas de exposición',
-          'Modelado y persistencia alineados al problema de negocio',
-          'Documentación que reduce idas y vueltas y acelera adopción',
+          'APIs REST claras y escalables',
+          'Control de acceso y seguridad por roles',
+          'Modelado de datos orientado al dominio',
+          'Integración con sistemas empresariales',
         ],
       },
       {
-        title: 'Análisis y automatización',
+        tag: 'ANALYTICS',
+        title: 'Automatización y análisis',
         intro:
-          'Pasar de “lo hago a mano” a “lo mido y lo repito bien”: menos error humano, más señal para decidir.',
+          'Procesos medibles, automatizados y orientados a eficiencia operativa.',
         bullets: [
-          'Tratamiento y validación de información para que sea confiable',
-          'Automatización de lo repetitivo para liberar tiempo de valor',
-          'Indicadores ligados a objetivos, no a vanidad',
-          'Procesos más visibles, auditables y fáciles de mejorar',
+          'Automatización de tareas repetitivas',
+          'Validación y tratamiento de datos',
+          'Indicadores y trazabilidad operativa',
+          'Procesos auditables y optimizables',
         ],
       },
       {
+        tag: 'ENGINEERING',
         title: 'Ingeniería de software',
         intro:
-          'Estructura y disciplina técnica para que el producto crezca sin derrumbarse: lo que construyo está pensado para equipos, no solo para hoy.',
+          'Arquitectura y desarrollo enfocados en calidad y escalabilidad.',
         bullets: [
-          'Organización del código en capas y límites que se entienden meses después',
-          'Pruebas, revisión y convenciones que reducen regresiones',
-          'Entornos y despliegues repetibles entre desarrollo y producción',
-          'Entregas en ciclos cortos con foco en valor y aprendizaje',
+          'Arquitectura limpia y mantenible',
+          'Buenas prácticas y código desacoplado',
+          'Testing, revisión y estándares sólidos',
+          'Despliegues reproducibles y CI/CD',
         ],
       },
       {
-        title: 'Inteligencia artificial con sentido',
+        tag: 'AI · ML',
+        title: 'Inteligencia artificial aplicada',
         intro:
-          'IA donde aporta de verdad: asistencia y automatización que encajan en el flujo, sin sustituir el criterio ni la responsabilidad.',
+          'IA integrada donde realmente aporta valor al negocio.',
         bullets: [
-          'Capacidades inteligentes integradas en tareas concretas del negocio',
-          'Opciones que escalan el coste solo cuando hace falta, sin sobre-arquitectura',
-          'Resultados medibles y un dueño claro del caso de uso',
-          'Datos, contexto y permisos tratados con cuidado desde el diseño',
+          'Automatización inteligente de procesos',
+          'Integración de capacidades IA en plataformas reales',
+          'Resultados medibles y casos de uso concretos',
+          'Gestión segura de datos y permisos',
         ],
       },
       {
-        title: 'Soluciones listas para producción y escala',
+        tag: 'PROD · SCALE',
+        title: 'Producción y escalabilidad',
         intro:
-          'Lo que entrego está pensado para uso real: carga, continuidad y equipos que operan el sistema día a día.',
+          'Infraestructura y operación preparadas para crecer con estabilidad.',
         bullets: [
-          'Infraestructura y piezas de rendimiento cuando el contexto lo exige',
-          'Crecimiento de usuarios, tráfico y datos con cabeza fría y plan',
-          'Integración ordenada con otros sistemas o clientes externos',
-          'Visibilidad operativa: qué pasa, cuándo y cómo mejorarlo',
+          'Contenedores y orquestación con Docker/Kubernetes',
+          'Sistemas preparados para alta demanda',
+          'Integración ordenada con servicios externos',
+          'Observabilidad, monitoreo y rendimiento',
         ],
       },
     ],
@@ -453,52 +499,55 @@ function es(): Messages {
     ],
     featuredProjects: [
       {
-        title: 'Clínica Odontológica Dr. Cristian Valencia',
-        subtitle: 'Sitio web corporativo · Profesional independiente',
-        period: 'Profesional independiente · 2025',
+        title: 'Prototipo de Seguimiento de Pedidos TUL',
+        subtitle: 'Prototipo Front-End · Logística',
+        category: 'Prototipo front-end',
         summary:
-          'Diseño y desarrollo web corporativo para un odontólogo especializado en estética dental. Una presencia digital moderna y profesional que transmite confianza, muestra los servicios y facilita la reserva de citas vía WhatsApp.',
-        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+          'Prototipo front-end de seguimiento de pedidos inspirado en la operación logística de TUL, orientado a validar experiencias de navegación y monitoreo desde distintos perfiles operativos. En fase de prototipado funcional con interfaces, rutas dinámicas y datos mock locales, sin backend ni autenticación real.',
+        imageSrc: '/projects/Tul.jpg',
         imageAlt:
-          'Sitio web de la Clínica Odontológica Dr. Cristian Valencia — secciones de inicio, servicios, testimonios y contacto en versión escritorio y móvil',
+          'Prototipo TUL — dashboard de pedidos activos, detalle con historial, paneles por rol y vistas móviles',
+        repoUrl: 'https://github.com/JilmarV/redisenio-seguimiento-pedidos-tul',
         stack: [
-          'React',
-          'Next.js',
+          'React 18',
+          'Vite',
+          'TypeScript',
           'Tailwind CSS',
-          'JavaScript',
-          'Netlify',
+          'React Router',
+          'Radix UI',
+          'Recharts',
+          'Material UI Icons',
         ],
         sections: [
           {
-            heading: 'Diseño y experiencia',
+            heading: 'Funcionalidades desarrolladas',
             bullets: [
-              'Diseño UI/UX completo: moderno, minimalista y alineado con un sector salud que necesita transmitir confianza.',
-              'Navegación intuitiva, pensada para pacientes que llegan buscando servicios y agendar una cita.',
-              'Identidad visual coherente: tipografía, paleta y espaciado tratados para legibilidad y limpieza.',
+              'Selección de roles de acceso.',
+              'Dashboard principal para cliente ferretería.',
+              'Seguimiento visual del estado de pedidos.',
+              'Historial y trazabilidad detallada.',
+              'Alertas de retraso y estados operativos.',
+              'Panel de vendedor para pedidos despachados.',
+              'Panel de atención al cliente para soporte y búsqueda.',
+              'Dashboard logístico con filtros y visualización operativa.',
+              'Navegación dinámica entre rutas y vistas.',
             ],
           },
           {
-            heading: 'Frontend y responsive',
+            heading: 'Perfiles operativos simulados',
             bullets: [
-              'Desarrollo frontend con React y Tailwind CSS, optimizado para dispositivos móviles.',
-              'Sitio totalmente responsive, probado en distintos tamaños y orientaciones de pantalla.',
-              'Despliegue en Netlify con flujo de integración continua.',
+              'Cliente ferretería.',
+              'Vendedor.',
+              'Atención al cliente.',
+              'Logística.',
             ],
           },
           {
-            heading: 'Bilingüe e integraciones',
+            heading: 'Aprendizajes clave',
             bullets: [
-              'Versión bilingüe español/inglés para alcanzar pacientes locales y extranjeros.',
-              'Agendamiento de citas integrado con WhatsApp para abrir la conversación directamente con la clínica.',
-              'Integración con redes sociales para reforzar la presencia digital.',
-            ],
-          },
-          {
-            heading: 'Captación y conversión',
-            bullets: [
-              'Secciones de servicios, testimonios y contacto orientadas a generar confianza.',
-              'CTAs estratégicos pensados para convertir visitantes en pacientes.',
-              'SEO básico aplicado para mejorar el posicionamiento en búsquedas locales.',
+              'Arquitectura front-end con componentes reutilizables.',
+              'Diseño de interfaces modernas orientadas a operaciones logísticas.',
+              'Simulación de flujos reales de seguimiento y monitoreo de pedidos.',
             ],
           },
         ],
@@ -506,12 +555,13 @@ function es(): Messages {
       {
         title: 'SegurApp',
         subtitle: 'Plataforma de Seguridad Ciudadana',
-        period: 'feb. 2025 — actualidad',
+        category: 'App móvil',
         summary:
           'Aplicación móvil con Kotlin y Jetpack Compose (Android Studio), orientada a seguridad ciudadana y bienestar comunitario: reportar riesgos y emergencias en tiempo real, ver alertas cercanas y colaborar con la comunidad.',
         imageSrc: '/projects/segurapp-hero.png',
         imageAlt:
           'SegurApp — mockups con mapa de reportes, inicio de sesión, categorías y notificaciones',
+        repoUrl: 'https://github.com/AxelG14/SegurApp',
         stack: [
           'Kotlin',
           'Jetpack Compose',
@@ -526,12 +576,13 @@ function es(): Messages {
       {
         title: 'Golden Egg',
         subtitle: 'Sistema ERP Lite',
-        period: 'feb. 2025 — actualidad',
+        category: 'ERP · Full Stack',
         summary:
           'ERP lite para una empresa avícola dedicada a comercializar y distribuir huevos. Centraliza inventario, ventas y facturación para digitalizar operaciones y automatizar procesos comerciales clave.',
         imageSrc: '/projects/golden-egg-erp-hero.png',
         imageAlt:
           'Golden Egg ERP — pantallas de panel, inventario, pedidos, facturas e informes',
+        repoUrl: 'https://github.com/JilmarV/golden_egg',
         stack: [
           'Angular',
           'Spring Boot',
@@ -578,12 +629,13 @@ function es(): Messages {
       {
         title: 'Agenda de Contactos',
         subtitle: 'Aplicación de escritorio · Agenda Digital',
-        period: 'Proyecto de escritorio · Python',
+        category: 'App de escritorio',
         summary:
           'Aplicación de escritorio en Python con SQLite y Tkinter para gestionar contactos personales, organizarlos por categorías y marcar favoritos; interfaz clara y flujos para búsqueda y filtrado.',
         imageSrc: '/projects/agenda-contactos-hero.png',
         imageAlt:
           'Agenda de Contactos — inicio de sesión, lista de contactos, formulario de alta, búsqueda y categorías',
+        repoUrl: 'https://github.com/SebasSosa10/Agenda_de_Contactos',
         stack: ['Python', 'Tkinter', 'SQLite', 'Git'],
         sections: [
           {
@@ -620,12 +672,13 @@ function es(): Messages {
       {
         title: 'Plataforma de Blogs',
         subtitle: 'API REST con Spring Boot',
-        period: 'Backend · Java 17+',
+        category: 'Backend · API REST',
         summary:
           'Backend de una plataforma de blogs en Spring Boot: gestión de usuarios y publicaciones, interacción entre autores y un modelo de roles (ADMIN / AUTHOR) para administrar el contenido con claridad y control de acceso.',
         imageSrc: '/projects/blog-platform-hero.png',
         imageAlt:
           'Diagrama técnico: arquitectura Spring Boot, JWT, endpoints REST y modelo de datos del blog',
+        repoUrl: 'https://github.com/SebasSosa10/Plataforma_de_Blogs',
         stack: [
           'Java',
           'Spring Boot',
@@ -665,19 +718,29 @@ function es(): Messages {
     ],
     footer: {
       blurb:
-        'Desarrollador de software. Contacto por correo y redes sociales; enlaces actualizados en esta página.',
+        'Construyendo soluciones digitales modernas, escalables y preparadas para producción. Mi enfoque combina ingeniería de software, experiencia de usuario y arquitectura mantenible para desarrollar productos funcionales, eficientes y alineados con necesidades reales de negocio.',
       navHeading: 'Navegación',
       socialHeading: 'Redes',
       navAria: 'Enlaces a secciones del portafolio',
     },
-    roleTitle: 'Desarrollador de software',
+    roleTitles: [
+      'Ingeniero de software',
+      'Desarrollador Full Stack',
+    ],
+    roleTitle: 'Ingeniero de software',
   };
 }
 
 function en(): Messages {
   return {
     meta: {
-      title: 'Sebastian Sosa — Software developer',
+      title: 'Sebastian Sosa — Software Engineer · Full Stack Developer',
+      description:
+        'Portfolio of Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer with experience in Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes. Available for projects in Colombia and remote work.',
+      ogTitle:
+        'Joan Sebastian Sosa Bedoya — Software Engineer · Full Stack Developer',
+      ogDescription:
+        'Software Engineer and Full Stack Developer with experience in Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes. Armenia, Colombia. Available for local and remote projects.',
     },
     ui: {
       themeGroup: 'Theme',
@@ -710,95 +773,118 @@ function en(): Messages {
       projectsStackHeading: 'Core stack',
       projectModalHint: 'Open full project details in a dialog',
       projectsCardTapHint: 'Click for full details',
+      projectsViewGithub: 'View on GitHub',
+      projectsViewGithubAria: 'View {title} source code on GitHub (opens in a new tab)',
       projectsGridAria: 'Featured projects carousel',
       projectsCarouselPrev: 'Show previous projects',
       projectsCarouselNext: 'Show next projects',
       projectsCarouselGoTo: 'Go to project',
-      contactHeading: "Let's talk",
-      contactIntro:
-        'Shipping something new, need an extra pair of hands, or still figuring out what to call it? Whatever it is—if it needs doing right, let’s talk. Email me and I’ll get back as soon as I can.',
+      contactHeading: 'Have an idea, a project, or a challenge to solve?',
+      contactIntro: [
+        'I am interested in building well-thought-out, scalable solutions focused on generating real impact.',
+        'I enjoy working on products where technology, experience, and operations connect to solve real problems—from enterprise platforms to process automation and production-ready systems.',
+        'If you are looking for someone with technical vision, a focus on quality, and the ability to turn complex needs into clear, maintainable solutions, I would be happy to talk.',
+      ],
       contactOpenMailAria: 'Open your email app to write to this address',
+      contactOpenPhoneAria: 'Call or message this mobile number',
       contactCopyEmail: 'Copy email',
       contactCopyEmailDone: 'Copied!',
       techHeading: 'Technologies I Work With',
       techIntro: 'Modern tools for modern solutions',
       techMarqueeAria: 'Technologies and tools list',
       aboutHeading: 'About me',
-      aboutLead:
-        "I'm a software developer focused on scalable, efficient solutions built for production—systems that stay maintainable, clear, and ready to grow. I tackle each challenge end to end: understand the context, integrate what's needed, decide with sound judgment, and ship work that holds up over time.",
-      aboutDeliveryHeading: 'What I deliver',
+      aboutLead: [
+        'Software Engineer & Full Stack Developer specialized in building scalable, modern, production-oriented web solutions.',
+        'I have experience building enterprise platforms with Python, FastAPI, Java, Spring Boot, Angular, and React, working with microservices architectures, corporate system integration, and automated deployments with Docker, Kubernetes, and CI/CD pipelines.',
+        'My approach combines software architecture, performance, and user experience to develop maintainable, secure applications built to grow. I have contributed to projects focused on process automation, enterprise platform integration, high-performance APIs, and operational optimization in real-world environments.',
+        'I enjoy turning complex needs into clear, efficient technical solutions aligned with business goals.',
+      ],
+      aboutDeliveryHeading: 'Building software built for production',
+      aboutDeliveryEyebrow: 'Service stack',
+      aboutDeliveryIntro:
+        'Six areas where I turn business needs into scalable, maintainable solutions ready to operate in real environments.',
+      aboutDeliveryAreas: '6 areas',
       experienceModalClose: 'Close',
       experienceModalTech: 'Technologies',
       experienceModalImpact: 'Outcome',
       experienceModalHint: 'View details, technologies, and results',
       experienceTimelinePresent: 'Now',
       experienceTimelinePresentLabel: 'Present',
+      experienceScrollHint:
+        'Swipe horizontally to see the full timeline',
+      projectsCarouselSwipeHint: 'Swipe to see more projects',
     },
     aboutDeliveryCards: [
       {
-        title: 'User experience & integration',
+        tag: 'UX · UI',
+        title: 'Experience & interfaces',
         intro:
-          'Screens and flows that explain the system instead of fighting it—clarity first, performance aligned with the business.',
+          'Clear, functional interfaces aligned with the business.',
         bullets: [
-          'Coherent UI design tied to the domain and the people using it',
-          'Experiences that work well across devices and contexts',
-          'Reliable connections to real services and data—not endless prototypes',
-          'Solutions meant to evolve without starting from scratch each time',
+          'Modern, multi-device experiences',
+          'Design coherent with users and real-world processes',
+          'Stable integration with APIs and services',
+          'Interfaces built to grow',
         ],
       },
       {
-        title: 'Services, data & system integration',
+        tag: 'API · DATA',
+        title: 'Services & integration',
         intro:
-          'Clear agreements between teams and components: what you expose is predictable, safe, and easy to consume.',
+          'APIs and data structures designed to be secure, predictable, and maintainable.',
         bullets: [
-          'Stable, understandable service contracts for integrators',
-          'Role-based access, least privilege, and sensible exposure practices',
-          'Modeling and persistence aligned to the business problem',
-          'Documentation that cuts back-and-forth and speeds adoption',
+          'Clear, scalable REST APIs',
+          'Role-based access control and security',
+          'Domain-oriented data modeling',
+          'Integration with enterprise systems',
         ],
       },
       {
-        title: 'Analysis & automation',
+        tag: 'ANALYTICS',
+        title: 'Automation & analysis',
         intro:
-          'From “I do it by hand” to “I measure and repeat it well”: less human error, more signal to decide.',
+          'Measurable, automated processes focused on operational efficiency.',
         bullets: [
-          'Treating and validating information so it can be trusted',
-          'Automating the repetitive to free time for higher-value work',
-          'Indicators tied to goals—not vanity metrics',
-          'Processes that are easier to see, audit, and improve',
+          'Automation of repetitive tasks',
+          'Data validation and processing',
+          'Operational indicators and traceability',
+          'Auditable, optimizable processes',
         ],
       },
       {
+        tag: 'ENGINEERING',
         title: 'Software engineering',
         intro:
-          'Structure and technical discipline so the product can grow without collapsing—what I build is meant for teams, not just for today.',
+          'Architecture and development focused on quality and scalability.',
         bullets: [
-          'Code organized in layers and boundaries that still make sense months later',
-          'Tests, review, and conventions that reduce regressions',
-          'Repeatable environments and deployments from dev to production',
-          'Short delivery cycles focused on value and learning',
+          'Clean, maintainable architecture',
+          'Best practices and decoupled code',
+          'Testing, review, and solid standards',
+          'Reproducible deployments and CI/CD',
         ],
       },
       {
-        title: 'Artificial intelligence with purpose',
+        tag: 'AI · ML',
+        title: 'Applied artificial intelligence',
         intro:
-          'AI where it truly helps—assistance and automation that fit the flow, without replacing judgment or accountability.',
+          'AI integrated where it truly adds business value.',
         bullets: [
-          'Intelligent capabilities embedded in concrete business tasks',
-          'Options where cost scales only when needed—without over-architecting',
-          'Measurable outcomes and a clear owner for each use case',
-          'Data, context, and permissions handled carefully by design',
+          'Intelligent process automation',
+          'AI capabilities integrated into real platforms',
+          'Measurable outcomes and concrete use cases',
+          'Secure data and permission management',
         ],
       },
       {
-        title: 'Production-ready, scalable solutions',
+        tag: 'PROD · SCALE',
+        title: 'Production & scalability',
         intro:
-          'What I ship is meant for real use: load, continuity, and teams operating the system every day.',
+          'Infrastructure and operations ready to grow with stability.',
         bullets: [
-          'Infrastructure and performance pieces when the context calls for it',
-          'Growing users, traffic, and data with a cool head and a plan',
-          'Orderly integration with other systems or external clients',
-          'Operational visibility: what happens, when, and how to improve it',
+          'Containers and orchestration with Docker/Kubernetes',
+          'Systems prepared for high demand',
+          'Orderly integration with external services',
+          'Observability, monitoring, and performance',
         ],
       },
     ],
@@ -1009,52 +1095,55 @@ function en(): Messages {
     ],
     featuredProjects: [
       {
-        title: 'Dr. Cristian Valencia Dental Clinic',
-        subtitle: 'Corporate website · Freelance project',
-        period: 'Freelance · 2025',
+        title: 'TUL Order Tracking Prototype',
+        subtitle: 'Front-End prototype · Logistics',
+        category: 'Front-end prototype',
         summary:
-          'Design and development of a corporate website for a dentist specialized in cosmetic dentistry. A modern, professional digital presence that builds trust, showcases services, and streamlines appointment booking through WhatsApp.',
-        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+          'Front-end order tracking prototype inspired by TUL’s logistics operations, built to validate navigation and monitoring experiences across operational roles. Functional prototyping phase with UI modules, dynamic routing, and local mock data—no backend or real authentication.',
+        imageSrc: '/projects/Tul.jpg',
         imageAlt:
-          'Dr. Cristian Valencia Dental Clinic website — home, services, testimonials, and contact sections shown on desktop and mobile',
+          'TUL prototype — active orders dashboard, order detail with history, role panels, and mobile views',
+        repoUrl: 'https://github.com/JilmarV/redisenio-seguimiento-pedidos-tul',
         stack: [
-          'React',
-          'Next.js',
+          'React 18',
+          'Vite',
+          'TypeScript',
           'Tailwind CSS',
-          'JavaScript',
-          'Netlify',
+          'React Router',
+          'Radix UI',
+          'Recharts',
+          'Material UI Icons',
         ],
         sections: [
           {
-            heading: 'Design & experience',
+            heading: 'Features built',
             bullets: [
-              'Full UI/UX design—modern and minimalist—aligned with a healthcare brand that needs to project trust.',
-              'Intuitive navigation focused on patients who arrive looking for services and to book an appointment.',
-              'Cohesive visual identity: typography, palette, and spacing tuned for clarity and a clean feel.',
+              'Role-based entry selection.',
+              'Main dashboard for hardware store customers.',
+              'Visual order status tracking.',
+              'Detailed history and traceability.',
+              'Delay alerts and operational statuses.',
+              'Seller panel for dispatched orders.',
+              'Customer support panel with search.',
+              'Logistics dashboard with filters and operational views.',
+              'Dynamic navigation across routes and views.',
             ],
           },
           {
-            heading: 'Frontend & responsive',
+            heading: 'Simulated operational roles',
             bullets: [
-              'Frontend built with React and Tailwind CSS, optimized for mobile devices.',
-              'Fully responsive layout, tested across multiple screen sizes and orientations.',
-              'Deployed on Netlify with a continuous integration workflow.',
+              'Hardware store customer.',
+              'Seller.',
+              'Customer support.',
+              'Logistics.',
             ],
           },
           {
-            heading: 'Bilingual & integrations',
+            heading: 'Key takeaways',
             bullets: [
-              'Bilingual Spanish/English to reach both local and international patients.',
-              'Appointment booking integrated with WhatsApp for instant conversations with the clinic.',
-              'Social media integrations to reinforce the digital presence.',
-            ],
-          },
-          {
-            heading: 'Acquisition & conversion',
-            bullets: [
-              'Services, testimonials, and contact sections crafted to build trust.',
-              'Strategic CTAs designed to turn visitors into patients.',
-              'Basic SEO applied to improve visibility in local searches.',
+              'Front-end architecture with reusable components.',
+              'Modern UI design for logistics operations.',
+              'Simulation of real-world order tracking and monitoring flows.',
             ],
           },
         ],
@@ -1062,12 +1151,13 @@ function en(): Messages {
       {
         title: 'SegurApp',
         subtitle: 'Citizen Safety Platform',
-        period: 'Feb 2025 — present',
+        category: 'Mobile app',
         summary:
           'Mobile app with Kotlin and Jetpack Compose (Android Studio), focused on citizen safety and community wellbeing: report risks and emergencies in real time, see nearby alerts, and collaborate with the community.',
         imageSrc: '/projects/segurapp-hero.png',
         imageAlt:
           'SegurApp mockups showing map, login, incident categories, and notifications',
+        repoUrl: 'https://github.com/AxelG14/SegurApp',
         stack: [
           'Kotlin',
           'Jetpack Compose',
@@ -1082,12 +1172,13 @@ function en(): Messages {
       {
         title: 'Golden Egg',
         subtitle: 'Lite ERP system',
-        period: 'Feb 2025 — present',
+        category: 'ERP · Full Stack',
         summary:
           'A lightweight ERP for a poultry business focused on marketing and distributing eggs. It centralizes inventory, sales, and billing to digitize ops and automate core commercial workflows.',
         imageSrc: '/projects/golden-egg-erp-hero.png',
         imageAlt:
           'Golden Egg ERP — dashboard, inventory, orders, invoicing, and reports',
+        repoUrl: 'https://github.com/JilmarV/golden_egg',
         stack: [
           'Angular',
           'Spring Boot',
@@ -1134,12 +1225,13 @@ function en(): Messages {
       {
         title: 'Contact Agenda',
         subtitle: 'Desktop app · Digital agenda',
-        period: 'Desktop project · Python',
+        category: 'Desktop app',
         summary:
           'A desktop Python app with SQLite and Tkinter to manage personal contacts, group them into categories, and mark favorites—with a straightforward UI plus search and filter flows.',
         imageSrc: '/projects/agenda-contactos-hero.png',
         imageAlt:
           'Contact agenda app — login, contact list, add form, search, and categories',
+        repoUrl: 'https://github.com/SebasSosa10/Agenda_de_Contactos',
         stack: ['Python', 'Tkinter', 'SQLite', 'Git'],
         sections: [
           {
@@ -1176,12 +1268,13 @@ function en(): Messages {
       {
         title: 'Blog platform',
         subtitle: 'REST API with Spring Boot',
-        period: 'Backend · Java 17+',
+        category: 'Backend · REST API',
         summary:
           'Spring Boot backend for blogs: manage users and posts, author interactions, and ADMIN / AUTHOR roles—keeping content workflows secure and predictable.',
         imageSrc: '/projects/blog-platform-hero.png',
         imageAlt:
           'Technical overview: Spring Boot layers, JWT flow, REST endpoints, and domain model',
+        repoUrl: 'https://github.com/SebasSosa10/Plataforma_de_Blogs',
         stack: [
           'Java',
           'Spring Boot',
@@ -1221,12 +1314,16 @@ function en(): Messages {
     ],
     footer: {
       blurb:
-        'Software developer. Reach me by email or social—links on this site are kept up to date.',
+        'Building modern, scalable, production-ready digital solutions. My approach combines software engineering, user experience, and maintainable architecture to deliver functional, efficient products aligned with real business needs.',
       navHeading: 'Navigate',
       socialHeading: 'Social',
       navAria: 'Portfolio section links',
     },
-    roleTitle: 'Software developer',
+    roleTitles: [
+      'Software Engineer',
+      'Full Stack Developer',
+    ],
+    roleTitle: 'Software Engineer',
   };
 }
 

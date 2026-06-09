@@ -28,9 +28,14 @@
           >{{ site.name }}</span
         >
         <span
-          class="truncate text-xs text-neutral-600 dark:text-neutral-500"
+          class="truncate text-xs text-neutral-600 dark:text-neutral-500 md:hidden"
           >{{ 'roleTitle' | i18n }}</span
         >
+        <span
+          class="hidden min-w-0 max-w-[14rem] truncate md:block lg:max-w-[18rem] xl:max-w-none"
+          >
+          <app-typewriter-text [phrases]="roleTitles()" />
+        </span>
       </div>
     </a>
 
@@ -62,7 +67,7 @@
       >
         <button
           type="button"
-          class="rounded-full p-1.5 text-amber-500 transition hover:bg-white hover:shadow-sm dark:text-amber-400/80 dark:hover:bg-neutral-800"
+          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 text-amber-500 transition hover:bg-white hover:shadow-sm dark:text-amber-400/80 dark:hover:bg-neutral-800"
           [ngClass]="
             !theme.isDark()
               ? 'bg-white shadow-sm ring-2 ring-brand-500/40'
@@ -85,7 +90,7 @@
         </button>
         <button
           type="button"
-          class="rounded-full p-1.5 text-neutral-500 transition hover:bg-neutral-100 dark:text-indigo-200 dark:hover:bg-neutral-800"
+          class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 text-neutral-500 transition hover:bg-neutral-100 dark:text-indigo-200 dark:hover:bg-neutral-800"
           [ngClass]="
             theme.isDark() ? 'bg-neutral-800 ring-2 ring-brand-500/40' : ''
           "
@@ -110,7 +115,7 @@
 
       <button
         type="button"
-        class="flex flex-col items-center gap-0.5 rounded-lg px-2 py-1 ring-2 ring-brand-500/50 transition hover:bg-neutral-100 dark:hover:bg-neutral-900/80 sm:px-3"
+        class="inline-flex min-h-11 min-w-11 flex-col items-center justify-center gap-0.5 rounded-lg px-2.5 py-2 ring-2 ring-brand-500/50 transition hover:bg-neutral-100 dark:hover:bg-neutral-900/80 sm:px-3"
         (click)="toggleLanguage()"
         [attr.aria-label]="
           locale.lang() === 'es'
@@ -161,7 +166,7 @@
 
       <button
         type="button"
-        class="inline-flex items-center justify-center rounded-lg border border-neutral-300 p-2 text-neutral-700 transition hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:bg-neutral-900/70 dark:hover:text-white md:hidden"
+        class="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg border border-neutral-300 p-2.5 text-neutral-700 transition hover:border-neutral-400 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:border-neutral-600 dark:hover:bg-neutral-900/70 dark:hover:text-white md:hidden"
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen()"
         aria-controls="mobile-nav"
@@ -210,7 +215,7 @@
   [style.height.px]="progressBarOuterPx"
 >
   <div
-    class="relative mx-auto h-full max-w-[100vw] overflow-hidden"
+    class="relative mx-auto h-full max-w-full overflow-hidden"
     role="presentation"
   >
     <div
@@ -242,6 +247,7 @@
     id="mobile-nav"
     class="fixed left-0 right-0 z-[55] border-t border-neutral-200 bg-white px-4 py-4 shadow-lg backdrop-blur-md dark:border-neutral-900 dark:bg-black/95 md:hidden"
     [style.top.px]="toolbarHeightPx() + progressBarOuterPx"
+    style="padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px))"
     [attr.aria-label]="'ui.navMobile' | i18n"
   >
     <div class="flex flex-col gap-1">

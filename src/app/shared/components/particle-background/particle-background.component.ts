@@ -23,7 +23,7 @@ interface Particle {
 /**
  * Fondo animado de partículas estilo "constelación":
  * pequeñas esferas doradas que flotan y se conectan con líneas
- * cuando están cerca entre sí. Solo activo en tema oscuro.
+ * cuando están cerca entre sí. Activo en tema claro y oscuro.
  *
  * - SSR-safe (no hace nada fuera del browser).
  * - Pausa cuando la pestaña está oculta.
@@ -36,7 +36,7 @@ interface Particle {
   template: `<canvas
     #canvas
     aria-hidden="true"
-    class="pointer-events-none fixed inset-0 -z-10 hidden h-full w-full dark:block"
+    class="pointer-events-none fixed inset-0 -z-10 block h-full w-full"
   ></canvas>`,
 })
 export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
@@ -59,14 +59,12 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
 
   constructor() {
     effect(() => {
-      const isDark = this.theme.isDark();
+      this.theme.isDark();
       if (!isPlatformBrowser(this.platformId) || !this.viewInitialized) {
         return;
       }
-      if (isDark) {
+      if (!document.hidden) {
         this.start();
-      } else {
-        this.stop();
       }
     });
   }
@@ -86,9 +84,7 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
     this.resize();
     this.seedParticles();
     this.viewInitialized = true;
-    if (this.theme.isDark()) {
-      this.start();
-    }
+    this.start();
   }
 
   ngOnDestroy(): void {
@@ -111,7 +107,7 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
     }
     if (document.hidden) {
       this.stop();
-    } else if (this.theme.isDark()) {
+    } else {
       this.start();
     }
   }
@@ -182,11 +178,19 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
     }
     ctx.clearRect(0, 0, this.width, this.height);
 
+    const isDark = this.theme.isDark();
     const reduce = this.prefersReducedMotion;
     const linkDist = 130 * this.dpr;
     const mouseLinkDist = 170 * this.dpr;
     const linkDistSq = linkDist * linkDist;
     const mouseLinkDistSq = mouseLinkDist * mouseLinkDist;
+    const lineAlphaScale = isDark ? 0.32 : 0.42;
+    const mouseAlphaScale = isDark ? 0.55 : 0.62;
+    const lineRgb = isDark ? '212, 175, 55' : '168, 128, 32';
+    const mouseRgb = isDark ? '232, 200, 76' : '201, 162, 39';
+    const dotColor = isDark
+      ? 'rgba(212, 175, 55, 0.7)'
+      : 'rgba(168, 128, 32, 0.72)';
 
     if (!reduce) {
       for (const p of this.particles) {
@@ -218,8 +222,8 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
         const dy = a.y - b.y;
         const d2 = dx * dx + dy * dy;
         if (d2 < linkDistSq) {
-          const alpha = (1 - Math.sqrt(d2) / linkDist) * 0.32;
-          ctx.strokeStyle = `rgba(212, 175, 55, ${alpha})`;
+          const alpha = (1 - Math.sqrt(d2) / linkDist) * lineAlphaScale;
+          ctx.strokeStyle = `rgba(${lineRgb}, ${alpha})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -231,8 +235,8 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
         const dy = a.y - this.mouseY;
         const d2 = dx * dx + dy * dy;
         if (d2 < mouseLinkDistSq) {
-          const alpha = (1 - Math.sqrt(d2) / mouseLinkDist) * 0.55;
-          ctx.strokeStyle = `rgba(232, 200, 76, ${alpha})`;
+          const alpha = (1 - Math.sqrt(d2) / mouseLinkDist) * mouseAlphaScale;
+          ctx.strokeStyle = `rgba(${mouseRgb}, ${alpha})`;
           ctx.lineWidth = 1.2 * this.dpr;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -243,7 +247,7 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
       }
     }
 
-    ctx.fillStyle = 'rgba(212, 175, 55, 0.7)';
+    ctx.fillStyle = dotColor;
     for (const p of this.particles) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);

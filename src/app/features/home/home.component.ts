@@ -20,6 +20,11 @@ import {
 import { I18nPipe } from '../../shared/pipes/i18n.pipe';
 import { LocaleService } from '../../shared/services/locale.service';
 import { ScrollNavService } from '../../shared/services/scroll-nav.service';
+import { TypewriterTextComponent } from '../../shared/components/typewriter-text/typewriter-text.component';
+import {
+  ScrollRevealDirective,
+  ScrollRevealGroupDirective,
+} from '../../shared/directives/scroll-reveal.directive';
 
 const DEVICON =
   'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons';
@@ -39,7 +44,7 @@ type TechStackItem = {
 
 @Component({
   selector: 'app-home',
-  imports: [I18nPipe, NgClass],
+  imports: [I18nPipe, NgClass, TypewriterTextComponent, ScrollRevealDirective, ScrollRevealGroupDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -110,6 +115,12 @@ export class HomeComponent implements AfterViewInit {
       delayIndex: offset + index,
     }));
   });
+
+  readonly roleTitles = computed(
+    () => messagesFor(this.locale.lang()).roleTitles,
+  );
+
+  readonly roleTitlesAria = computed(() => this.roleTitles().join(', '));
 
   readonly experienceEntries = computed(
     () => messagesFor(this.locale.lang()).experienceEntries,
@@ -324,6 +335,14 @@ export class HomeComponent implements AfterViewInit {
 
   readonly aboutDeliveryCards = computed(
     () => messagesFor(this.locale.lang()).aboutDeliveryCards,
+  );
+
+  readonly aboutLeadParagraphs = computed(
+    () => messagesFor(this.locale.lang()).sections.aboutLead,
+  );
+
+  readonly contactIntroParagraphs = computed(
+    () => messagesFor(this.locale.lang()).sections.contactIntro,
   );
 
   readonly contactEmailCopied = signal(false);

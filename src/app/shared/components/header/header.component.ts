@@ -14,14 +14,16 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { fromEvent, merge } from 'rxjs';
 import { site } from '../../data/site';
+import { messagesFor } from '../../i18n/messages';
 import { I18nPipe } from '../../pipes/i18n.pipe';
 import { LocaleService } from '../../services/locale.service';
 import { ScrollNavService } from '../../services/scroll-nav.service';
 import { ThemeService } from '../../services/theme.service';
+import { TypewriterTextComponent } from '../typewriter-text/typewriter-text.component';
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass, I18nPipe],
+  imports: [NgClass, I18nPipe, TypewriterTextComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -38,6 +40,10 @@ export class HeaderComponent {
 
   readonly site = site;
   readonly menuOpen = signal(false);
+
+  readonly roleTitles = computed(
+    () => messagesFor(this.locale.lang()).roleTitles,
+  );
 
   /** Altura medida de la primera fila del header (sin menú móvil) */
   readonly toolbarHeightPx = signal(60);

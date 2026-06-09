@@ -10,16 +10,21 @@ export const site = {
   name: 'Sebastian Sosa',
   /** Nombre completo (alt de la foto, metadatos) */
   fullName: 'Joan Sebastian Sosa Bedoya',
-  /** Archivo en `public/` — se sirve como /nombre.webp */
-  heroPhoto: '/SebastianSosa.webp',
+  /** Retrato del hero — `public/Joan Sebastian Sosa Bedoya.png` */
+  heroPhoto: '/Joan%20Sebastian%20Sosa%20Bedoya.png',
+  /** Ilustración en la sección Sobre mí — `public/SebastianSosa.webp` */
+  aboutPhoto: '/SebastianSosa.webp',
   /** Foto pequeña en el header — `public/sebastian-header.webp` */
   headerAvatar: '/sebastian-header.webp',
   /** Texto del badge bajo la foto del hero */
   heroAvailability: 'DISPONIBLE',
-  title: 'Desarrollador de software',
+  title: 'Ingeniero de software',
   tagline:
     'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
   email: 'joansebastiansosa10@gmail.com',
+  /** Formato visible; `phoneTel` para enlaces tel: */
+  phone: '+57 3017247201',
+  phoneTel: '+573017247201',
   location: 'Colombia',
   /** Enlaces directos para iconos del hero */
   links: {
@@ -28,8 +33,8 @@ export const site = {
   },
   /** CV en `public/` — descarga desde el hero */
   resume: {
-    path: '/cv-joan-sebastian-sosa-bedoya.png',
-    downloadName: 'CV-Joan-Sebastian-Sosa-Bedoya.png',
+    path: '/C.V%20Joan%20Sebastian%20Sosa%20Bedoya.pdf',
+    downloadName: 'C.V Joan Sebastian Sosa Bedoya.pdf',
   },
   social: [
     { label: 'GitHub', href: 'https://github.com/SebasSosa10' },
