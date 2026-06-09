@@ -10,8 +10,8 @@ export const site = {
   name: 'Sebastian Sosa',
   /** Nombre completo (alt de la foto, metadatos) */
   fullName: 'Joan Sebastian Sosa Bedoya',
-  /** Retrato del hero — `public/Joan Sebastian Sosa Bedoya.png` */
-  heroPhoto: '/Joan%20Sebastian%20Sosa%20Bedoya.png',
+  /** Retrato del hero — `public/joan-sebastian-sosa-bedoya.png` */
+  heroPhoto: '/joan-sebastian-sosa-bedoya.png',
   /** Ilustración en la sección Sobre mí — `public/SebastianSosa.webp` */
   aboutPhoto: '/SebastianSosa.webp',
   /** Foto pequeña en el header — `public/sebastian-header.webp` */
@@ -33,8 +33,8 @@ export const site = {
   },
   /** CV en `public/` — descarga desde el hero */
   resume: {
-    path: '/C.V%20Joan%20Sebastian%20Sosa%20Bedoya.pdf',
-    downloadName: 'C.V Joan Sebastian Sosa Bedoya.pdf',
+    path: '/cv-joan-sebastian-sosa-bedoya.pdf',
+    downloadName: 'CV Joan Sebastian Sosa Bedoya.pdf',
   },
   social: [
     { label: 'GitHub', href: 'https://github.com/SebasSosa10' },
