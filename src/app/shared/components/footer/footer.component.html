@@ -47,7 +47,7 @@
             @for (item of site.nav; track item.sectionId) {
               <li>
                 <a
-                  [attr.href]="'#' + item.sectionId"
+                  [attr.href]="item.path"
                   (click)="onNavClick($event, item.sectionId)"
                   class="group inline-flex items-center gap-1 text-sm font-medium text-neutral-700 transition hover:text-brand-600 dark:text-neutral-300 dark:hover:text-brand-400"
                 >

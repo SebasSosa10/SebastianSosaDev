@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
+import { pathForSection } from '../data/site';
 
 /**
- * Desplazamiento suave a secciones del home (misma página, sin rutas extra).
+ * Desplazamiento suave a secciones del home con URLs limpias para SEO.
  */
 @Injectable({ providedIn: 'root' })
 export class ScrollNavService {
@@ -14,9 +15,11 @@ export class ScrollNavService {
       return;
     }
 
+    const path = pathForSection(sectionId);
+
     if (sectionId === 'inicio') {
       win.scrollTo({ top: 0, behavior: 'smooth' });
-      win.history.replaceState(null, '', win.location.pathname || '/');
+      win.history.replaceState(null, '', path);
       return;
     }
 
@@ -24,11 +27,7 @@ export class ScrollNavService {
       behavior: 'smooth',
       block: 'start',
     });
-    win.history.replaceState(
-      null,
-      '',
-      `${win.location.pathname || '/'}#${sectionId}`,
-    );
+    win.history.replaceState(null, '', path);
   }
 
   handleClick(event: Event, sectionId: string): void {

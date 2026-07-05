@@ -4,12 +4,15 @@ import {
   Component,
   ElementRef,
   HostListener,
+  OnInit,
   PLATFORM_ID,
   computed,
   inject,
   signal,
   viewChild,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { pathForSection, sectionForPath } from '../../shared/data/site';
 import { site } from '../../shared/data/site';
 import {
   message,
@@ -20,6 +23,7 @@ import {
 import { I18nPipe } from '../../shared/pipes/i18n.pipe';
 import { LocaleService } from '../../shared/services/locale.service';
 import { ScrollNavService } from '../../shared/services/scroll-nav.service';
+import { SeoService } from '../../shared/services/seo.service';
 import { TypewriterTextComponent } from '../../shared/components/typewriter-text/typewriter-text.component';
 import {
   ScrollRevealDirective,
@@ -48,12 +52,16 @@ type TechStackItem = {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit {
   private readonly scrollNav = inject(ScrollNavService);
+  private readonly seo = inject(SeoService);
+  private readonly route = inject(ActivatedRoute);
   private readonly platformId = inject(PLATFORM_ID);
   readonly locale = inject(LocaleService);
 
   readonly site = site;
+  readonly projectsPath = pathForSection('proyectos');
+  readonly contactPath = pathForSection('contacto');
 
   /** Stack para el carrusel bajo el hero (iconos Devicon / Simple Icons) */
   readonly techStack: readonly TechStackItem[] = [
@@ -364,17 +372,43 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
+  ngOnInit(): void {
+    const sectionFromRoute = this.route.snapshot.data['sectionId'] as
+      | string
+      | undefined;
+    const sectionFromPath = sectionForPath(
+      globalThis.location?.pathname ?? '/',
+    );
+    const sectionId = sectionFromRoute ?? sectionFromPath ?? 'inicio';
+    this.seo.apply(this.locale.lang(), sectionId);
+  }
+
+  onNavClick(event: Event, sectionId: string): void {
+    this.scrollNav.handleClick(event, sectionId);
+    this.seo.apply(this.locale.lang(), sectionId);
+  }
+
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
     queueMicrotask(() => this.onProjectsScroll());
-    const id = globalThis.location?.hash?.replace(/^#/, '') ?? '';
-    if (!id) {
+
+    const sectionFromRoute = this.route.snapshot.data['sectionId'] as
+      | string
+      | undefined;
+    const sectionFromPath = sectionForPath(
+      globalThis.location?.pathname ?? '/',
+    );
+    const hashId = globalThis.location?.hash?.replace(/^#/, '') ?? '';
+    const id = sectionFromRoute ?? sectionFromPath ?? hashId;
+
+    if (!id || id === 'inicio') {
       return;
     }
+
     queueMicrotask(() => {
-      if (id === 'inicio' || document.getElementById(id)) {
+      if (document.getElementById(id)) {
         this.scrollNav.goToSection(id);
       }
     });

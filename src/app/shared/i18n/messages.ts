@@ -48,6 +48,8 @@ export type FeaturedProject = {
   imageSrc: string;
   imageAlt: string;
   repoUrl: string;
+  /** Enlace a demo en producción (opcional) */
+  demoUrl?: string;
   stack: readonly string[];
   sections: readonly FeaturedProjectSection[];
 };
@@ -58,6 +60,38 @@ export type Messages = {
     description: string;
     ogTitle: string;
     ogDescription: string;
+    sections: {
+      'sobre-mi': {
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
+      };
+      experiencia: {
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
+      };
+      proyectos: {
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
+      };
+      contacto: {
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
+      };
+      servicios: {
+        title: string;
+        description: string;
+        ogTitle: string;
+        ogDescription: string;
+      };
+    };
   };
   ui: {
     themeGroup: string;
@@ -79,6 +113,10 @@ export type Messages = {
     tagline: string;
     availability: string;
     photoAlt: string;
+    viewProjects: string;
+    viewProjectsAria: string;
+    contactMe: string;
+    contactMeAria: string;
     githubAria: string;
     linkedinAria: string;
     downloadCv: string;
@@ -93,6 +131,8 @@ export type Messages = {
     projectsCardTapHint: string;
     projectsViewGithub: string;
     projectsViewGithubAria: string;
+    projectsViewDemo: string;
+    projectsViewDemoAria: string;
     projectsGridAria: string;
     projectsCarouselPrev: string;
     projectsCarouselNext: string;
@@ -137,13 +177,56 @@ export type Messages = {
 function es(): Messages {
   return {
     meta: {
-      title: 'Sebastian Sosa — Ingeniero de software · Desarrollador Full Stack',
+      title:
+        'Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack | Armenia Quindío Colombia',
       description:
-        'Portafolio de Joan Sebastian Sosa Bedoya, Ingeniero de software y Desarrollador Full Stack con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes. Disponible para proyectos en Colombia y remoto.',
+        'Joan Sebastian Sosa Bedoya — Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío, Colombia. Portafolio profesional con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes.',
       ogTitle:
-        'Joan Sebastian Sosa Bedoya — Ingeniero de software · Desarrollador Full Stack',
+        'Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack',
       ogDescription:
-        'Ingeniero de software y Desarrollador Full Stack con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes. Armenia, Colombia. Disponible para proyectos locales y remotos.',
+        'Portafolio de Sebastian Sosa: desarrollo web escalable con Java, Python, Angular y cloud. Armenia, Quindío, Colombia.',
+      sections: {
+        'sobre-mi': {
+          title: 'Sobre mí | Joan Sebastian Sosa Bedoya — Ingeniero de Software',
+          description:
+            'Conoce a Joan Sebastian Sosa Bedoya, Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío. Especializado en arquitectura hexagonal, microservicios y soluciones en producción.',
+          ogTitle: 'Sobre mí — Sebastian Sosa | Ingeniero de Software Full Stack',
+          ogDescription:
+            'Trayectoria, enfoque técnico y áreas de servicio de Joan Sebastian Sosa Bedoya, desarrollador de software en Colombia.',
+        },
+        experiencia: {
+          title: 'Experiencia laboral | Sebastian Sosa — Desarrollador Full Stack',
+          description:
+            'Experiencia profesional de Joan Sebastian Sosa en EDEQ Grupo EPM, Konex, Astra Dev y más. Java, Spring Boot, Python, FastAPI, Angular y despliegues con Docker y Kubernetes.',
+          ogTitle: 'Experiencia — Joan Sebastian Sosa Bedoya',
+          ogDescription:
+            'Roles, logros e impacto medible en empresas de Colombia como desarrollador backend y full stack.',
+        },
+        proyectos: {
+          title: 'Proyectos destacados | Sebastian Sosa — Portafolio Full Stack',
+          description:
+            'Proyectos de Joan Sebastian Sosa Bedoya: portafolio Angular SSR, Mini-GPT NLP, ERP Golden Egg, APIs REST con Spring Boot y más. Código en GitHub y demos en vivo.',
+          ogTitle: 'Proyectos — Sebastian Sosa | Desarrollador Full Stack',
+          ogDescription:
+            'Portafolio de proyectos reales con stack moderno: Angular, Python, Java, React y machine learning.',
+        },
+        contacto: {
+          title: 'Contacto | Joan Sebastian Sosa Bedoya — Desarrollador en Armenia',
+          description:
+            'Contacta a Joan Sebastian Sosa Bedoya, Ingeniero de software en Armenia, Quindío, Colombia. Disponible para proyectos remotos, híbridos y freelance.',
+          ogTitle: 'Contacto — Sebastian Sosa | Ingeniero de Software',
+          ogDescription:
+            'Escríbeme para colaborar en productos web escalables, integraciones y desarrollo backend o full stack.',
+        },
+        servicios: {
+          title: 'Servicios de desarrollo | Sebastian Sosa — Full Stack Colombia',
+          description:
+            'Servicios de desarrollo de software de Joan Sebastian Sosa: backends con Java y Python, frontends Angular, microservicios, CI/CD y despliegue en cloud.',
+          ogTitle: 'Servicios — Joan Sebastian Sosa | Desarrollador Full Stack',
+          ogDescription:
+            'Backend, frontend, integraciones y arquitectura de software para empresas en Colombia y remoto.',
+        },
+      },
     },
     ui: {
       themeGroup: 'Tema',
@@ -166,6 +249,10 @@ function es(): Messages {
         'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
       availability: 'DISPONIBLE',
       photoAlt: 'Retrato de {name}',
+      viewProjects: 'Ver proyectos',
+      viewProjectsAria: 'Ir a la sección de proyectos destacados',
+      contactMe: 'Contáctame',
+      contactMeAria: 'Ir a la sección de contacto',
       githubAria: 'Perfil de GitHub (se abre en una pestaña nueva)',
       linkedinAria: 'Perfil de LinkedIn (se abre en una pestaña nueva)',
       downloadCv: 'Descargar hoja de vida',
@@ -178,6 +265,8 @@ function es(): Messages {
       projectsCardTapHint: 'Pulsa para ver el detalle completo',
       projectsViewGithub: 'Ver en GitHub',
       projectsViewGithubAria: 'Ver código de {title} en GitHub (se abre en una pestaña nueva)',
+      projectsViewDemo: 'Ver demo',
+      projectsViewDemoAria: 'Abrir demo en vivo de {title} (se abre en una pestaña nueva)',
       projectsGridAria: 'Carrusel de proyectos destacados',
       projectsCarouselPrev: 'Ver proyectos anteriores',
       projectsCarouselNext: 'Ver proyectos siguientes',
@@ -785,13 +874,56 @@ function es(): Messages {
 function en(): Messages {
   return {
     meta: {
-      title: 'Sebastian Sosa — Software Engineer · Full Stack Developer',
+      title:
+        'Joan Sebastian Sosa Bedoya — Software Engineer | Full Stack Developer | Armenia Quindío Colombia',
       description:
-        'Portfolio of Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer with experience in Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes. Available for projects in Colombia and remote work.',
+        'Joan Sebastian Sosa Bedoya — Software Engineer and Full Stack Developer in Armenia, Quindío, Colombia. Professional portfolio with Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes.',
       ogTitle:
-        'Joan Sebastian Sosa Bedoya — Software Engineer · Full Stack Developer',
+        'Joan Sebastian Sosa Bedoya — Software Engineer | Full Stack Developer',
       ogDescription:
-        'Software Engineer and Full Stack Developer with experience in Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes. Armenia, Colombia. Available for local and remote projects.',
+        'Sebastian Sosa portfolio: scalable web development with Java, Python, Angular, and cloud. Armenia, Quindío, Colombia.',
+      sections: {
+        'sobre-mi': {
+          title: 'About me | Joan Sebastian Sosa Bedoya — Software Engineer',
+          description:
+            'Meet Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer in Armenia, Quindío. Specialized in hexagonal architecture, microservices, and production-ready solutions.',
+          ogTitle: 'About — Sebastian Sosa | Full Stack Software Engineer',
+          ogDescription:
+            'Background, technical focus, and service areas of Joan Sebastian Sosa Bedoya, software developer in Colombia.',
+        },
+        experiencia: {
+          title: 'Work experience | Sebastian Sosa — Full Stack Developer',
+          description:
+            'Professional experience of Joan Sebastian Sosa at EDEQ Grupo EPM, Konex, Astra Dev, and more. Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes deployments.',
+          ogTitle: 'Experience — Joan Sebastian Sosa Bedoya',
+          ogDescription:
+            'Roles, achievements, and measurable impact at companies in Colombia as a backend and full stack developer.',
+        },
+        proyectos: {
+          title: 'Featured projects | Sebastian Sosa — Full Stack Portfolio',
+          description:
+            'Projects by Joan Sebastian Sosa Bedoya: Angular SSR portfolio, Mini-GPT NLP, Golden Egg ERP, Spring Boot REST APIs, and more. Code on GitHub and live demos.',
+          ogTitle: 'Projects — Sebastian Sosa | Full Stack Developer',
+          ogDescription:
+            'Real-world project portfolio with modern stack: Angular, Python, Java, React, and machine learning.',
+        },
+        contacto: {
+          title: 'Contact | Joan Sebastian Sosa Bedoya — Developer in Armenia',
+          description:
+            'Contact Joan Sebastian Sosa Bedoya, Software Engineer in Armenia, Quindío, Colombia. Available for remote, hybrid, and freelance projects.',
+          ogTitle: 'Contact — Sebastian Sosa | Software Engineer',
+          ogDescription:
+            'Reach out to collaborate on scalable web products, integrations, and backend or full stack development.',
+        },
+        servicios: {
+          title: 'Development services | Sebastian Sosa — Full Stack Colombia',
+          description:
+            'Software development services by Joan Sebastian Sosa: Java and Python backends, Angular frontends, microservices, CI/CD, and cloud deployment.',
+          ogTitle: 'Services — Joan Sebastian Sosa | Full Stack Developer',
+          ogDescription:
+            'Backend, frontend, integrations, and software architecture for companies in Colombia and remote.',
+        },
+      },
     },
     ui: {
       themeGroup: 'Theme',
@@ -814,6 +946,10 @@ function en(): Messages {
         'I build modern, scalable web applications that drive results and improve user experience.',
       availability: 'AVAILABLE',
       photoAlt: 'Portrait of {name}',
+      viewProjects: 'View projects',
+      viewProjectsAria: 'Go to the featured projects section',
+      contactMe: 'Contact me',
+      contactMeAria: 'Go to the contact section',
       githubAria: 'GitHub profile (opens in a new tab)',
       linkedinAria: 'LinkedIn profile (opens in a new tab)',
       downloadCv: 'Download resume',
@@ -826,6 +962,8 @@ function en(): Messages {
       projectsCardTapHint: 'Click for full details',
       projectsViewGithub: 'View on GitHub',
       projectsViewGithubAria: 'View {title} source code on GitHub (opens in a new tab)',
+      projectsViewDemo: 'View demo',
+      projectsViewDemoAria: 'Open live demo of {title} (opens in a new tab)',
       projectsGridAria: 'Featured projects carousel',
       projectsCarouselPrev: 'Show previous projects',
       projectsCarouselNext: 'Show next projects',

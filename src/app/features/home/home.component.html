@@ -149,6 +149,30 @@
             class="mt-8 flex flex-wrap items-center justify-center gap-3 motion-safe:animate-hero-fade-up-delay-6 motion-reduce:opacity-100 sm:mt-10 lg:justify-start"
           >
             <a
+              [href]="projectsPath"
+              (click)="onNavClick($event, 'proyectos')"
+              class="group/cta relative inline-flex min-h-11 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-2.5 text-sm font-bold text-neutral-950 shadow-md shadow-brand-500/25 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-500/35 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:from-brand-400 dark:to-brand-500 dark:text-neutral-950"
+              [attr.aria-label]="'hero.viewProjectsAria' | i18n"
+            >
+              <span
+                class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/cta:left-[150%] group-hover/cta:opacity-100 motion-reduce:hidden"
+                aria-hidden="true"
+              ></span>
+              {{ 'hero.viewProjects' | i18n }}
+            </a>
+            <a
+              [href]="contactPath"
+              (click)="onNavClick($event, 'contacto')"
+              class="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-brand-500/50 bg-transparent px-6 py-2.5 text-sm font-bold text-brand-700 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500 hover:bg-brand-500/10 hover:shadow-sm active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/45 dark:text-brand-300 dark:hover:border-brand-400 dark:hover:bg-brand-500/10"
+              [attr.aria-label]="'hero.contactMeAria' | i18n"
+            >
+              {{ 'hero.contactMe' | i18n }}
+            </a>
+          </div>
+          <div
+            class="mt-5 flex flex-wrap items-center justify-center gap-3 motion-safe:animate-hero-fade-up-delay-6 motion-reduce:opacity-100 sm:mt-6 lg:justify-start"
+          >
+            <a
               [href]="site.links.github"
               target="_blank"
               rel="noopener noreferrer"
@@ -1088,11 +1112,44 @@
                     </li>
                   }
                 </ul>
-                <a
+                <div class="mt-3 flex flex-wrap gap-2 sm:mt-4">
+                  @if (project.demoUrl) {
+                    <a
+                      [href]="project.demoUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/45 bg-brand-500/[0.12] px-3 py-2 text-[0.65rem] font-semibold text-brand-950 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.2] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/40 dark:bg-brand-500/[0.15] dark:text-brand-100 dark:hover:border-brand-400/55 sm:px-3.5 sm:text-xs"
+                      [attr.aria-label]="
+                        locale.t('sections.projectsViewDemoAria', {
+                          title: project.title
+                        })
+                      "
+                      (click)="$event.stopPropagation()"
+                      (keydown.enter)="$event.stopPropagation()"
+                      (keydown.space)="$event.stopPropagation()"
+                    >
+                      <svg
+                        class="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                        />
+                      </svg>
+                      {{ 'sections.projectsViewDemo' | i18n }}
+                    </a>
+                  }
+                  <a
                   [href]="project.repoUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="mt-3 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-3 py-2 text-[0.65rem] font-semibold text-neutral-800 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-sm hover:shadow-brand-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:bg-neutral-950 dark:hover:text-brand-300 sm:mt-4 sm:px-3.5 sm:text-xs"
+                  class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-3 py-2 text-[0.65rem] font-semibold text-neutral-800 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-sm hover:shadow-brand-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:bg-neutral-950 dark:hover:text-brand-300 sm:px-3.5 sm:text-xs"
                   [attr.aria-label]="
                     locale.t('sections.projectsViewGithubAria', {
                       title: project.title
@@ -1116,6 +1173,7 @@
                   </svg>
                   {{ 'sections.projectsViewGithub' | i18n }}
                 </a>
+                </div>
                 <p
                   class="mt-3 inline-flex items-center gap-1 text-[0.65rem] font-medium text-brand-600/90 transition-all duration-300 ease-out group-hover/card:gap-2 group-hover/card:text-brand-700 motion-reduce:transition-none dark:text-brand-400/90 dark:group-hover/card:text-brand-300 sm:mt-4 sm:text-xs"
                   aria-hidden="true"
@@ -1285,11 +1343,41 @@
                 </li>
               }
             </ul>
+            <div class="mt-5 flex flex-wrap gap-2">
+              @if (proj.demoUrl) {
+                <a
+                  [href]="proj.demoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/45 bg-brand-500/[0.14] px-4 py-2.5 text-sm font-semibold text-brand-950 transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.22] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/40 dark:bg-brand-500/[0.18] dark:text-brand-100 dark:hover:border-brand-400/55"
+                  [attr.aria-label]="
+                    locale.t('sections.projectsViewDemoAria', {
+                      title: proj.title
+                    })
+                  "
+                >
+                  <svg
+                    class="h-4 w-4 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                    />
+                  </svg>
+                  {{ 'sections.projectsViewDemo' | i18n }}
+                </a>
+              }
             <a
               [href]="proj.repoUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="mt-5 inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/[0.08] px-4 py-2.5 text-sm font-semibold text-brand-950 transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.14] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/35 dark:bg-brand-500/[0.12] dark:text-brand-100 dark:hover:border-brand-400/55 dark:hover:bg-brand-500/[0.2]"
+              class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/[0.08] px-4 py-2.5 text-sm font-semibold text-brand-950 transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.14] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/35 dark:bg-brand-500/[0.12] dark:text-brand-100 dark:hover:border-brand-400/55 dark:hover:bg-brand-500/[0.2]"
               [attr.aria-label]="
                 locale.t('sections.projectsViewGithubAria', {
                   title: proj.title
@@ -1310,6 +1398,7 @@
               </svg>
               {{ 'sections.projectsViewGithub' | i18n }}
             </a>
+            </div>
             @if (proj.sections.length > 0) {
               <div
                 class="mt-6 space-y-5 border-t border-neutral-200 pt-6 dark:border-neutral-800"
