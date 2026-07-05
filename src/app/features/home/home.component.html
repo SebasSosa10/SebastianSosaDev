@@ -149,30 +149,6 @@
             class="mt-8 flex flex-wrap items-center justify-center gap-3 motion-safe:animate-hero-fade-up-delay-6 motion-reduce:opacity-100 sm:mt-10 lg:justify-start"
           >
             <a
-              [href]="projectsPath"
-              (click)="onNavClick($event, 'proyectos')"
-              class="group/cta relative inline-flex min-h-11 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-2.5 text-sm font-bold text-neutral-950 shadow-md shadow-brand-500/25 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-500/35 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:from-brand-400 dark:to-brand-500 dark:text-neutral-950"
-              [attr.aria-label]="'hero.viewProjectsAria' | i18n"
-            >
-              <span
-                class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/cta:left-[150%] group-hover/cta:opacity-100 motion-reduce:hidden"
-                aria-hidden="true"
-              ></span>
-              {{ 'hero.viewProjects' | i18n }}
-            </a>
-            <a
-              [href]="contactPath"
-              (click)="onNavClick($event, 'contacto')"
-              class="inline-flex min-h-11 items-center justify-center rounded-full border-2 border-brand-500/50 bg-transparent px-6 py-2.5 text-sm font-bold text-brand-700 transition duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500 hover:bg-brand-500/10 hover:shadow-sm active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/45 dark:text-brand-300 dark:hover:border-brand-400 dark:hover:bg-brand-500/10"
-              [attr.aria-label]="'hero.contactMeAria' | i18n"
-            >
-              {{ 'hero.contactMe' | i18n }}
-            </a>
-          </div>
-          <div
-            class="mt-5 flex flex-wrap items-center justify-center gap-3 motion-safe:animate-hero-fade-up-delay-6 motion-reduce:opacity-100 sm:mt-6 lg:justify-start"
-          >
-            <a
               [href]="site.links.github"
               target="_blank"
               rel="noopener noreferrer"
@@ -1487,6 +1463,121 @@
             }
           </div>
 
+          <form
+            name="contacto"
+            method="POST"
+            netlify
+            netlify-honeypot="bot-field"
+            class="mt-10 space-y-5 text-left sm:mt-12"
+            (submit)="onContactFormSubmit($event)"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
+            <p class="hidden" aria-hidden="true">
+              <label>
+                No llenar:
+                <input name="bot-field" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
+            <div>
+              <label
+                for="contact-nombre"
+                class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                {{ 'sections.contactFormNameLabel' | i18n }}
+              </label>
+              <input
+                id="contact-nombre"
+                type="text"
+                name="nombre"
+                required
+                autocomplete="name"
+                class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-email"
+                class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                {{ 'sections.contactFormEmailLabel' | i18n }}
+              </label>
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-asunto"
+                class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                {{ 'sections.contactFormSubjectLabel' | i18n }}
+              </label>
+              <input
+                id="contact-asunto"
+                type="text"
+                name="asunto"
+                required
+                autocomplete="off"
+                class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
+              />
+            </div>
+
+            <div>
+              <label
+                for="contact-mensaje"
+                class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                {{ 'sections.contactFormMessageLabel' | i18n }}
+              </label>
+              <textarea
+                id="contact-mensaje"
+                name="mensaje"
+                required
+                rows="5"
+                class="w-full resize-y rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base leading-relaxed text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
+              ></textarea>
+            </div>
+
+            @if (contactFormStatus() === 'success') {
+              <p
+                class="rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-sm font-medium text-emerald-800 dark:text-emerald-200"
+                role="status"
+                aria-live="polite"
+              >
+                {{ 'sections.contactFormSuccess' | i18n }}
+              </p>
+            }
+            @if (contactFormStatus() === 'error') {
+              <p
+                class="rounded-xl border border-red-400/40 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-800 dark:text-red-200"
+                role="alert"
+                aria-live="assertive"
+              >
+                {{ 'sections.contactFormError' | i18n }}
+              </p>
+            }
+
+            <button
+              type="submit"
+              class="group/submit relative inline-flex min-h-11 w-full items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-3 text-sm font-bold text-neutral-950 shadow-md shadow-brand-500/25 transition duration-300 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-500/35 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:from-brand-400 dark:to-brand-500"
+              [disabled]="contactFormStatus() === 'sending'"
+            >
+              <span
+                class="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-all duration-700 ease-out group-hover/submit:left-[150%] group-hover/submit:opacity-100 motion-reduce:hidden"
+                aria-hidden="true"
+              ></span>
+              <span class="relative">{{ 'sections.contactFormSubmit' | i18n }}</span>
+            </button>
+          </form>
+
           <a
             class="group mt-10 flex w-full items-center justify-center gap-4 rounded-3xl border border-brand-500/30 bg-brand-500/[0.09] px-5 py-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition hover:border-brand-500/50 hover:bg-brand-500/[0.14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:border-brand-400/25 dark:bg-brand-500/[0.08] dark:hover:border-brand-400/40 dark:hover:bg-brand-500/[0.12] sm:mt-12 sm:gap-5 sm:px-6 sm:py-6"
             [href]="'mailto:' + site.email"
@@ -1650,16 +1741,9 @@
           </div>
 
           <p
-            class="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center text-sm text-neutral-500 dark:text-neutral-500 sm:mt-10 sm:text-base"
+            class="mt-8 text-center text-sm font-semibold text-neutral-600 dark:text-neutral-400 sm:mt-10 sm:text-base"
           >
-            <a
-              class="font-semibold text-neutral-600 transition hover:text-brand-700 dark:text-neutral-400 dark:hover:text-brand-300"
-              [href]="'tel:' + site.phoneTel"
-            >{{ site.phone }}</a>
-            <span aria-hidden="true">·</span>
-            <span class="font-semibold text-neutral-600 dark:text-neutral-400">{{
-              site.location
-            }}</span>
+            {{ site.location }}
           </p>
         </div>
       </div>

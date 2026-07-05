@@ -12,7 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { pathForSection, sectionForPath } from '../../shared/data/site';
+import { sectionForPath } from '../../shared/data/site';
 import { site } from '../../shared/data/site';
 import {
   message,
@@ -60,8 +60,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   readonly locale = inject(LocaleService);
 
   readonly site = site;
-  readonly projectsPath = pathForSection('proyectos');
-  readonly contactPath = pathForSection('contacto');
 
   /** Stack para el carrusel bajo el hero (iconos Devicon / Simple Icons) */
   readonly techStack: readonly TechStackItem[] = [
@@ -354,7 +352,51 @@ export class HomeComponent implements OnInit, AfterViewInit {
   );
 
   readonly contactEmailCopied = signal(false);
+  readonly contactFormStatus = signal<'idle' | 'sending' | 'success' | 'error'>(
+    'idle',
+  );
   private contactCopyResetTimer: ReturnType<typeof setTimeout> | null = null;
+
+  async onContactFormSubmit(event: Event): Promise<void> {
+    event.preventDefault();
+
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) {
+      return;
+    }
+
+    this.contactFormStatus.set('sending');
+
+    const params = new URLSearchParams();
+    params.append('form-name', 'contacto');
+    for (const [key, value] of new FormData(form).entries()) {
+      if (typeof value === 'string') {
+        params.append(key, value);
+      }
+    }
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
+
+      if (response.ok) {
+        this.contactFormStatus.set('success');
+        form.reset();
+        return;
+      }
+
+      this.contactFormStatus.set('error');
+    } catch {
+      this.contactFormStatus.set('error');
+    }
+  }
 
   copyContactEmail(): void {
     if (!isPlatformBrowser(this.platformId)) {

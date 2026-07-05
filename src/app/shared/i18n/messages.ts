@@ -143,6 +143,13 @@ export type Messages = {
     contactOpenPhoneAria: string;
     contactCopyEmail: string;
     contactCopyEmailDone: string;
+    contactFormNameLabel: string;
+    contactFormEmailLabel: string;
+    contactFormSubjectLabel: string;
+    contactFormMessageLabel: string;
+    contactFormSubmit: string;
+    contactFormSuccess: string;
+    contactFormError: string;
     techHeading: string;
     techIntro: string;
     techMarqueeAria: string;
@@ -281,6 +288,13 @@ function es(): Messages {
       contactOpenPhoneAria: 'Llamar o escribir al número de celular',
       contactCopyEmail: 'Copiar correo',
       contactCopyEmailDone: '¡Copiado!',
+      contactFormNameLabel: 'Nombre completo',
+      contactFormEmailLabel: 'Email',
+      contactFormSubjectLabel: 'Asunto',
+      contactFormMessageLabel: 'Mensaje',
+      contactFormSubmit: 'Enviar mensaje',
+      contactFormSuccess: '¡Mensaje enviado! Te responderé pronto.',
+      contactFormError: 'Hubo un error, intenta de nuevo.',
       techHeading: 'Tecnologías con las que trabajo',
       techIntro: 'Herramientas modernas para soluciones modernas',
       techMarqueeAria: 'Lista de tecnologías y herramientas',
@@ -978,6 +992,13 @@ function en(): Messages {
       contactOpenPhoneAria: 'Call or message this mobile number',
       contactCopyEmail: 'Copy email',
       contactCopyEmailDone: 'Copied!',
+      contactFormNameLabel: 'Full name',
+      contactFormEmailLabel: 'Email',
+      contactFormSubjectLabel: 'Subject',
+      contactFormMessageLabel: 'Message',
+      contactFormSubmit: 'Send message',
+      contactFormSuccess: 'Message sent! I will get back to you soon.',
+      contactFormError: 'Something went wrong. Please try again.',
       techHeading: 'Technologies I Work With',
       techIntro: 'Modern tools for modern solutions',
       techMarqueeAria: 'Technologies and tools list',
