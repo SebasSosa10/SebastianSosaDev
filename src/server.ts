@@ -3,17 +3,30 @@ import { getContext } from '@netlify/angular-runtime/context.mjs';
 
 const angularAppEngine = new AngularAppEngine();
 
+type NetlifyHandlerContext = {
+  next?: (request?: Request) => Promise<Response>;
+};
+
 export async function netlifyAppEngineHandler(
   request: Request,
 ): Promise<Response> {
-  const context = getContext();
+  const context = getContext() as NetlifyHandlerContext | undefined;
 
-  // Example API endpoints can be defined here.
-  // Uncomment and define endpoints as necessary.
-  // const pathname = new URL(request.url).pathname;
-  // if (pathname === '/api/hello') {
-  //   return Response.json({ message: 'Hello from the API' });
-  // }
+  if (request.method === 'POST') {
+    const contentType = request.headers.get('content-type') ?? '';
+    if (contentType.includes('application/x-www-form-urlencoded')) {
+      const bodyText = await request.text();
+      if (bodyText.includes('form-name=contacto') && context?.next) {
+        return context.next(
+          new Request(request.url, {
+            method: 'POST',
+            headers: request.headers,
+            body: bodyText,
+          }),
+        );
+      }
+    }
+  }
 
   const result = await angularAppEngine.handle(request, context);
   return result || new Response('Not found', { status: 404 });

@@ -1465,9 +1465,7 @@
 
           <form
             name="contacto"
-            method="POST"
-            netlify
-            netlify-honeypot="bot-field"
+            data-netlify="true"
             class="mt-10 space-y-5 text-left sm:mt-12"
             (submit)="onContactFormSubmit($event)"
           >
@@ -1492,6 +1490,8 @@
                 name="nombre"
                 required
                 autocomplete="name"
+                [value]="nombre"
+                (input)="nombre = $any($event.target).value"
                 class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
               />
             </div>
@@ -1509,6 +1509,8 @@
                 name="email"
                 required
                 autocomplete="email"
+                [value]="email"
+                (input)="email = $any($event.target).value"
                 class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
               />
             </div>
@@ -1526,6 +1528,8 @@
                 name="asunto"
                 required
                 autocomplete="off"
+                [value]="asunto"
+                (input)="asunto = $any($event.target).value"
                 class="w-full rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
               />
             </div>
@@ -1542,6 +1546,8 @@
                 name="mensaje"
                 required
                 rows="5"
+                [value]="mensaje"
+                (input)="mensaje = $any($event.target).value"
                 class="w-full resize-y rounded-xl border border-neutral-300 bg-white/90 px-4 py-3 text-base leading-relaxed text-neutral-900 shadow-sm transition duration-200 focus:border-brand-500/60 focus:outline-none focus:ring-2 focus:ring-brand-500/25 dark:border-neutral-600 dark:bg-neutral-900/80 dark:text-white dark:focus:border-brand-400/55 dark:focus:ring-brand-400/20"
               ></textarea>
             </div>
