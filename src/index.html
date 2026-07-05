@@ -90,9 +90,10 @@
 </head>
 <body>
   <form name="contacto" netlify netlify-honeypot="bot-field" hidden>
-    <input name="nombre"/>
-    <input name="email"/>
-    <input name="asunto"/>
+    <input type="hidden" name="form-name" value="contacto" />
+    <input name="nombre" type="text" />
+    <input name="email" type="email" />
+    <input name="asunto" type="text" />
     <textarea name="mensaje"></textarea>
   </form>
   <app-root></app-root>

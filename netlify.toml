@@ -5,45 +5,9 @@
 [[plugins]]
   package = "@netlify/angular-runtime"
 
-# Archivos estáticos SEO (robots, sitemap, imágenes, PDF)
-[[redirects]]
-  from = "/robots.txt"
-  to = "/robots.txt"
-  status = 200
-
-[[redirects]]
-  from = "/sitemap.xml"
-  to = "/sitemap.xml"
-  status = 200
-
-# URLs limpias de secciones → Angular SSR las resuelve vía app.routes.ts
-[[redirects]]
-  from = "/sobre-mi"
-  to = "/sobre-mi"
-  status = 200
-
-[[redirects]]
-  from = "/experiencia"
-  to = "/experiencia"
-  status = 200
-
-[[redirects]]
-  from = "/servicios"
-  to = "/servicios"
-  status = 200
-
-[[redirects]]
-  from = "/proyectos"
-  to = "/proyectos"
-  status = 200
-
-[[redirects]]
-  from = "/contacto"
-  to = "/contacto"
-  status = 200
-
-# Fallback SPA para cualquier otra ruta no estática
+# SPA fallback solo para GET/HEAD — no interceptar POST de Netlify Forms
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  methods = ["GET", "HEAD"]

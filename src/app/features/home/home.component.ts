@@ -355,47 +355,47 @@ export class HomeComponent implements OnInit, AfterViewInit {
   readonly contactFormStatus = signal<'idle' | 'sending' | 'success' | 'error'>(
     'idle',
   );
+  nombre = '';
+  email = '';
+  asunto = '';
+  mensaje = '';
   private contactCopyResetTimer: ReturnType<typeof setTimeout> | null = null;
 
-  async onContactFormSubmit(event: Event): Promise<void> {
+  onContactFormSubmit(event: Event): void {
     event.preventDefault();
 
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }
 
-    const form = event.target;
-    if (!(form instanceof HTMLFormElement)) {
-      return;
-    }
-
     this.contactFormStatus.set('sending');
 
-    const params = new URLSearchParams();
-    params.append('form-name', 'contacto');
-    for (const [key, value] of new FormData(form).entries()) {
-      if (typeof value === 'string') {
-        params.append(key, value);
-      }
-    }
+    const formData = new URLSearchParams();
+    formData.append('form-name', 'contacto');
+    formData.append('nombre', this.nombre);
+    formData.append('email', this.email);
+    formData.append('asunto', this.asunto);
+    formData.append('mensaje', this.mensaje);
 
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+    })
+      .then((response) => {
+        if (response.ok) {
+          this.contactFormStatus.set('success');
+          this.nombre = '';
+          this.email = '';
+          this.asunto = '';
+          this.mensaje = '';
+          return;
+        }
+        this.contactFormStatus.set('error');
+      })
+      .catch(() => {
+        this.contactFormStatus.set('error');
       });
-
-      if (response.ok) {
-        this.contactFormStatus.set('success');
-        form.reset();
-        return;
-      }
-
-      this.contactFormStatus.set('error');
-    } catch {
-      this.contactFormStatus.set('error');
-    }
   }
 
   copyContactEmail(): void {
