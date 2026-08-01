@@ -6,7 +6,7 @@ export {
   getOgLocale,
 } from './seo.config';
 export type { SeoPageKey as SeoSectionId, PageSeoConfig, SiteSeoConfig } from './seo.model';
-export { GEO_SEO, GEO_SEO_KEYWORDS_ES, GEO_SEO_KEYWORDS_EN } from './geo-seo.config';
+export { GEO_SEO, GEO_SEO_KEYWORDS_ES, GEO_SEO_KEYWORDS_EN, PERSON_NAME_KEYWORDS, PERSON_ALTERNATE_NAMES, SKILL_SEO_KEYWORDS_ES, SKILL_SEO_KEYWORDS_EN } from './geo-seo.config';
 
 export const SITE_URL = 'https://sebastiansosadev.com';
 export const SITE_NAME = 'Sebastian Sosa';

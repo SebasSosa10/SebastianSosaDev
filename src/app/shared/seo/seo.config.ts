@@ -2,6 +2,9 @@ import type { AppLocale } from '../i18n/messages';
 import {
   GEO_SEO_KEYWORDS_EN,
   GEO_SEO_KEYWORDS_ES,
+  PERSON_NAME_KEYWORDS,
+  SKILL_SEO_KEYWORDS_EN,
+  SKILL_SEO_KEYWORDS_ES,
 } from './geo-seo.config';
 import type { PageSeoConfig, SeoPageKey, SiteSeoConfig } from './seo.model';
 
@@ -43,90 +46,102 @@ const page = (
 
 const SEO_PAGES_ES: Record<SeoPageKey, PageSeoConfig> = {
   inicio: page({
-    title: 'Sebastián Sosa | Ingeniero de Software en Armenia, Quindío',
+    title:
+      'Joan Sebastian Sosa Bedoya | Ingeniero de Software Colombia · Remoto USA y Europa',
     description:
-      'Ingeniero de Software especializado en desarrollo web, aplicaciones empresariales, APIs, Angular, Java, Python y soluciones tecnológicas. Desarrollo software para empresas en Armenia, Quindío, Colombia y clientes internacionales.',
-    keywords: `${GEO_SEO_KEYWORDS_ES}, Desarrollador Angular, Desarrollador Java, Desarrollador Python, Desarrollo de APIs, Software Empresarial, Angular, Java, Spring Boot, Python, FastAPI, Docker, CI/CD, Astra Dev`,
+      'Joan Sebastian Sosa Bedoya (Sebastian Sosa) — Ingeniero de Software y Desarrollador Full Stack en Colombia. Python, IA, aplicaciones web, APIs, Angular, Java, DevOps y CI/CD. Disponible remoto para empresas en Colombia, Estados Unidos y Europa.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, Astra Dev`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   'sobre-mi': page({
-    title: 'Sobre mí | Sebastián Sosa — Ingeniero de Software en Armenia',
+    title:
+      'Sobre mí | Joan Sebastian Sosa Bedoya — Ingeniero de Software Remoto',
     description:
-      'Conoce a Sebastián Sosa, Ingeniero de Software y Desarrollador Full Stack en Armenia, Quindío. Especializado en Angular, Java, Python, APIs, software empresarial y soluciones para clientes locales e internacionales.',
-    keywords: `Sobre mí Ingeniero de Software, ${GEO_SEO_KEYWORDS_ES}, Full Stack Developer, arquitectura de software, Astra Dev`,
+      'Joan Sebastian Sosa Bedoya (Sebastian Sosa / Joan Sebastian): Ingeniero de Software Full Stack en Armenia, Colombia. Especializado en Python, IA, desarrollo web, APIs, Angular, Java, DevOps y CI/CD para clientes locales e internacionales (USA y Europa).',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_ES}, remote software engineer, Astra Dev`,
     image: '/SebastianSosa.webp',
   }),
   experiencia: page({
-    title: 'Experiencia | Sebastián Sosa — Desarrollador Full Stack Colombia',
+    title:
+      'Experiencia | Joan Sebastian Sosa Bedoya — Full Stack · DevOps · Python',
     description:
-      'Experiencia laboral de Sebastián Sosa en EDEQ Grupo EPM, Konex y Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, DevOps, CI/CD con GitHub y software empresarial.',
-    keywords: `experiencia Ingeniero de Software, ${GEO_SEO_KEYWORDS_ES}, Spring Boot, FastAPI, DevOps, GitHub Actions, CI/CD`,
+      'Experiencia de Joan Sebastian Sosa Bedoya (Sebastian Sosa) en EDEQ, Konex y Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, IA, DevOps, CI/CD con GitHub y software empresarial para Colombia y remoto.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_ES}, Spring Boot, GitHub Actions`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   servicios: page({
-    title: 'Servicios | Sebastián Sosa — Desarrollo de Software a Medida',
+    title:
+      'Servicios | Desarrollo Web, Python, IA, DevOps y CI/CD — Sebastian Sosa',
     description:
-      'Servicios de desarrollo de software en Armenia y Colombia: aplicaciones web, APIs, Angular, Java, Python, LMS, bots con IA, DevOps, CI/CD y software empresarial para clientes locales e internacionales.',
-    keywords: `servicios desarrollo de software, software a medida, ${GEO_SEO_KEYWORDS_ES}, LMS, bots IA, DevOps, aplicaciones web, APIs`,
+      'Servicios de Joan Sebastian Sosa Bedoya: desarrollo de aplicaciones web, APIs, Python, Angular, Java, inteligencia artificial (bots/LMS), DevOps, CI/CD y software a medida para empresas en Colombia, USA y Europa (remoto).',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   proyectos: page({
-    title: 'Portafolio | Sebastián Sosa — Proyectos de Software Colombia',
+    title:
+      'Portafolio | Joan Sebastian Sosa Bedoya — Web, Python, IA y APIs',
     description:
-      'Portafolio de proyectos de Sebastián Sosa: sitios web profesionales, Angular, Mini-GPT NLP, ERP, APIs REST con Java Spring Boot, Python y desarrollo de aplicaciones web.',
-    keywords: `portafolio software, proyectos Angular, ${GEO_SEO_KEYWORDS_ES}, Spring Boot, Python, NLP, ERP, sitios web`,
+      'Proyectos de Joan Sebastian Sosa Bedoya (Sebastian Sosa): sitios web, Angular, Python/NLP, ERP, APIs Spring Boot, DevOps y aplicaciones web para clientes en Colombia e internacionales.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_ES}, portafolio software, proyectos Angular, NLP, ERP`,
     image: '/projects/dr-cristian-valencia-hero.png',
   }),
   contacto: page({
-    title: 'Contacto | Sebastián Sosa — Ingeniero de Software Armenia',
+    title:
+      'Contacto | Contratar Ingeniero de Software Remoto — Sebastian Sosa',
     description:
-      'Contacta a Sebastián Sosa, Ingeniero de Software en Armenia, Quindío, Colombia. Disponible para desarrollo de software a medida, aplicaciones web, APIs y proyectos freelance o remotos.',
-    keywords: `contacto Ingeniero de Software Armenia, ${GEO_SEO_KEYWORDS_ES}, freelance software developer, remote software engineer`,
+      'Contacta a Joan Sebastian Sosa Bedoya (Sebastian Sosa) para contratar un Ingeniero de Software remoto: Python, IA, desarrollo web, APIs, DevOps y CI/CD. Colombia, Estados Unidos y Europa.',
+    keywords: `${PERSON_NAME_KEYWORDS}, contratar ingeniero de software, hire software engineer, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
 };
 
 const SEO_PAGES_EN: Record<SeoPageKey, PageSeoConfig> = {
   inicio: page({
-    title: 'Sebastian Sosa | Software Engineer in Armenia, Quindío',
+    title:
+      'Joan Sebastian Sosa Bedoya | Software Engineer Colombia · Remote USA & Europe',
     description:
-      'Software Engineer specialized in web development, enterprise applications, APIs, Angular, Java, Python, and technology solutions. Building software for companies in Armenia, Quindío, Colombia, and international clients.',
-    keywords: `${GEO_SEO_KEYWORDS_EN}, Angular Developer, Java Developer, Python Developer, API Development, Enterprise Software, Spring Boot, FastAPI, Docker, CI/CD, Astra Dev`,
+      'Joan Sebastian Sosa Bedoya (Sebastian Sosa) — Software Engineer and Full Stack Developer in Colombia. Python, AI, web applications, APIs, Angular, Java, DevOps, and CI/CD. Available remotely for companies in Colombia, the United States, and Europe.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, Astra Dev`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   'sobre-mi': page({
-    title: 'About | Sebastian Sosa — Software Engineer in Armenia',
+    title:
+      'About | Joan Sebastian Sosa Bedoya — Remote Software Engineer',
     description:
-      'Meet Sebastian Sosa, Software Engineer and Full Stack Developer in Armenia, Quindío. Specialized in Angular, Java, Python, APIs, enterprise software, and solutions for local and international clients.',
-    keywords: `About Software Engineer, ${GEO_SEO_KEYWORDS_EN}, Full Stack Developer, software architecture, Astra Dev`,
+      'Joan Sebastian Sosa Bedoya (Sebastian Sosa / Joan Sebastian): Full Stack Software Engineer in Armenia, Colombia. Focused on Python, AI, web development, APIs, Angular, Java, DevOps, and CI/CD for local and international clients (USA and Europe).',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_EN}, remote software engineer, Astra Dev`,
     image: '/SebastianSosa.webp',
   }),
   experiencia: page({
-    title: 'Experience | Sebastian Sosa — Full Stack Developer Colombia',
+    title:
+      'Experience | Joan Sebastian Sosa Bedoya — Full Stack · DevOps · Python',
     description:
-      'Work experience of Sebastian Sosa at EDEQ Grupo EPM, Konex, and Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, DevOps, GitHub CI/CD, and enterprise software.',
-    keywords: `Software Engineer experience, ${GEO_SEO_KEYWORDS_EN}, Spring Boot, FastAPI, DevOps, GitHub Actions, CI/CD`,
+      'Experience of Joan Sebastian Sosa Bedoya (Sebastian Sosa) at EDEQ, Konex, and Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, AI, DevOps, GitHub CI/CD, and enterprise software for Colombia and remote teams.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_EN}, Spring Boot, GitHub Actions`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   servicios: page({
-    title: 'Services | Sebastian Sosa — Custom Software Development',
+    title:
+      'Services | Web Apps, Python, AI, DevOps & CI/CD — Sebastian Sosa',
     description:
-      'Software development services in Armenia and Colombia: web apps, APIs, Angular, Java, Python, LMS, AI bots, DevOps, CI/CD, and enterprise software for local and international clients.',
-    keywords: `custom software services, ${GEO_SEO_KEYWORDS_EN}, LMS, AI bots, DevOps, web applications, APIs`,
+      'Services by Joan Sebastian Sosa Bedoya: web application development, APIs, Python, Angular, Java, artificial intelligence (bots/LMS), DevOps, CI/CD, and custom software for companies in Colombia, the USA, and Europe (remote).',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
   proyectos: page({
-    title: 'Portfolio | Sebastian Sosa — Software Projects Colombia',
+    title:
+      'Portfolio | Joan Sebastian Sosa Bedoya — Web, Python, AI & APIs',
     description:
-      'Featured projects by Sebastian Sosa: professional websites, Angular, Mini-GPT NLP, ERP, Java Spring Boot REST APIs, Python, and web application development.',
-    keywords: `software portfolio, Angular projects, ${GEO_SEO_KEYWORDS_EN}, Spring Boot, Python, NLP, ERP, websites`,
+      'Projects by Joan Sebastian Sosa Bedoya (Sebastian Sosa): websites, Angular, Python/NLP, ERP, Spring Boot APIs, DevOps, and web applications for Colombia and international clients.',
+    keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_EN}, software portfolio, Angular projects, NLP, ERP`,
     image: '/projects/dr-cristian-valencia-hero.png',
   }),
   contacto: page({
-    title: 'Contact | Sebastian Sosa — Software Engineer Armenia',
+    title:
+      'Contact | Hire a Remote Software Engineer — Sebastian Sosa',
     description:
-      'Contact Sebastian Sosa, Software Engineer in Armenia, Quindío, Colombia. Available for custom software, web apps, APIs, and freelance or remote projects.',
-    keywords: `contact Software Engineer Armenia, ${GEO_SEO_KEYWORDS_EN}, freelance software developer, remote software engineer`,
+      'Contact Joan Sebastian Sosa Bedoya (Sebastian Sosa) to hire a remote Software Engineer: Python, AI, web development, APIs, DevOps, and CI/CD. Colombia, United States, and Europe.',
+    keywords: `${PERSON_NAME_KEYWORDS}, hire software engineer, remote software engineer, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_EN}`,
     image: '/joan-sebastian-sosa-bedoya.png',
   }),
 };

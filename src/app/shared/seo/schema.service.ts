@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { site } from '../data/site';
 import type { AppLocale } from '../i18n/messages';
-import { GEO_SEO } from './geo-seo.config';
+import { GEO_SEO, PERSON_ALTERNATE_NAMES } from './geo-seo.config';
 import {
   absoluteAssetUrl,
   IMAGE_SEO,
@@ -51,20 +51,13 @@ export class SchemaService {
       '@type': 'Person',
       '@id': personId,
       name: SITE_SEO.fullName,
-      alternateName: [
-        SITE_SEO.brandName,
-        SITE_SEO.siteName,
-        'Joan Sosa',
-        'Joan Sebastian',
-        'Joan Sebastian Sosa',
-        'Sosa Bedoya',
-      ],
+      alternateName: [...PERSON_ALTERNATE_NAMES],
       url: `${SITE_SEO.baseUrl}/`,
       image: portrait,
       jobTitle:
         locale === 'en'
-          ? 'Software Engineer · Full Stack Developer'
-          : 'Ingeniero de Software · Desarrollador Full Stack',
+          ? 'Software Engineer · Full Stack Developer · Python · AI · DevOps'
+          : 'Ingeniero de Software · Full Stack · Python · IA · DevOps',
       description: page.description,
       email: site.email,
       telephone: site.phoneTel,
@@ -77,18 +70,25 @@ export class SchemaService {
       worksFor: { '@id': orgId },
       knowsAbout: [
         'Software Engineering',
+        'Full Stack Development',
+        'Python',
+        'Artificial Intelligence',
+        'AI integrations',
+        'Web Application Development',
         'Angular',
         'Java',
         'Spring Boot',
-        'Python',
         'FastAPI',
         'TypeScript',
-        'APIs',
-        'Docker',
+        'REST APIs',
+        'DevOps',
         'CI/CD',
+        'GitHub Actions',
+        'Docker',
         'LMS',
-        'AI bots',
+        'Chatbots',
         'Enterprise Software',
+        'Remote Software Development',
       ],
       sameAs: [site.links.github, site.links.linkedin],
     };
@@ -128,12 +128,17 @@ export class SchemaService {
       serviceType: [
         'Software Engineering',
         'Web Development',
+        'Web Application Development',
         'API Development',
+        'Python Development',
+        'Artificial Intelligence',
+        'AI Bot Integrations',
+        'LMS Platforms',
+        'DevOps',
+        'CI/CD',
         'Full Stack Development',
         'Enterprise Software',
-        'LMS',
-        'AI Integrations',
-        'DevOps',
+        'Remote Software Development',
       ],
       availableLanguage: ['Spanish', 'English'],
     };
