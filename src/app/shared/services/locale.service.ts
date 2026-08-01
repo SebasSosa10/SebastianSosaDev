@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { afterNextRender } from '@angular/core';
 import type { NavItem } from '../data/site';
+import { pathForSection } from '../data/site';
 import { message, type AppLocale } from '../i18n/messages';
 import { SeoService } from './seo.service';
 
@@ -26,15 +27,25 @@ export class LocaleService {
       if (!isPlatformBrowser(this.platformId)) {
         return;
       }
+      const params = new URLSearchParams(this.document.defaultView?.location.search ?? '');
+      const langParam = params.get('lang');
       const stored = localStorage.getItem(STORAGE_KEY) as AppLocale | null;
-      const next: AppLocale = stored === 'en' ? 'en' : 'es';
+      const next: AppLocale =
+        langParam === 'en' || langParam === 'es'
+          ? langParam
+          : stored === 'en'
+            ? 'en'
+            : 'es';
       this.apply(next);
     });
   }
 
   apply(locale: AppLocale): void {
     this.lang.set(locale);
-    this.seo.apply(locale, this.seo.currentSectionId());
+    const pathname =
+      this.document.defaultView?.location.pathname ??
+      pathForSection(this.seo.currentSectionId());
+    this.seo.apply(locale, this.seo.currentSectionId(), pathname);
     if (!isPlatformBrowser(this.platformId)) {
       return;
     }

@@ -4,7 +4,7 @@ import { HomeComponent } from './features/home/home.component';
 const sectionRoutes: { path: string; sectionId: string }[] = [
   { path: 'sobre-mi', sectionId: 'sobre-mi' },
   { path: 'experiencia', sectionId: 'experiencia' },
-  { path: 'servicios', sectionId: 'experiencia' },
+  { path: 'servicios', sectionId: 'servicios' },
   { path: 'proyectos', sectionId: 'proyectos' },
   { path: 'contacto', sectionId: 'contacto' },
 ];

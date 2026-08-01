@@ -27,13 +27,15 @@ export function sectionForPath(pathname: string): string | null {
   if (!slug) {
     return 'inicio';
   }
-  if (slug === 'servicios') {
-    return 'experiencia';
-  }
   if (slug in SECTION_PATHS) {
     return slug;
   }
   return null;
+}
+
+/** Id del elemento DOM a scrollear (servicios vive dentro de experiencia). */
+export function scrollTargetForSection(sectionId: string): string {
+  return sectionId === 'servicios' ? 'experiencia' : sectionId;
 }
 
 export const site = {

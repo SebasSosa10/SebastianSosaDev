@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://sebastiansosa-dev.netlify.app/sitemap.xml
+
+# Indexación completa del portafolio profesional
+Sitemap: https://sebastiansosadev.com/sitemap.xml
