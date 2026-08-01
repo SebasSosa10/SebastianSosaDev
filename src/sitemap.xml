@@ -1,39 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://sebastiansosadev.com/</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/" />
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/joan-sebastian-sosa-bedoya.png</image:loc>
+      <image:title>Sebastián Sosa — Ingeniero de Software en Armenia, Quindío</image:title>
+      <image:caption>Retrato profesional de Joan Sebastian Sosa Bedoya, Ingeniero de Software Full Stack</image:caption>
+    </image:image>
   </url>
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/sobre-mi</loc>
-    <lastmod>2026-07-05</lastmod>
+    <loc>https://sebastiansosadev.com/sobre-mi</loc>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/sobre-mi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/sobre-mi?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/sobre-mi" />
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/SebastianSosa.webp</image:loc>
+      <image:title>Sobre mí — Sebastián Sosa</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/servicios</loc>
-    <lastmod>2026-07-05</lastmod>
+    <loc>https://sebastiansosadev.com/servicios</loc>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/servicios" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/servicios?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/servicios" />
   </url>
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/experiencia</loc>
-    <lastmod>2026-07-05</lastmod>
+    <loc>https://sebastiansosadev.com/experiencia</loc>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/experiencia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/experiencia?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/experiencia" />
   </url>
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/proyectos</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://sebastiansosadev.com/proyectos</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/proyectos" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/proyectos?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/proyectos" />
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/dr-cristian-valencia-hero.png</image:loc>
+      <image:title>Dr. Cristian Valencia — Sitio web odontológico</image:title>
+      <image:caption>Proyecto de sitio web profesional para odontólogo en Armenia, Quindío</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/Tul.jpg</image:loc>
+      <image:title>Prototipo TUL — Seguimiento de pedidos</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/mini-gpt-sentiment-nlp.png</image:loc>
+      <image:title>Mini-GPT Sentiment Analysis — NLP</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/segurapp-hero.png</image:loc>
+      <image:title>SegurApp — Plataforma de seguridad ciudadana</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/golden-egg-erp-hero.png</image:loc>
+      <image:title>Golden Egg — ERP Lite</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/agenda-contactos-hero.png</image:loc>
+      <image:title>Agenda de Contactos</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://sebastiansosadev.com/projects/blog-platform-hero.png</image:loc>
+      <image:title>Plataforma de Blogs — API REST Spring Boot</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://sebastiansosa-dev.netlify.app/contacto</loc>
-    <lastmod>2026-07-05</lastmod>
+    <loc>https://sebastiansosadev.com/contacto</loc>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/contacto" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/contacto?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/contacto" />
   </url>
 </urlset>

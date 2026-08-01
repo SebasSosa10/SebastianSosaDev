@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
-import { pathForSection } from '../data/site';
+import { pathForSection, scrollTargetForSection } from '../data/site';
 
 /**
  * Desplazamiento suave a secciones del home con URLs limpias para SEO.
@@ -16,6 +16,7 @@ export class ScrollNavService {
     }
 
     const path = pathForSection(sectionId);
+    const scrollId = scrollTargetForSection(sectionId);
 
     if (sectionId === 'inicio') {
       win.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,7 +24,7 @@ export class ScrollNavService {
       return;
     }
 
-    this.doc.getElementById(sectionId)?.scrollIntoView({
+    this.doc.getElementById(scrollId)?.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     });

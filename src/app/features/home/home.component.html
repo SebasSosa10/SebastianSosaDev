@@ -29,15 +29,17 @@
                 class="group aspect-[4/5] overflow-hidden rounded-2xl border border-brand-500/35 bg-neutral-100 shadow-[0_0_0_1px_rgba(212,175,55,0.12),0_24px_48px_-12px_rgba(0,0,0,0.12)] transition duration-500 ease-out will-change-transform hover:border-brand-500/55 motion-safe:hover:scale-[1.02] dark:bg-neutral-900/80 dark:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.85)]"
               >
                 <img
-                  [src]="site.heroPhoto"
+                  [ngSrc]="site.heroPhoto"
                   width="320"
                   height="400"
+                  sizes="(max-width: 640px) 88vw, (max-width: 1024px) 30vw, 24vw"
+                  priority
                   class="h-full w-full object-cover object-top transition duration-700 ease-out group-hover:scale-105 group-hover:brightness-105"
                   [attr.alt]="
                     locale.t('hero.photoAlt', { name: site.fullName })
                   "
+                  [attr.title]="site.fullName + ' — Ingeniero de Software'"
                   decoding="async"
-                  fetchpriority="high"
                 />
               </div>
             </div>
@@ -363,13 +365,15 @@
               class="group aspect-square overflow-hidden rounded-2xl border border-brand-500/35 bg-neutral-100 shadow-[0_0_0_1px_rgba(212,175,55,0.12),0_20px_40px_-12px_rgba(0,0,0,0.15)] transition duration-500 ease-out motion-safe:hover:border-brand-500/55 motion-safe:hover:shadow-[0_0_32px_-8px_rgba(212,175,55,0.35)] dark:bg-neutral-900/80 dark:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.75)]"
             >
               <img
-                [src]="site.aboutPhoto"
+                [ngSrc]="site.aboutPhoto"
                 width="300"
                 height="300"
+                sizes="(max-width: 768px) 60vw, 20vw"
                 class="h-full w-full object-cover object-center transition duration-700 ease-out motion-safe:group-hover:scale-[1.03]"
                 [attr.alt]="
                   locale.t('hero.photoAlt', { name: site.fullName })
                 "
+                [attr.title]="site.fullName + ' — Sobre mí'"
                 loading="lazy"
                 decoding="async"
               />
@@ -1034,13 +1038,14 @@
                 class="relative aspect-[16/10] min-h-[7rem] w-full overflow-hidden border-b border-neutral-200/80 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 sm:min-h-[10rem]"
               >
                 <img
-                  [src]="project.imageSrc"
-                  width="880"
-                  height="605"
-                  class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover/card:scale-[1.06] motion-reduce:transition-none"
+                  [ngSrc]="project.imageSrc"
+                  fill
+                  sizes="(max-width: 640px) 85vw, 50vw"
+                  class="object-cover object-top transition-transform duration-700 ease-out motion-safe:group-hover/card:scale-[1.06] motion-reduce:transition-none"
                   loading="lazy"
                   decoding="async"
                   [attr.alt]="project.imageAlt"
+                  [attr.title]="project.imageTitle || project.title"
                 />
                 <span
                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/55 via-neutral-950/0 to-neutral-950/0 opacity-0 transition-opacity duration-500 ease-out group-hover/card:opacity-100 motion-reduce:transition-none"
@@ -1121,34 +1126,36 @@
                       {{ 'sections.projectsViewDemo' | i18n }}
                     </a>
                   }
-                  <a
-                  [href]="project.repoUrl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-3 py-2 text-[0.65rem] font-semibold text-neutral-800 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-sm hover:shadow-brand-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:bg-neutral-950 dark:hover:text-brand-300 sm:px-3.5 sm:text-xs"
-                  [attr.aria-label]="
-                    locale.t('sections.projectsViewGithubAria', {
-                      title: project.title
-                    })
-                  "
-                  (click)="$event.stopPropagation()"
-                  (keydown.enter)="$event.stopPropagation()"
-                  (keydown.space)="$event.stopPropagation()"
-                >
-                  <svg
-                    class="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    />
-                  </svg>
-                  {{ 'sections.projectsViewGithub' | i18n }}
-                </a>
+                  @if (project.repoUrl) {
+                    <a
+                      [href]="project.repoUrl"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-3 py-2 text-[0.65rem] font-semibold text-neutral-800 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-500/50 hover:bg-white hover:text-brand-700 hover:shadow-sm hover:shadow-brand-500/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:hover:border-brand-400/45 dark:hover:bg-neutral-950 dark:hover:text-brand-300 sm:px-3.5 sm:text-xs"
+                      [attr.aria-label]="
+                        locale.t('sections.projectsViewGithubAria', {
+                          title: project.title
+                        })
+                      "
+                      (click)="$event.stopPropagation()"
+                      (keydown.enter)="$event.stopPropagation()"
+                      (keydown.space)="$event.stopPropagation()"
+                    >
+                      <svg
+                        class="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        />
+                      </svg>
+                      {{ 'sections.projectsViewGithub' | i18n }}
+                    </a>
+                  }
                 </div>
                 <p
                   class="mt-3 inline-flex items-center gap-1 text-[0.65rem] font-medium text-brand-600/90 transition-all duration-300 ease-out group-hover/card:gap-2 group-hover/card:text-brand-700 motion-reduce:transition-none dark:text-brand-400/90 dark:group-hover/card:text-brand-300 sm:mt-4 sm:text-xs"
@@ -1290,12 +1297,13 @@
               class="relative mb-5 aspect-[16/11] min-h-[7rem] overflow-hidden rounded-xl border border-neutral-200/80 bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 sm:min-h-[11rem]"
             >
               <img
-                [src]="proj.imageSrc"
-                width="880"
-                height="605"
-                class="absolute inset-0 h-full w-full object-contain object-center p-2 sm:p-3"
+                [ngSrc]="proj.imageSrc"
+                fill
+                sizes="90vw"
+                class="object-contain object-center p-2 sm:p-3"
                 decoding="async"
                 [attr.alt]="proj.imageAlt"
+                [attr.title]="proj.imageTitle || proj.title"
               />
             </figure>
             <p
@@ -1349,31 +1357,33 @@
                   {{ 'sections.projectsViewDemo' | i18n }}
                 </a>
               }
-            <a
-              [href]="proj.repoUrl"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/[0.08] px-4 py-2.5 text-sm font-semibold text-brand-950 transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.14] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/35 dark:bg-brand-500/[0.12] dark:text-brand-100 dark:hover:border-brand-400/55 dark:hover:bg-brand-500/[0.2]"
-              [attr.aria-label]="
-                locale.t('sections.projectsViewGithubAria', {
-                  title: proj.title
-                })
-              "
-            >
-              <svg
-                class="h-4 w-4 shrink-0"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                />
-              </svg>
-              {{ 'sections.projectsViewGithub' | i18n }}
-            </a>
+              @if (proj.repoUrl) {
+                <a
+                  [href]="proj.repoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/[0.08] px-4 py-2.5 text-sm font-semibold text-brand-950 transition hover:-translate-y-0.5 hover:border-brand-500/60 hover:bg-brand-500/[0.14] hover:shadow-sm hover:shadow-brand-500/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-brand-400/35 dark:bg-brand-500/[0.12] dark:text-brand-100 dark:hover:border-brand-400/55 dark:hover:bg-brand-500/[0.2]"
+                  [attr.aria-label]="
+                    locale.t('sections.projectsViewGithubAria', {
+                      title: proj.title
+                    })
+                  "
+                >
+                  <svg
+                    class="h-4 w-4 shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    />
+                  </svg>
+                  {{ 'sections.projectsViewGithub' | i18n }}
+                </a>
+              }
             </div>
             @if (proj.sections.length > 0) {
               <div

@@ -47,7 +47,12 @@ export type FeaturedProject = {
   summary: string;
   imageSrc: string;
   imageAlt: string;
-  repoUrl: string;
+  /** title de imagen para SEO / Google Images */
+  imageTitle?: string;
+  /** OG image del proyecto (por defecto imageSrc) */
+  ogImage?: string;
+  /** Enlace al repositorio (opcional) */
+  repoUrl?: string;
   /** Enlace a demo en producción (opcional) */
   demoUrl?: string;
   stack: readonly string[];
@@ -184,54 +189,57 @@ export type Messages = {
 function es(): Messages {
   return {
     meta: {
-      title:
-        'Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack | Armenia Quindío Colombia',
+      title: 'Sebastián Sosa | Ingeniero de Software en Armenia, Quindío',
       description:
-        'Joan Sebastian Sosa Bedoya — Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío, Colombia. Portafolio profesional con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes.',
-      ogTitle:
-        'Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack',
+        'Ingeniero de Software especializado en desarrollo web, aplicaciones empresariales, APIs, Angular, Java, Python y soluciones tecnológicas. Desarrollo software para empresas en Armenia, Quindío, Colombia y clientes internacionales.',
+      ogTitle: 'Sebastián Sosa | Ingeniero de Software en Armenia, Quindío',
       ogDescription:
-        'Portafolio de Sebastian Sosa: desarrollo web escalable con Java, Python, Angular y cloud. Armenia, Quindío, Colombia.',
+        'Ingeniero de Software y Full Stack Developer en Armenia, Quindío. Desarrollo web, APIs, Angular, Java, Python y software a medida para Colombia y clientes internacionales.',
       sections: {
         'sobre-mi': {
-          title: 'Sobre mí | Joan Sebastian Sosa Bedoya — Ingeniero de Software',
+          title:
+            'Sobre mí | Sebastián Sosa — Ingeniero de Software en Armenia',
           description:
-            'Conoce a Joan Sebastian Sosa Bedoya, Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío. Especializado en arquitectura hexagonal, microservicios y soluciones en producción.',
-          ogTitle: 'Sobre mí — Sebastian Sosa | Ingeniero de Software Full Stack',
+            'Conoce a Sebastián Sosa, Ingeniero de Software y Desarrollador Full Stack en Armenia, Quindío. Especializado en Angular, Java, Python, APIs, software empresarial y soluciones para clientes locales e internacionales.',
+          ogTitle: 'Sobre mí — Sebastián Sosa | Ingeniero de Software',
           ogDescription:
-            'Trayectoria, enfoque técnico y áreas de servicio de Joan Sebastian Sosa Bedoya, desarrollador de software en Colombia.',
+            'Trayectoria y enfoque técnico de un Ingeniero de Software en Armenia, Quindío, Colombia — Full Stack, APIs y software a medida.',
         },
         experiencia: {
-          title: 'Experiencia laboral | Sebastian Sosa — Desarrollador Full Stack',
+          title:
+            'Experiencia | Sebastián Sosa — Desarrollador Full Stack Colombia',
           description:
-            'Experiencia profesional de Joan Sebastian Sosa en EDEQ Grupo EPM, Konex, Astra Dev y más. Java, Spring Boot, Python, FastAPI, Angular y despliegues con Docker y Kubernetes.',
-          ogTitle: 'Experiencia — Joan Sebastian Sosa Bedoya',
+            'Experiencia laboral de Sebastián Sosa en EDEQ Grupo EPM, Konex y Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, DevOps, CI/CD con GitHub y software empresarial.',
+          ogTitle: 'Experiencia — Sebastián Sosa | Software Engineer',
           ogDescription:
-            'Roles, logros e impacto medible en empresas de Colombia como desarrollador backend y full stack.',
+            'Roles e impacto como Desarrollador Full Stack e Ingeniero de Software en Colombia y remoto.',
         },
         proyectos: {
-          title: 'Proyectos destacados | Sebastian Sosa — Portafolio Full Stack',
+          title:
+            'Portafolio | Sebastián Sosa — Proyectos de Software Colombia',
           description:
-            'Proyectos de Joan Sebastian Sosa Bedoya: portafolio Angular SSR, Mini-GPT NLP, ERP Golden Egg, APIs REST con Spring Boot y más. Código en GitHub y demos en vivo.',
-          ogTitle: 'Proyectos — Sebastian Sosa | Desarrollador Full Stack',
+            'Portafolio de proyectos de Sebastián Sosa: sitios web profesionales, Angular, Mini-GPT NLP, ERP, APIs REST con Java Spring Boot, Python y desarrollo de aplicaciones web.',
+          ogTitle: 'Proyectos — Sebastián Sosa | Full Stack Developer',
           ogDescription:
-            'Portafolio de proyectos reales con stack moderno: Angular, Python, Java, React y machine learning.',
+            'Proyectos reales de desarrollo web, APIs, Angular, Java, Python e inteligencia artificial aplicada.',
         },
         contacto: {
-          title: 'Contacto | Joan Sebastian Sosa Bedoya — Desarrollador en Armenia',
+          title:
+            'Contacto | Sebastián Sosa — Ingeniero de Software Armenia',
           description:
-            'Contacta a Joan Sebastian Sosa Bedoya, Ingeniero de software en Armenia, Quindío, Colombia. Disponible para proyectos remotos, híbridos y freelance.',
-          ogTitle: 'Contacto — Sebastian Sosa | Ingeniero de Software',
+            'Contacta a Sebastián Sosa, Ingeniero de Software en Armenia, Quindío, Colombia. Disponible para desarrollo de software a medida, aplicaciones web, APIs y proyectos freelance o remotos.',
+          ogTitle: 'Contacto — Sebastián Sosa | Software Developer Colombia',
           ogDescription:
-            'Escríbeme para colaborar en productos web escalables, integraciones y desarrollo backend o full stack.',
+            'Escríbeme para desarrollo web, software empresarial, APIs e integraciones. Armenia, Colombia y remoto internacional.',
         },
         servicios: {
-          title: 'Servicios de desarrollo | Sebastian Sosa — Full Stack Colombia',
+          title:
+            'Servicios | Sebastián Sosa — Desarrollo de Software a Medida',
           description:
-            'Servicios de desarrollo de software de Joan Sebastian Sosa: backends con Java y Python, frontends Angular, microservicios, CI/CD y despliegue en cloud.',
-          ogTitle: 'Servicios — Joan Sebastian Sosa | Desarrollador Full Stack',
+            'Servicios de desarrollo de software en Armenia y Colombia: aplicaciones web, APIs, Angular, Java, Python, LMS, bots con IA, DevOps, CI/CD y software empresarial para clientes locales e internacionales.',
+          ogTitle: 'Servicios — Sebastián Sosa | Full Stack Developer Colombia',
           ogDescription:
-            'Backend, frontend, integraciones y arquitectura de software para empresas en Colombia y remoto.',
+            'Desarrollo de aplicaciones web, APIs, software empresarial, automatización e integraciones IA para empresas.',
         },
       },
     },
@@ -272,8 +280,8 @@ function es(): Messages {
       projectsCardTapHint: 'Pulsa para ver el detalle completo',
       projectsViewGithub: 'Ver en GitHub',
       projectsViewGithubAria: 'Ver código de {title} en GitHub (se abre en una pestaña nueva)',
-      projectsViewDemo: 'Ver demo',
-      projectsViewDemoAria: 'Abrir demo en vivo de {title} (se abre en una pestaña nueva)',
+      projectsViewDemo: 'Ver sitio',
+      projectsViewDemoAria: 'Abrir el sitio web de {title} (se abre en una pestaña nueva)',
       projectsGridAria: 'Carrusel de proyectos destacados',
       projectsCarouselPrev: 'Ver proyectos anteriores',
       projectsCarouselNext: 'Ver proyectos siguientes',
@@ -373,12 +381,12 @@ function es(): Messages {
         tag: 'AI · ML',
         title: 'Inteligencia artificial aplicada',
         intro:
-          'IA integrada donde realmente aporta valor al negocio.',
+          'IA integrada al negocio: LMS, bots y automatizaciones que generan valor real.',
         bullets: [
-          'Automatización inteligente de procesos',
-          'Integración de capacidades IA en plataformas reales',
-          'Resultados medibles y casos de uso concretos',
-          'Gestión segura de datos y permisos',
+          'Creación de LMS con capacidades de IA',
+          'Integración de bots y asistentes al negocio',
+          'Automatización inteligente de procesos y atención',
+          'Casos de uso concretos con resultados medibles',
         ],
       },
       {
@@ -529,32 +537,63 @@ function es(): Messages {
       {
         logoSrc: '/experience-logos/astra-dev.png',
         period: 'ago. 2024 — actualidad',
-        title: 'Desarrollador back-end (freelance)',
-        company: 'Profesional independiente · Astra Dev',
+        title: 'Fundador y desarrollador Full Stack',
+        company: 'Astra Dev',
         timelineFrom: { year: 2024, month: 8 },
         timelineOngoing: true,
         summary:
-          'Soluciones a medida en remoto: APIs REST, bases de datos, JWT, Docker y mejora de rendimiento con Clean Code y diseño modular.',
+          'Mi empresa de desarrollo de software: sitios web, APIs, LMS, bots con IA, DevOps, despliegues con GitHub, servidores, CI/CD y soluciones a medida para negocios y profesionales.',
         details: [
           {
             description:
-              'Back-end con Java (Spring Boot) y Python (FastAPI): APIs REST e integración con PostgreSQL y MySQL.',
-            technologies: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'REST'],
+              'Sitio web del Dr. Cristian Valencia para potenciar su visibilidad nacional e internacional y facilitar que pacientes lo encuentren y contacten (ES/EN, SEO, WhatsApp).',
+            technologies: ['Angular', 'TypeScript', 'Tailwind CSS', 'i18n', 'SEO'],
+            outcome:
+              'Presencia digital en producción: https://drcristianvalencia.com',
           },
           {
             description:
-              'Autenticación con JWT y despliegue en contenedores Docker.',
-            technologies: ['JWT', 'Docker'],
+              'Integración de bots y asistentes con IA para atención, automatización y soporte en negocios y empresas.',
+            technologies: ['Python', 'IA', 'APIs', 'WhatsApp · Chatbots'],
           },
           {
             description:
-              'Optimización de consultas SQL y principios de Clean Code en sistemas existentes.',
-            technologies: ['PostgreSQL', 'MySQL', 'SQL'],
+              'Creación e integración de LMS y plataformas de aprendizaje con capacidades de IA para empresas y equipos.',
+            technologies: ['LMS', 'IA', 'Angular', 'APIs REST'],
           },
           {
             description:
-              'Metodologías ágiles y control de versiones con Git.',
-            technologies: ['Git'],
+              'Back-end con Java (Spring Boot) y Python (FastAPI): APIs REST, autenticación JWT e integración con PostgreSQL y MySQL.',
+            technologies: [
+              'Java',
+              'Spring Boot',
+              'Python',
+              'FastAPI',
+              'JWT',
+              'PostgreSQL',
+              'MySQL',
+            ],
+          },
+          {
+            description:
+              'Servidores, contenedores y pipelines CI/CD para desplegar y operar sistemas en producción con estabilidad.',
+            technologies: ['Docker', 'CI/CD', 'Git', 'Linux', 'Cloud'],
+          },
+          {
+            description:
+              'DevOps e integración continua: automatización de builds, tests y despliegues con GitHub (Actions, entornos y flujos de release).',
+            technologies: [
+              'DevOps',
+              'GitHub',
+              'GitHub Actions',
+              'CI/CD',
+              'Docker',
+            ],
+          },
+          {
+            description:
+              'Optimización de consultas SQL, Clean Code y arquitectura modular en sistemas existentes.',
+            technologies: ['SQL', 'Clean Code', 'Git'],
           },
         ],
       },
@@ -601,6 +640,55 @@ function es(): Messages {
       },
     ],
     featuredProjects: [
+      {
+        title: 'Dr. Cristian Valencia',
+        subtitle: 'Presencia digital · Nacional e internacional',
+        category: 'Sitio web',
+        summary:
+          'Sitio web pensado para potenciar la visibilidad del Dr. Cristian Valencia a nivel nacional e internacional, y facilitar que pacientes de Colombia y del exterior lo encuentren y contacten con facilidad. Odontología estética en Armenia, Quindío, con servicios claros, i18n ES/EN, SEO y agenda directa por WhatsApp.',
+        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+        imageAlt:
+          'Dr. Cristian Valencia — showcase del sitio con mockups desktop y móvil, SEO, WhatsApp y multilenguaje',
+        imageTitle:
+          'Dr. Cristian Valencia — Sitio web odontológico Armenia Quindío',
+        ogImage: '/projects/dr-cristian-valencia-hero.png',
+        demoUrl: 'https://drcristianvalencia.com',
+        stack: [
+          'Angular 19',
+          'TypeScript',
+          'Tailwind CSS',
+          'i18n',
+          'SEO',
+        ],
+        sections: [
+          {
+            heading: 'Objetivo del proyecto',
+            bullets: [
+              'Mejorar la visibilidad del odontólogo frente a audiencias nacionales e internacionales.',
+              'Facilitar que pacientes nuevos lo descubran, confíen y lleguen a él.',
+              'Transmitir una marca profesional clara: criterio, detalle y resultados naturales.',
+            ],
+          },
+          {
+            heading: 'Funcionalidades desarrolladas',
+            bullets: [
+              'Landing multipágina: inicio, sobre mí, servicios y contacto.',
+              'Detalle de servicios: odontología general, rehabilitación estética, urgencias e Invisalign.',
+              'Experiencia bilingüe ES/EN para pacientes locales y del exterior.',
+              'CTA de agenda y botón flotante de WhatsApp para contacto inmediato.',
+              'Carrusel de testimonios y mapa de la sede en Armenia.',
+            ],
+          },
+          {
+            heading: 'Alcance y descubrimiento',
+            bullets: [
+              'SEO con metadatos, Open Graph, JSON-LD, sitemap y robots.',
+              'Diseño responsive orientado a conversión y confianza.',
+              'Soporte a turismo odontológico: pacientes de toda Colombia y del exterior.',
+            ],
+          },
+        ],
+      },
       {
         title: 'Prototipo de Seguimiento de Pedidos TUL',
         subtitle: 'Prototipo Front-End · Logística',
@@ -888,54 +976,53 @@ function es(): Messages {
 function en(): Messages {
   return {
     meta: {
-      title:
-        'Joan Sebastian Sosa Bedoya — Software Engineer | Full Stack Developer | Armenia Quindío Colombia',
+      title: 'Sebastian Sosa | Software Engineer in Armenia, Quindío',
       description:
-        'Joan Sebastian Sosa Bedoya — Software Engineer and Full Stack Developer in Armenia, Quindío, Colombia. Professional portfolio with Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes.',
-      ogTitle:
-        'Joan Sebastian Sosa Bedoya — Software Engineer | Full Stack Developer',
+        'Software Engineer specialized in web development, enterprise applications, APIs, Angular, Java, Python, and technology solutions. Building software for companies in Armenia, Quindío, Colombia, and international clients.',
+      ogTitle: 'Sebastian Sosa | Software Engineer in Armenia, Quindío',
       ogDescription:
-        'Sebastian Sosa portfolio: scalable web development with Java, Python, Angular, and cloud. Armenia, Quindío, Colombia.',
+        'Software Engineer and Full Stack Developer in Armenia, Quindío. Web apps, APIs, Angular, Java, Python, and custom software for Colombia and international clients.',
       sections: {
         'sobre-mi': {
-          title: 'About me | Joan Sebastian Sosa Bedoya — Software Engineer',
+          title: 'About | Sebastian Sosa — Software Engineer in Armenia',
           description:
-            'Meet Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer in Armenia, Quindío. Specialized in hexagonal architecture, microservices, and production-ready solutions.',
-          ogTitle: 'About — Sebastian Sosa | Full Stack Software Engineer',
+            'Meet Sebastian Sosa, Software Engineer and Full Stack Developer in Armenia, Quindío. Specialized in Angular, Java, Python, APIs, enterprise software, and solutions for local and international clients.',
+          ogTitle: 'About — Sebastian Sosa | Software Engineer',
           ogDescription:
-            'Background, technical focus, and service areas of Joan Sebastian Sosa Bedoya, software developer in Colombia.',
+            'Background and technical focus of a Software Engineer in Armenia, Quindío, Colombia — Full Stack, APIs, and custom software.',
         },
         experiencia: {
-          title: 'Work experience | Sebastian Sosa — Full Stack Developer',
+          title:
+            'Experience | Sebastian Sosa — Full Stack Developer Colombia',
           description:
-            'Professional experience of Joan Sebastian Sosa at EDEQ Grupo EPM, Konex, Astra Dev, and more. Java, Spring Boot, Python, FastAPI, Angular, Docker, and Kubernetes deployments.',
-          ogTitle: 'Experience — Joan Sebastian Sosa Bedoya',
+            'Work experience of Sebastian Sosa at EDEQ Grupo EPM, Konex, and Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, DevOps, GitHub CI/CD, and enterprise software.',
+          ogTitle: 'Experience — Sebastian Sosa | Software Engineer',
           ogDescription:
-            'Roles, achievements, and measurable impact at companies in Colombia as a backend and full stack developer.',
+            'Roles and impact as a Full Stack Developer and Software Engineer in Colombia and remote.',
         },
         proyectos: {
-          title: 'Featured projects | Sebastian Sosa — Full Stack Portfolio',
+          title: 'Portfolio | Sebastian Sosa — Software Projects Colombia',
           description:
-            'Projects by Joan Sebastian Sosa Bedoya: Angular SSR portfolio, Mini-GPT NLP, Golden Egg ERP, Spring Boot REST APIs, and more. Code on GitHub and live demos.',
+            'Featured projects by Sebastian Sosa: professional websites, Angular, Mini-GPT NLP, ERP, Java Spring Boot REST APIs, Python, and web application development.',
           ogTitle: 'Projects — Sebastian Sosa | Full Stack Developer',
           ogDescription:
-            'Real-world project portfolio with modern stack: Angular, Python, Java, React, and machine learning.',
+            'Real-world projects in web development, APIs, Angular, Java, Python, and applied AI.',
         },
         contacto: {
-          title: 'Contact | Joan Sebastian Sosa Bedoya — Developer in Armenia',
+          title: 'Contact | Sebastian Sosa — Software Engineer Armenia',
           description:
-            'Contact Joan Sebastian Sosa Bedoya, Software Engineer in Armenia, Quindío, Colombia. Available for remote, hybrid, and freelance projects.',
-          ogTitle: 'Contact — Sebastian Sosa | Software Engineer',
+            'Contact Sebastian Sosa, Software Engineer in Armenia, Quindío, Colombia. Available for custom software, web apps, APIs, and freelance or remote projects.',
+          ogTitle: 'Contact — Sebastian Sosa | Software Developer Colombia',
           ogDescription:
-            'Reach out to collaborate on scalable web products, integrations, and backend or full stack development.',
+            'Reach out for web development, enterprise software, APIs, and integrations. Armenia, Colombia, and international remote.',
         },
         servicios: {
-          title: 'Development services | Sebastian Sosa — Full Stack Colombia',
+          title: 'Services | Sebastian Sosa — Custom Software Development',
           description:
-            'Software development services by Joan Sebastian Sosa: Java and Python backends, Angular frontends, microservices, CI/CD, and cloud deployment.',
-          ogTitle: 'Services — Joan Sebastian Sosa | Full Stack Developer',
+            'Software development services in Armenia and Colombia: web apps, APIs, Angular, Java, Python, LMS, AI bots, DevOps, CI/CD, and enterprise software for local and international clients.',
+          ogTitle: 'Services — Sebastian Sosa | Full Stack Developer Colombia',
           ogDescription:
-            'Backend, frontend, integrations, and software architecture for companies in Colombia and remote.',
+            'Web application development, APIs, enterprise software, automation, and AI integrations for businesses.',
         },
       },
     },
@@ -976,8 +1063,8 @@ function en(): Messages {
       projectsCardTapHint: 'Click for full details',
       projectsViewGithub: 'View on GitHub',
       projectsViewGithubAria: 'View {title} source code on GitHub (opens in a new tab)',
-      projectsViewDemo: 'View demo',
-      projectsViewDemoAria: 'Open live demo of {title} (opens in a new tab)',
+      projectsViewDemo: 'Visit site',
+      projectsViewDemoAria: 'Open the website for {title} (opens in a new tab)',
       projectsGridAria: 'Featured projects carousel',
       projectsCarouselPrev: 'Show previous projects',
       projectsCarouselNext: 'Show next projects',
@@ -1077,12 +1164,12 @@ function en(): Messages {
         tag: 'AI · ML',
         title: 'Applied artificial intelligence',
         intro:
-          'AI integrated where it truly adds business value.',
+          'AI integrated into the business: LMS platforms, bots, and automations that deliver real value.',
         bullets: [
-          'Intelligent process automation',
-          'AI capabilities integrated into real platforms',
-          'Measurable outcomes and concrete use cases',
-          'Secure data and permission management',
+          'Building LMS platforms with AI capabilities',
+          'Integrating bots and assistants into business workflows',
+          'Intelligent automation for processes and support',
+          'Concrete use cases with measurable outcomes',
         ],
       },
       {
@@ -1233,32 +1320,63 @@ function en(): Messages {
       {
         logoSrc: '/experience-logos/astra-dev.png',
         period: 'Aug 2024 — present',
-        title: 'Back-end developer (freelance)',
-        company: 'Independent professional · Astra Dev',
+        title: 'Founder & Full Stack developer',
+        company: 'Astra Dev',
         timelineFrom: { year: 2024, month: 8 },
         timelineOngoing: true,
         summary:
-          'Remote custom solutions: REST APIs, databases, JWT, Docker, and performance work with Clean Code and modular design.',
+          'My software company: websites, APIs, LMS platforms, AI bots, DevOps, GitHub-based deployments, servers, CI/CD, and custom solutions for businesses and professionals.',
         details: [
           {
             description:
-              'Back-end with Java (Spring Boot) and Python (FastAPI): REST APIs plus PostgreSQL and MySQL integration.',
-            technologies: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'REST'],
+              'Dr. Cristian Valencia website to boost national and international visibility and make it easy for patients to find and reach him (ES/EN, SEO, WhatsApp).',
+            technologies: ['Angular', 'TypeScript', 'Tailwind CSS', 'i18n', 'SEO'],
+            outcome:
+              'Live digital presence: https://drcristianvalencia.com',
           },
           {
             description:
-              'JWT authentication and Docker-based deployments.',
-            technologies: ['JWT', 'Docker'],
+              'AI bot and assistant integrations for customer support, automation, and business workflows.',
+            technologies: ['Python', 'AI', 'APIs', 'WhatsApp · Chatbots'],
           },
           {
             description:
-              'SQL query tuning, Clean Code, and modular design on existing systems.',
-            technologies: ['PostgreSQL', 'MySQL', 'SQL'],
+              'Building and integrating LMS platforms with AI capabilities for companies and teams.',
+            technologies: ['LMS', 'AI', 'Angular', 'REST APIs'],
           },
           {
             description:
-              'Agile practices and Git for version control.',
-            technologies: ['Git'],
+              'Back-end with Java (Spring Boot) and Python (FastAPI): REST APIs, JWT auth, and PostgreSQL/MySQL integration.',
+            technologies: [
+              'Java',
+              'Spring Boot',
+              'Python',
+              'FastAPI',
+              'JWT',
+              'PostgreSQL',
+              'MySQL',
+            ],
+          },
+          {
+            description:
+              'Servers, containers, and CI/CD pipelines to deploy and operate production systems reliably.',
+            technologies: ['Docker', 'CI/CD', 'Git', 'Linux', 'Cloud'],
+          },
+          {
+            description:
+              'DevOps and continuous integration: automated builds, tests, and deployments with GitHub (Actions, environments, and release workflows).',
+            technologies: [
+              'DevOps',
+              'GitHub',
+              'GitHub Actions',
+              'CI/CD',
+              'Docker',
+            ],
+          },
+          {
+            description:
+              'SQL tuning, Clean Code, and modular architecture on existing systems.',
+            technologies: ['SQL', 'Clean Code', 'Git'],
           },
         ],
       },
@@ -1304,6 +1422,55 @@ function en(): Messages {
       },
     ],
     featuredProjects: [
+      {
+        title: 'Dr. Cristian Valencia',
+        subtitle: 'Digital presence · National & international',
+        category: 'Website',
+        summary:
+          'Website built to strengthen Dr. Cristian Valencia’s visibility nationally and internationally, and to make it easy for patients in Colombia and abroad to find and reach him. Aesthetic dentistry in Armenia, Quindío, with clear services, ES/EN i18n, SEO, and direct WhatsApp booking.',
+        imageSrc: '/projects/dr-cristian-valencia-hero.png',
+        imageAlt:
+          'Dr. Cristian Valencia — site showcase with desktop and mobile mockups, SEO, WhatsApp, and multilingual support',
+        imageTitle:
+          'Dr. Cristian Valencia — Dental website Armenia Quindío',
+        ogImage: '/projects/dr-cristian-valencia-hero.png',
+        demoUrl: 'https://drcristianvalencia.com',
+        stack: [
+          'Angular 19',
+          'TypeScript',
+          'Tailwind CSS',
+          'i18n',
+          'SEO',
+        ],
+        sections: [
+          {
+            heading: 'Project goal',
+            bullets: [
+              'Improve the dentist’s visibility for national and international audiences.',
+              'Help new patients discover him, build trust, and get in touch easily.',
+              'Present a clear professional brand: judgment, detail, and natural results.',
+            ],
+          },
+          {
+            heading: 'Features built',
+            bullets: [
+              'Multi-page landing: home, about, services, and contact.',
+              'Service detail pages: general dentistry, aesthetic rehab, emergencies, and Invisalign.',
+              'Bilingual ES/EN experience for local and international patients.',
+              'Booking CTAs and floating WhatsApp button for immediate contact.',
+              'Testimonials carousel and map of the Armenia clinic.',
+            ],
+          },
+          {
+            heading: 'Reach & discoverability',
+            bullets: [
+              'SEO with metadata, Open Graph, JSON-LD, sitemap, and robots.',
+              'Responsive design focused on conversion and trust.',
+              'Support for dental tourism: patients from across Colombia and abroad.',
+            ],
+          },
+        ],
+      },
       {
         title: 'TUL Order Tracking Prototype',
         subtitle: 'Front-End prototype · Logistics',

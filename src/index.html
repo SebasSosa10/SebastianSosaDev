@@ -8,76 +8,98 @@
         var d = document.documentElement;
         if (t === 'light') d.classList.remove('dark');
         else d.classList.add('dark');
-        var l = localStorage.getItem('portfolio-locale');
+        var params = new URLSearchParams(location.search);
+        var langParam = params.get('lang');
+        var l = langParam === 'en' || langParam === 'es'
+          ? langParam
+          : localStorage.getItem('portfolio-locale');
         if (l === 'en') d.lang = 'en';
         else d.lang = 'es';
       } catch (e) {}
     })();
   </script>
   <meta charset="utf-8">
-  <title>Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack | Armenia Quindío Colombia</title>
+  <title>Sebastián Sosa | Ingeniero de Software en Armenia, Quindío</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Joan Sebastian Sosa Bedoya — Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío, Colombia. Portafolio profesional de Sebastian Sosa con experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes. Desarrollador de software en Colombia disponible para proyectos locales y remotos.">
-  <meta name="keywords" content="Joan Sebastian Sosa Bedoya, Joan Sebastian Sosa, Sebastian Sosa, Joan Sosa, joan sebastian, Sosa Bedoya, Desarrollador de software Colombia, Ingeniero de software Quindío, Desarrollador Full Stack Armenia, Desarrollador Full Stack Colombia, Ingeniero de Software Colombia, Desarrollador Backend Java, Desarrollador Python FastAPI, Desarrollador Angular, Desarrollador Armenia Quindio, Spring Boot Colombia, Docker Kubernetes Colombia">
+  <meta name="description" content="Ingeniero de Software especializado en desarrollo web, aplicaciones empresariales, APIs, Angular, Java, Python y soluciones tecnológicas. Desarrollo software para empresas en Armenia, Quindío, Colombia y clientes internacionales.">
+  <meta name="keywords" content="Ingeniero de Software, Ingeniero de Software Armenia, Ingeniero de Software Quindío, Ingeniero de Software Colombia, Desarrollador de Software, Desarrollador Web Armenia, Software Engineer Colombia, Software Developer Colombia, Full Stack Developer Colombia, Freelancer Software Developer, Desarrollador Angular, Desarrollador Java, Desarrollador Python, Desarrollo de Software a medida, Desarrollo de Aplicaciones Web, Desarrollo de APIs, Software Empresarial, Angular, Java, Spring Boot, Python, FastAPI, Docker, Sebastián Sosa, Joan Sebastian Sosa Bedoya, Astra Dev">
+  <meta name="theme-color" content="#0a0a0a">
   <meta name="author" content="Joan Sebastian Sosa Bedoya">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="google-site-verification" content="oqzDHBZp3TF-6n4QMzLXYBvHvNlIx6tho_J-Q0C5ASI" />
-  <link rel="canonical" href="https://sebastiansosa-dev.netlify.app/">
+  <link rel="canonical" href="https://sebastiansosadev.com/">
+  <link rel="alternate" hreflang="es" href="https://sebastiansosadev.com/" />
+  <link rel="alternate" hreflang="en" href="https://sebastiansosadev.com/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://sebastiansosadev.com/" />
 
-  <meta property="og:title" content="Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack | Armenia Quindío Colombia">
-  <meta property="og:description" content="Portafolio de Joan Sebastian Sosa Bedoya, Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío, Colombia. Experiencia en Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes.">
-  <meta property="og:url" content="https://sebastiansosa-dev.netlify.app/">
+  <meta property="og:title" content="Sebastián Sosa | Ingeniero de Software en Armenia, Quindío">
+  <meta property="og:description" content="Ingeniero de Software y Full Stack Developer en Armenia, Quindío. Desarrollo web, APIs, Angular, Java, Python y software a medida para Colombia y clientes internacionales.">
+  <meta property="og:url" content="https://sebastiansosadev.com/">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sebastian Sosa">
   <meta property="og:locale" content="es_CO">
-  <meta property="og:image" content="https://sebastiansosa-dev.netlify.app/joan-sebastian-sosa-bedoya.png">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:image" content="https://sebastiansosadev.com/joan-sebastian-sosa-bedoya.png">
+  <meta property="og:image:alt" content="Joan Sebastian Sosa Bedoya — Ingeniero de Software">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Joan Sebastian Sosa Bedoya — Ingeniero de Software | Desarrollador Full Stack">
-  <meta name="twitter:description" content="Desarrollador Full Stack e Ingeniero de software en Armenia, Quindío, Colombia. Java, Spring Boot, Python, FastAPI, Angular, Docker y Kubernetes.">
-  <meta name="twitter:image" content="https://sebastiansosa-dev.netlify.app/joan-sebastian-sosa-bedoya.png">
+  <meta name="twitter:title" content="Sebastián Sosa | Ingeniero de Software en Armenia, Quindío">
+  <meta name="twitter:description" content="Ingeniero de Software especializado en desarrollo web, APIs, Angular, Java y Python. Armenia, Quindío, Colombia y clientes internacionales.">
+  <meta name="twitter:image" content="https://sebastiansosadev.com/joan-sebastian-sosa-bedoya.png">
+  <meta name="twitter:url" content="https://sebastiansosadev.com/">
 
-  <script type="application/ld+json">
+  <script id="app-structured-data" type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Joan Sebastian Sosa Bedoya",
-    "alternateName": [
-      "Sebastian Sosa",
-      "Joan Sosa",
-      "Joan Sebastian",
-      "Joan Sebastian Sosa",
-      "joan sebastian",
-      "Sosa Bedoya"
-    ],
-    "url": "https://sebastiansosa-dev.netlify.app/",
-    "jobTitle": "Desarrollador Full Stack",
-    "description": "Ingeniero de software y Desarrollador Full Stack en Armenia, Quindío, Colombia. Especializado en Java Spring Boot, Python FastAPI, Angular, Docker y Kubernetes.",
-    "worksFor": { "@type": "Organization", "name": "EDEQ Grupo EPM" },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Armenia",
-      "addressRegion": "Quindío",
-      "addressCountry": "CO"
-    },
-    "knowsAbout": [
-      "Desarrollo de software",
-      "Ingeniería de software",
-      "Java",
-      "Spring Boot",
-      "Python",
-      "FastAPI",
-      "Angular",
-      "Docker",
-      "Kubernetes",
-      "Microservicios",
-      "Arquitectura Hexagonal",
-      "PostgreSQL",
-      "CI/CD"
-    ],
-    "sameAs": [
-      "https://github.com/SebasSosa10",
-      "https://www.linkedin.com/in/sebastiansosa10/"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://sebastiansosadev.com/#person",
+        "name": "Joan Sebastian Sosa Bedoya",
+        "alternateName": ["Sebastian Sosa", "Sebastián Sosa", "Joan Sosa", "Joan Sebastian Sosa"],
+        "url": "https://sebastiansosadev.com/",
+        "image": "https://sebastiansosadev.com/joan-sebastian-sosa-bedoya.png",
+        "jobTitle": "Ingeniero de Software · Desarrollador Full Stack",
+        "email": "joansebastiansosa10@gmail.com",
+        "telephone": "+573017247201",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Armenia",
+          "addressRegion": "Quindío",
+          "addressCountry": "CO"
+        },
+        "worksFor": { "@id": "https://sebastiansosadev.com/#organization" },
+        "sameAs": [
+          "https://github.com/SebasSosa10",
+          "https://www.linkedin.com/in/sebastiansosa10/"
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://sebastiansosadev.com/#organization",
+        "name": "Astra Dev",
+        "url": "https://sebastiansosadev.com/",
+        "founder": { "@id": "https://sebastiansosadev.com/#person" }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://sebastiansosadev.com/#professionalservice",
+        "name": "Desarrollo de software a medida — Astra Dev",
+        "url": "https://sebastiansosadev.com/servicios",
+        "provider": { "@id": "https://sebastiansosadev.com/#person" },
+        "areaServed": ["Colombia", "Worldwide"],
+        "availableLanguage": ["Spanish", "English"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://sebastiansosadev.com/#website",
+        "url": "https://sebastiansosadev.com/",
+        "name": "Sebastian Sosa — Portafolio Ingeniero de Software",
+        "inLanguage": ["es", "en"],
+        "publisher": { "@id": "https://sebastiansosadev.com/#organization" },
+        "author": { "@id": "https://sebastiansosadev.com/#person" }
+      }
     ]
   }
   </script>

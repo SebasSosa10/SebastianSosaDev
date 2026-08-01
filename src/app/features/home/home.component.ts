@@ -1,4 +1,4 @@
-import { isPlatformBrowser, NgClass } from '@angular/common';
+import { isPlatformBrowser, NgClass, NgOptimizedImage } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -12,7 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { sectionForPath } from '../../shared/data/site';
+import { pathForSection, sectionForPath, scrollTargetForSection } from '../../shared/data/site';
 import { site } from '../../shared/data/site';
 import {
   message,
@@ -48,7 +48,14 @@ type TechStackItem = {
 
 @Component({
   selector: 'app-home',
-  imports: [I18nPipe, NgClass, TypewriterTextComponent, ScrollRevealDirective, ScrollRevealGroupDirective],
+  imports: [
+    I18nPipe,
+    NgClass,
+    NgOptimizedImage,
+    TypewriterTextComponent,
+    ScrollRevealDirective,
+    ScrollRevealGroupDirective,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -415,19 +422,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    const pathname = globalThis.location?.pathname ?? '/';
     const sectionFromRoute = this.route.snapshot.data['sectionId'] as
       | string
       | undefined;
-    const sectionFromPath = sectionForPath(
-      globalThis.location?.pathname ?? '/',
-    );
+    const sectionFromPath = sectionForPath(pathname);
     const sectionId = sectionFromRoute ?? sectionFromPath ?? 'inicio';
-    this.seo.apply(this.locale.lang(), sectionId);
+    this.seo.apply(this.locale.lang(), sectionId, pathname);
   }
 
   onNavClick(event: Event, sectionId: string): void {
     this.scrollNav.handleClick(event, sectionId);
-    this.seo.apply(this.locale.lang(), sectionId);
+    this.seo.apply(
+      this.locale.lang(),
+      sectionId,
+      pathForSection(sectionId),
+    );
   }
 
   ngAfterViewInit(): void {
@@ -449,8 +459,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
       return;
     }
 
+    const scrollId = scrollTargetForSection(id);
     queueMicrotask(() => {
-      if (document.getElementById(id)) {
+      if (document.getElementById(scrollId)) {
         this.scrollNav.goToSection(id);
       }
     });
