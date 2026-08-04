@@ -12,7 +12,7 @@ export const SITE_URL = 'https://sebastiansosadev.com';
 export const SITE_NAME = 'Sebastian Sosa';
 export const SITE_FULL_NAME = 'Joan Sebastian Sosa Bedoya';
 export const SITE_BRAND = 'Astra Dev';
-export const DEFAULT_OG_IMAGE = '/joan-sebastian-sosa-bedoya.png';
+export const DEFAULT_OG_IMAGE = '/joan-sebastian.png';
 export const SEO_AUTHOR = 'Joan Sebastian Sosa Bedoya';
 export const SEO_ROBOTS =
   'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';

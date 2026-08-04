@@ -21,7 +21,7 @@ export const SITE_SEO: SiteSeoConfig = {
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   siteName: 'Sebastian Sosa',
   baseUrl: 'https://sebastiansosadev.com',
-  defaultImage: '/joan-sebastian-sosa-bedoya.png',
+  defaultImage: '/joan-sebastian.png',
   locale: 'es_CO',
   localeByLang: {
     es: 'es_CO',
@@ -51,7 +51,7 @@ const SEO_PAGES_ES: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Joan Sebastian Sosa Bedoya (Sebastian Sosa) — Ingeniero de Software y Desarrollador Full Stack en Colombia. Python, IA, aplicaciones web, APIs, Angular, Java, DevOps y CI/CD. Disponible remoto para empresas en Colombia, Estados Unidos y Europa.',
     keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, Astra Dev`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   'sobre-mi': page({
     title:
@@ -67,7 +67,7 @@ const SEO_PAGES_ES: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Experiencia de Joan Sebastian Sosa Bedoya (Sebastian Sosa) en EDEQ, Konex y Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, IA, DevOps, CI/CD con GitHub y software empresarial para Colombia y remoto.',
     keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_ES}, Spring Boot, GitHub Actions`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   servicios: page({
     title:
@@ -75,7 +75,7 @@ const SEO_PAGES_ES: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Servicios de Joan Sebastian Sosa Bedoya: desarrollo de aplicaciones web, APIs, Python, Angular, Java, inteligencia artificial (bots/LMS), DevOps, CI/CD y software a medida para empresas en Colombia, USA y Europa (remoto).',
     keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   proyectos: page({
     title:
@@ -91,7 +91,7 @@ const SEO_PAGES_ES: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Contacta a Joan Sebastian Sosa Bedoya (Sebastian Sosa) para contratar un Ingeniero de Software remoto: Python, IA, desarrollo web, APIs, DevOps y CI/CD. Colombia, Estados Unidos y Europa.',
     keywords: `${PERSON_NAME_KEYWORDS}, contratar ingeniero de software, hire software engineer, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
 };
 
@@ -102,7 +102,7 @@ const SEO_PAGES_EN: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Joan Sebastian Sosa Bedoya (Sebastian Sosa) — Software Engineer and Full Stack Developer in Colombia. Python, AI, web applications, APIs, Angular, Java, DevOps, and CI/CD. Available remotely for companies in Colombia, the United States, and Europe.',
     keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}, ${SKILL_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, Astra Dev`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   'sobre-mi': page({
     title:
@@ -118,7 +118,7 @@ const SEO_PAGES_EN: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Experience of Joan Sebastian Sosa Bedoya (Sebastian Sosa) at EDEQ, Konex, and Astra Dev: Java, Spring Boot, Python, FastAPI, Angular, AI, DevOps, GitHub CI/CD, and enterprise software for Colombia and remote teams.',
     keywords: `${PERSON_NAME_KEYWORDS}, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_EN}, Spring Boot, GitHub Actions`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   servicios: page({
     title:
@@ -126,7 +126,7 @@ const SEO_PAGES_EN: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Services by Joan Sebastian Sosa Bedoya: web application development, APIs, Python, Angular, Java, artificial intelligence (bots/LMS), DevOps, CI/CD, and custom software for companies in Colombia, the USA, and Europe (remote).',
     keywords: `${PERSON_NAME_KEYWORDS}, ${SKILL_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_ES}, ${GEO_SEO_KEYWORDS_EN}, ${GEO_SEO_KEYWORDS_ES}`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
   proyectos: page({
     title:
@@ -142,7 +142,7 @@ const SEO_PAGES_EN: Record<SeoPageKey, PageSeoConfig> = {
     description:
       'Contact Joan Sebastian Sosa Bedoya (Sebastian Sosa) to hire a remote Software Engineer: Python, AI, web development, APIs, DevOps, and CI/CD. Colombia, United States, and Europe.',
     keywords: `${PERSON_NAME_KEYWORDS}, hire software engineer, remote software engineer, ${GEO_SEO_KEYWORDS_EN}, ${SKILL_SEO_KEYWORDS_EN}`,
-    image: '/joan-sebastian-sosa-bedoya.png',
+    image: '/joan-sebastian.png',
   }),
 };
 
