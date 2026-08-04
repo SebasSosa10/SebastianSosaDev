@@ -25,6 +25,12 @@
   <meta name="description" content="Joan Sebastian Sosa Bedoya (Sebastian Sosa) — Ingeniero de Software Full Stack en Colombia. Python, IA, aplicaciones web, APIs, Angular, Java, DevOps y CI/CD. Disponible remoto para empresas en Colombia, Estados Unidos y Europa.">
   <meta name="keywords" content="Joan Sebastian Sosa Bedoya, Sebastian Sosa, Joan Sebastian, Ingeniero de Software Colombia, Software Engineer Remote, Software Engineer USA, Software Engineer Europe, Desarrollador Python, Python Developer, Inteligencia Artificial, AI Developer, Desarrollador Web, Web Developer, DevOps, CI/CD, GitHub Actions, Angular, Java, FastAPI, aplicaciones web, APIs, Hire Software Engineer, Freelance Software Developer, Astra Dev, sebastiansosadev">
   <meta name="theme-color" content="#0a0a0a">
+  <!-- Evita flash blanco mientras llega el CSS de Tailwind -->
+  <style>
+    html { background-color: #000; }
+    html:not(.dark) { background-color: #fafafa; }
+    body { margin: 0; }
+  </style>
   <meta name="author" content="Joan Sebastian Sosa Bedoya">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="google-site-verification" content="oqzDHBZp3TF-6n4QMzLXYBvHvNlIx6tho_J-Q0C5ASI" />
@@ -112,8 +118,14 @@
     ]
   }
   </script>
-  <link rel="icon" type="image/webp" href="SebastianSosa.webp">
-  <link rel="apple-touch-icon" href="SebastianSosa.webp">
+  <!--
+    Favicon en ICO/PNG (no solo WebP): Chrome, el omnibox y el crawler de Google
+    piden /favicon.ico. Sin archivo real, Netlify devolvía index.html (text/html)
+    y el icono salía roto en lugar del globo de navegación.
+  -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/icon-32x32.png" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preload" as="image" href="joan-sebastian-sosa-bedoya.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
