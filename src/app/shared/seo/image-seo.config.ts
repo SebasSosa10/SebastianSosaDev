@@ -29,14 +29,14 @@ export function imageSeoForLocale(
 /** Catálogo de imágenes indexables (Google Images + OG + Schema). */
 export const IMAGE_SEO = {
   portrait: {
-    path: '/joan-sebastian-sosa-bedoya.png',
+    path: '/joan-sebastian.png',
     alt: {
-      es: 'Joan Sebastian Sosa Bedoya, Ingeniero de Software y Desarrollador Full Stack en Armenia, Quindío, Colombia',
-      en: 'Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer in Armenia, Quindío, Colombia',
+      es: 'Joan Sebastian Sosa Bedoya — portafolio Ingeniero de Software en Armenia, Quindío, Colombia: Full Stack, Python, IA, DevOps y CI/CD',
+      en: 'Joan Sebastian Sosa Bedoya — Software Engineer portfolio in Armenia, Quindío, Colombia: Full Stack, Python, AI, DevOps and CI/CD',
     },
     title: {
-      es: 'Sebastián Sosa — Ingeniero de Software en Armenia, Quindío',
-      en: 'Sebastian Sosa — Software Engineer in Armenia, Quindío',
+      es: 'Joan Sebastian Sosa Bedoya | Ingeniero de Software Colombia · Portafolio',
+      en: 'Joan Sebastian Sosa Bedoya | Software Engineer Colombia · Portfolio',
     },
   },
   about: {
