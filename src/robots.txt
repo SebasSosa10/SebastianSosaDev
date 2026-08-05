@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Indexación completa del portafolio profesional
+# Dominio canónico oficial
 Sitemap: https://sebastiansosadev.com/sitemap.xml

@@ -17,9 +17,8 @@
         width="44"
         height="44"
         class="h-11 w-11 shrink-0 rounded-xl border border-brand-500/35 object-cover object-top shadow-sm ring-1 ring-black/5 transition duration-300 group-hover:border-brand-500/55 dark:ring-white/10"
-        [attr.alt]="
-          locale.t('hero.photoAlt', { name: site.fullName })
-        "
+        [attr.alt]="headerAvatarSeo().alt"
+        [attr.title]="headerAvatarSeo().title"
         decoding="async"
       />
       <div class="flex min-w-0 flex-col leading-tight">

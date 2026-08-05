@@ -4,6 +4,7 @@ export type SeoPageKey =
   | 'inicio'
   | 'sobre-mi'
   | 'experiencia'
+  | 'tecnologias'
   | 'proyectos'
   | 'contacto'
   | 'servicios';

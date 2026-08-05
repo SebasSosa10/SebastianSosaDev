@@ -102,11 +102,14 @@ export class SeoService {
     this.setPropertyMeta('og:locale:alternate', ogLocaleAlt);
     this.setPropertyMeta('og:image', image);
     this.setPropertyMeta('og:image:alt', imageAlt);
+    this.setPropertyMeta('og:image:width', '1200');
+    this.setPropertyMeta('og:image:height', '630');
 
     this.setNamedMeta('twitter:card', SITE_SEO.twitterCard);
     this.setNamedMeta('twitter:title', page.title);
     this.setNamedMeta('twitter:description', page.description);
     this.setNamedMeta('twitter:image', image);
+    this.setNamedMeta('twitter:image:alt', imageAlt);
     this.setNamedMeta('twitter:url', canonical);
 
     this.updateCanonical(canonical);
@@ -119,6 +122,7 @@ export class SeoService {
     if (
       key === 'sobre-mi' ||
       key === 'experiencia' ||
+      key === 'tecnologias' ||
       key === 'proyectos' ||
       key === 'contacto' ||
       key === 'servicios'
@@ -147,8 +151,9 @@ export class SeoService {
     if (!head) {
       return;
     }
+    // Evita duplicar los hreflang estáticos de index.html + los de runtime.
     head
-      .querySelectorAll('link[data-seo-hreflang="true"]')
+      .querySelectorAll('link[rel="alternate"][hreflang]')
       .forEach((node) => node.remove());
 
     const esUrl = this.toAbsoluteUrl(path);

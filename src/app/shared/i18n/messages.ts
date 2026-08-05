@@ -261,7 +261,7 @@ function es(): Messages {
     hero: {
       line1: 'Hola, soy',
       tagline:
-        'Desarrollo aplicaciones web modernas y escalables que impulsan resultados y mejoran la experiencia del usuario.',
+        'Desarrollo soluciones de software para negocios nacionales e internacionales. Disponible para proyectos remotos con empresas y clientes.',
       availability: 'DISPONIBLE',
       photoAlt: 'Retrato de {name}',
       viewProjects: 'Ver proyectos',
@@ -288,9 +288,9 @@ function es(): Messages {
       projectsCarouselGoTo: 'Ir al proyecto',
       contactHeading: '¿Tienes una idea, un proyecto o un reto por resolver?',
       contactIntro: [
-        'Me interesa construir soluciones bien pensadas, escalables y enfocadas en generar impacto real.',
+        'Me interesa construir soluciones bien pensadas, escalables y enfocadas en generar impacto real. Trabajo de forma remota con clientes en Colombia, Latinoamérica, Norteamérica y Europa.',
         'Disfruto trabajar en productos donde la tecnología, la experiencia y la operación se conectan para resolver problemas de verdad. Desde plataformas empresariales hasta automatización de procesos y sistemas listos para producción.',
-        'Si buscas sumar a alguien con visión técnica, enfoque en calidad y capacidad para convertir necesidades complejas en soluciones claras y mantenibles, estaré encantado de conversar.',
+        'Si buscas un Ingeniero de Software o Full Stack Developer remoto con visión técnica, enfoque en calidad y capacidad para convertir necesidades complejas en soluciones claras y mantenibles, estaré encantado de conversar.',
       ],
       contactOpenMailAria: 'Abrir cliente de correo para escribir a esta dirección',
       contactOpenPhoneAria: 'Llamar o escribir al número de celular',
@@ -311,12 +311,12 @@ function es(): Messages {
         'Ingeniero de Software & Full Stack Developer especializado en el desarrollo de soluciones web escalables, modernas y orientadas a producción.',
         'Cuento con experiencia construyendo plataformas empresariales con Python, FastAPI, Java, Spring Boot, Angular y React, trabajando bajo arquitecturas de microservicios, integración de sistemas corporativos y despliegues automatizados con Docker, Kubernetes y pipelines CI/CD.',
         'Mi enfoque combina arquitectura de software, rendimiento y experiencia de usuario para desarrollar aplicaciones mantenibles, seguras y preparadas para crecer. He participado en proyectos enfocados en automatización de procesos, integración de plataformas empresariales, APIs de alto rendimiento y optimización operativa en entornos reales.',
-        'Disfruto transformar necesidades complejas en soluciones técnicas claras, eficientes y alineadas con objetivos de negocio.',
+        'Disfruto transformar necesidades complejas en soluciones técnicas claras, eficientes y alineadas con objetivos de negocio. Desarrollo soluciones de software para negocios nacionales e internacionales.',
       ],
       aboutDeliveryHeading: 'Construyendo software pensado para producción',
       aboutDeliveryEyebrow: 'Stack de servicios',
       aboutDeliveryIntro:
-        'Seis áreas donde convierto necesidades de negocio en soluciones escalables, mantenibles y listas para operar en entornos reales.',
+        'Seis áreas de desarrollo de software, aplicaciones web, APIs y soluciones cloud para convertir necesidades de negocio en sistemas escalables — para clientes locales e internacionales, también en modalidad remota.',
       aboutDeliveryAreas: '6 áreas',
       experienceModalClose: 'Cerrar',
       experienceModalTech: 'Tecnologías',
@@ -330,46 +330,46 @@ function es(): Messages {
     },
     aboutDeliveryCards: [
       {
-        tag: 'UX · UI',
-        title: 'Experiencia e interfaces',
+        tag: 'FRONTEND',
+        title: 'Frontend Development',
         intro:
-          'Interfaces claras, funcionales y alineadas al negocio.',
+          'Interfaces modernas con Angular y TypeScript, claras, funcionales y alineadas al negocio.',
         bullets: [
-          'Experiencias modernas y multi-dispositivo',
+          'Experiencias multi-dispositivo y Web Applications',
           'Diseño coherente con usuarios y procesos reales',
           'Integración estable con APIs y servicios',
-          'Interfaces preparadas para crecer',
+          'UI preparada para crecer en producción',
         ],
       },
       {
-        tag: 'API · DATA',
-        title: 'Servicios e integración',
+        tag: 'API · BACKEND',
+        title: 'API & Backend Development',
         intro:
-          'APIs y estructuras de datos diseñadas para ser seguras, predecibles y mantenibles.',
+          'APIs REST y backends seguros con Python, Java y arquitecturas mantenibles.',
         bullets: [
-          'APIs REST claras y escalables',
+          'API Development claro y escalable',
           'Control de acceso y seguridad por roles',
           'Modelado de datos orientado al dominio',
           'Integración con sistemas empresariales',
         ],
       },
       {
-        tag: 'ANALYTICS',
-        title: 'Automatización y análisis',
+        tag: 'FULL STACK',
+        title: 'Full Stack Development',
         intro:
-          'Procesos medibles, automatizados y orientados a eficiencia operativa.',
+          'Desarrollo integral frontend + backend para productos listos para producción.',
         bullets: [
-          'Automatización de tareas repetitivas',
-          'Validación y tratamiento de datos',
-          'Indicadores y trazabilidad operativa',
-          'Procesos auditables y optimizables',
+          'Custom Software Development de punta a punta',
+          'Angular, Python, Java y TypeScript',
+          'Entrega continua con calidad y pruebas',
+          'Soluciones alineadas a objetivos de negocio',
         ],
       },
       {
-        tag: 'ENGINEERING',
-        title: 'Ingeniería de software',
+        tag: 'ENTERPRISE',
+        title: 'Enterprise Software',
         intro:
-          'Arquitectura y desarrollo enfocados en calidad y escalabilidad.',
+          'Software empresarial y transformación digital con arquitectura sólida.',
         bullets: [
           'Arquitectura limpia y mantenible',
           'Buenas prácticas y código desacoplado',
@@ -390,10 +390,10 @@ function es(): Messages {
         ],
       },
       {
-        tag: 'PROD · SCALE',
-        title: 'Producción y escalabilidad',
+        tag: 'CLOUD',
+        title: 'Cloud Solutions',
         intro:
-          'Infraestructura y operación preparadas para crecer con estabilidad.',
+          'Infraestructura cloud-ready, DevOps y operación preparada para escalar.',
         bullets: [
           'Contenedores y orquestación con Docker/Kubernetes',
           'Sistemas preparados para alta demanda',
@@ -960,7 +960,7 @@ function es(): Messages {
     ],
     footer: {
       blurb:
-        'Construyendo soluciones digitales modernas, escalables y preparadas para producción. Mi enfoque combina ingeniería de software, experiencia de usuario y arquitectura mantenible para desarrollar productos funcionales, eficientes y alineados con necesidades reales de negocio.',
+        'Ingeniero de Software en Armenia, Quindío, Colombia. Construyo software a medida, aplicaciones web y APIs para negocios nacionales e internacionales — disponible para proyectos remotos en Latinoamérica, Norteamérica y Europa.',
       navHeading: 'Navegación',
       socialHeading: 'Redes',
       navAria: 'Enlaces a secciones del portafolio',
@@ -968,6 +968,7 @@ function es(): Messages {
     roleTitles: [
       'Ingeniero de software',
       'Desarrollador Full Stack',
+      'Remote Software Engineer',
     ],
     roleTitle: 'Ingeniero de software',
   };
@@ -1044,7 +1045,7 @@ function en(): Messages {
     hero: {
       line1: "Hello, I'm",
       tagline:
-        'I build modern, scalable web applications that drive results and improve user experience.',
+        'I build software solutions for national and international businesses. Available for remote projects with companies and clients.',
       availability: 'AVAILABLE',
       photoAlt: 'Portrait of {name}',
       viewProjects: 'View projects',
@@ -1071,9 +1072,9 @@ function en(): Messages {
       projectsCarouselGoTo: 'Go to project',
       contactHeading: 'Have an idea, a project, or a challenge to solve?',
       contactIntro: [
-        'I am interested in building well-thought-out, scalable solutions focused on generating real impact.',
+        'I am interested in building well-thought-out, scalable solutions focused on generating real impact. I work remotely with clients in Colombia, Latin America, North America and Europe.',
         'I enjoy working on products where technology, experience, and operations connect to solve real problems—from enterprise platforms to process automation and production-ready systems.',
-        'If you are looking for someone with technical vision, a focus on quality, and the ability to turn complex needs into clear, maintainable solutions, I would be happy to talk.',
+        'If you are looking for a remote Software Engineer or Full Stack Developer with technical vision, a focus on quality, and the ability to turn complex needs into clear, maintainable solutions, I would be happy to talk.',
       ],
       contactOpenMailAria: 'Open your email app to write to this address',
       contactOpenPhoneAria: 'Call or message this mobile number',
@@ -1094,12 +1095,12 @@ function en(): Messages {
         'Software Engineer & Full Stack Developer specialized in building scalable, modern, production-oriented web solutions.',
         'I have experience building enterprise platforms with Python, FastAPI, Java, Spring Boot, Angular, and React, working with microservices architectures, corporate system integration, and automated deployments with Docker, Kubernetes, and CI/CD pipelines.',
         'My approach combines software architecture, performance, and user experience to develop maintainable, secure applications built to grow. I have contributed to projects focused on process automation, enterprise platform integration, high-performance APIs, and operational optimization in real-world environments.',
-        'I enjoy turning complex needs into clear, efficient technical solutions aligned with business goals.',
+        'I enjoy turning complex needs into clear, efficient technical solutions aligned with business goals. I develop software solutions for national and international businesses.',
       ],
       aboutDeliveryHeading: 'Building software built for production',
       aboutDeliveryEyebrow: 'Service stack',
       aboutDeliveryIntro:
-        'Six areas where I turn business needs into scalable, maintainable solutions ready to operate in real environments.',
+        'Six areas of software development, web applications, APIs and cloud solutions—turning business needs into scalable systems for local and international clients, including remote engagements.',
       aboutDeliveryAreas: '6 areas',
       experienceModalClose: 'Close',
       experienceModalTech: 'Technologies',
@@ -1113,46 +1114,46 @@ function en(): Messages {
     },
     aboutDeliveryCards: [
       {
-        tag: 'UX · UI',
-        title: 'Experience & interfaces',
+        tag: 'FRONTEND',
+        title: 'Frontend Development',
         intro:
-          'Clear, functional interfaces aligned with the business.',
+          'Modern Angular and TypeScript interfaces that are clear, functional, and business-aligned.',
         bullets: [
-          'Modern, multi-device experiences',
+          'Multi-device experiences and web applications',
           'Design coherent with users and real-world processes',
           'Stable integration with APIs and services',
-          'Interfaces built to grow',
+          'UI ready to grow in production',
         ],
       },
       {
-        tag: 'API · DATA',
-        title: 'Services & integration',
+        tag: 'API · BACKEND',
+        title: 'API & Backend Development',
         intro:
-          'APIs and data structures designed to be secure, predictable, and maintainable.',
+          'Secure REST APIs and backends with Python, Java, and maintainable architecture.',
         bullets: [
-          'Clear, scalable REST APIs',
+          'Clear, scalable API development',
           'Role-based access control and security',
           'Domain-oriented data modeling',
           'Integration with enterprise systems',
         ],
       },
       {
-        tag: 'ANALYTICS',
-        title: 'Automation & analysis',
+        tag: 'FULL STACK',
+        title: 'Full Stack Development',
         intro:
-          'Measurable, automated processes focused on operational efficiency.',
+          'End-to-end frontend + backend delivery for production-ready products.',
         bullets: [
-          'Automation of repetitive tasks',
-          'Data validation and processing',
-          'Operational indicators and traceability',
-          'Auditable, optimizable processes',
+          'Custom software development from idea to release',
+          'Angular, Python, Java and TypeScript',
+          'Continuous delivery with quality and testing',
+          'Solutions aligned with business goals',
         ],
       },
       {
-        tag: 'ENGINEERING',
-        title: 'Software engineering',
+        tag: 'ENTERPRISE',
+        title: 'Enterprise Software',
         intro:
-          'Architecture and development focused on quality and scalability.',
+          'Enterprise software and digital transformation with solid architecture.',
         bullets: [
           'Clean, maintainable architecture',
           'Best practices and decoupled code',
@@ -1173,10 +1174,10 @@ function en(): Messages {
         ],
       },
       {
-        tag: 'PROD · SCALE',
-        title: 'Production & scalability',
+        tag: 'CLOUD',
+        title: 'Cloud Solutions',
         intro:
-          'Infrastructure and operations ready to grow with stability.',
+          'Cloud-ready infrastructure, DevOps, and operations prepared to scale.',
         bullets: [
           'Containers and orchestration with Docker/Kubernetes',
           'Systems prepared for high demand',
@@ -1742,7 +1743,7 @@ function en(): Messages {
     ],
     footer: {
       blurb:
-        'Building modern, scalable, production-ready digital solutions. My approach combines software engineering, user experience, and maintainable architecture to deliver functional, efficient products aligned with real business needs.',
+        'Software Engineer based in Armenia, Quindío, Colombia. I build custom software, web applications and APIs for national and international businesses — available for remote projects across Latin America, North America and Europe.',
       navHeading: 'Navigate',
       socialHeading: 'Social',
       navAria: 'Portfolio section links',
@@ -1750,6 +1751,7 @@ function en(): Messages {
     roleTitles: [
       'Software Engineer',
       'Full Stack Developer',
+      'Remote Software Engineer',
     ],
     roleTitle: 'Software Engineer',
   };

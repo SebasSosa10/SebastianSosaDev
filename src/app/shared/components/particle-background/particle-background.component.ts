@@ -4,6 +4,7 @@ import {
   Component,
   ElementRef,
   HostListener,
+  NgZone,
   OnDestroy,
   PLATFORM_ID,
   effect,
@@ -29,6 +30,7 @@ interface Particle {
  * - Pausa cuando la pestaña está oculta.
  * - Respeta `prefers-reduced-motion` (renderiza estático sin movimiento).
  * - Se redimensiona con la ventana.
+ * - RAF fuera de Zone.js para no bloquear hidratación (NG0506).
  */
 @Component({
   selector: 'app-particle-background',
@@ -42,6 +44,7 @@ interface Particle {
 export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
   private readonly platformId = inject(PLATFORM_ID);
   private readonly theme = inject(ThemeService);
+  private readonly ngZone = inject(NgZone);
 
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
@@ -157,11 +160,13 @@ export class ParticleBackgroundComponent implements AfterViewInit, OnDestroy {
     if (!this.ctx || this.rafId !== null) {
       return;
     }
-    const tick = () => {
-      this.draw();
+    this.ngZone.runOutsideAngular(() => {
+      const tick = () => {
+        this.draw();
+        this.rafId = requestAnimationFrame(tick);
+      };
       this.rafId = requestAnimationFrame(tick);
-    };
-    this.rafId = requestAnimationFrame(tick);
+    });
   }
 
   private stop(): void {
