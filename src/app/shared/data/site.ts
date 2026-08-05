@@ -12,6 +12,7 @@ export const SECTION_PATHS = {
   inicio: '/',
   'sobre-mi': '/sobre-mi',
   experiencia: '/experiencia',
+  tecnologias: '/tecnologias',
   proyectos: '/proyectos',
   contacto: '/contacto',
   servicios: '/servicios',
@@ -33,9 +34,9 @@ export function sectionForPath(pathname: string): string | null {
   return null;
 }
 
-/** Id del elemento DOM a scrollear (servicios vive dentro de experiencia). */
+/** Id del elemento DOM a scrollear. */
 export function scrollTargetForSection(sectionId: string): string {
-  return sectionId === 'servicios' ? 'experiencia' : sectionId;
+  return sectionId;
 }
 
 export const site = {
@@ -58,7 +59,7 @@ export const site = {
   /** Formato visible; `phoneTel` para enlaces tel: */
   phone: '+57 3017247201',
   phoneTel: '+573017247201',
-  location: 'Armenia, Quindío · Colombia',
+  location: 'Armenia, Quindío · Colombia · Remote',
   /** Enlaces directos para iconos del hero */
   links: {
     github: 'https://github.com/SebasSosa10',

@@ -20,6 +20,7 @@ import { LocaleService } from '../../services/locale.service';
 import { ScrollNavService } from '../../services/scroll-nav.service';
 import { ThemeService } from '../../services/theme.service';
 import { TypewriterTextComponent } from '../typewriter-text/typewriter-text.component';
+import { IMAGE_SEO, imageSeoForLocale } from '../../seo/image-seo.config';
 
 @Component({
   selector: 'app-header',
@@ -45,6 +46,10 @@ export class HeaderComponent {
     () => messagesFor(this.locale.lang()).roleTitles,
   );
 
+  readonly headerAvatarSeo = computed(() =>
+    imageSeoForLocale(IMAGE_SEO.headerAvatar, this.locale.lang()),
+  );
+
   /** Altura medida de la primera fila del header (sin menú móvil) */
   readonly toolbarHeightPx = signal(60);
 
@@ -66,18 +71,20 @@ export class HeaderComponent {
         return;
       }
       const win = globalThis.window;
-      merge(
-        fromEvent(win, 'scroll', { passive: true, capture: true }),
-        fromEvent(win, 'resize', { passive: true }),
-      )
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(() => this.updateScrollProgress());
+      this.ngZone.runOutsideAngular(() => {
+        merge(
+          fromEvent(win, 'scroll', { passive: true, capture: true }),
+          fromEvent(win, 'resize', { passive: true }),
+        )
+          .pipe(takeUntilDestroyed(this.destroyRef))
+          .subscribe(() => this.updateScrollProgress());
 
-      const initLayout = (): void => {
-        this.initToolbarResizeObserver();
-        this.updateScrollProgress();
-      };
-      requestAnimationFrame(() => requestAnimationFrame(initLayout));
+        const initLayout = (): void => {
+          this.initToolbarResizeObserver();
+          this.updateScrollProgress();
+        };
+        requestAnimationFrame(() => requestAnimationFrame(initLayout));
+      });
     });
   }
 

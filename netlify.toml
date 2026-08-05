@@ -5,6 +5,13 @@
 [[plugins]]
   package = "@netlify/angular-runtime"
 
+# Dominio canónico: apex sin www
+[[redirects]]
+  from = "https://www.sebastiansosadev.com/*"
+  to = "https://sebastiansosadev.com/:splat"
+  status = 301
+  force = true
+
 # SPA fallback solo para GET/HEAD — no interceptar POST de Netlify Forms
 [[redirects]]
   from = "/*"

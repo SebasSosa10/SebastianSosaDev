@@ -108,10 +108,20 @@
   background-color: transparent;
 }
 
+.experience-timeline-logo-slot--mobile {
+  height: 2.75rem;
+  width: 2.75rem;
+}
+
 @media (min-width: 640px) {
   .experience-timeline-logo-slot {
     height: 4.125rem;
     width: 4.125rem;
+  }
+
+  .experience-timeline-logo-slot--mobile {
+    height: 3.25rem;
+    width: 3.25rem;
   }
 }
 
@@ -125,10 +135,20 @@
   object-position: center;
 }
 
+.experience-timeline-logo-img--mobile {
+  max-height: 2rem;
+  max-width: 2rem;
+}
+
 @media (min-width: 640px) {
   .experience-timeline-logo-img {
     max-height: 3rem;
     max-width: 3rem;
+  }
+
+  .experience-timeline-logo-img--mobile {
+    max-height: 2.35rem;
+    max-width: 2.35rem;
   }
 }
 

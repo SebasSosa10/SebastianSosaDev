@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Injectable, inject } from '@angular/core';
 import { site } from '../data/site';
 import type { AppLocale } from '../i18n/messages';
-import { GEO_SEO, PERSON_ALTERNATE_NAMES } from './geo-seo.config';
+import { GEO_SEO, PERSON_ALTERNATE_NAMES, SERVICE_TYPES } from './geo-seo.config';
 import {
   absoluteAssetUrl,
   IMAGE_SEO,
@@ -56,9 +56,12 @@ export class SchemaService {
       image: portrait,
       jobTitle:
         locale === 'en'
-          ? 'Software Engineer · Full Stack Developer · Python · AI · DevOps'
-          : 'Ingeniero de Software · Full Stack · Python · IA · DevOps',
-      description: page.description,
+          ? 'Software Engineer · Full Stack Developer · Remote'
+          : 'Ingeniero de Software · Full Stack Developer · Remoto',
+      description:
+        locale === 'en'
+          ? 'Software Engineer based in Armenia, Quindío, Colombia. Available remotely as Remote Software Engineer, Freelance Software Developer, Full Stack Developer and Software Consultant for clients in Colombia, Latin America, North America, Europe and worldwide.'
+          : 'Ingeniero de Software con base en Armenia, Quindío, Colombia. Disponible de forma remota como Remote Software Engineer, Freelance Software Developer, Full Stack Developer y Software Consultant para clientes en Colombia, Latinoamérica, Norteamérica, Europa y el resto del mundo.',
       email: site.email,
       telephone: site.phoneTel,
       address: {
@@ -67,28 +70,35 @@ export class SchemaService {
         addressRegion: GEO_SEO.soleLocation.region,
         addressCountry: GEO_SEO.soleLocation.countryCode,
       },
+      homeLocation: {
+        '@type': 'Place',
+        name: `${GEO_SEO.soleLocation.city}, ${GEO_SEO.soleLocation.region}, ${GEO_SEO.soleLocation.country}`,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: GEO_SEO.soleLocation.city,
+          addressRegion: GEO_SEO.soleLocation.region,
+          addressCountry: GEO_SEO.soleLocation.countryCode,
+        },
+      },
       worksFor: { '@id': orgId },
       knowsAbout: [
         'Software Engineering',
+        'Software Development',
+        'Custom Software Development',
         'Full Stack Development',
-        'Python',
-        'Artificial Intelligence',
-        'AI integrations',
-        'Web Application Development',
-        'Angular',
-        'Java',
-        'Spring Boot',
-        'FastAPI',
-        'TypeScript',
-        'REST APIs',
-        'DevOps',
-        'CI/CD',
-        'GitHub Actions',
-        'Docker',
-        'LMS',
-        'Chatbots',
+        'Frontend Development',
+        'Backend Development',
+        'Web Development',
+        'Web Applications',
+        'API Development',
+        'Cloud Solutions',
         'Enterprise Software',
+        'Angular',
+        'Python',
+        'Java',
+        'TypeScript',
         'Remote Software Development',
+        'Software Consulting',
       ],
       sameAs: [site.links.github, site.links.linkedin],
     };
@@ -98,7 +108,13 @@ export class SchemaService {
       '@id': orgId,
       name: SITE_SEO.organizationName,
       url: `${SITE_SEO.baseUrl}/`,
-      logo: this.toImageObject('about', locale),
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteAssetUrl('/icon-512x512.png'),
+        contentUrl: absoluteAssetUrl('/icon-512x512.png'),
+        width: 512,
+        height: 512,
+      },
       image: portrait,
       founder: { '@id': personId },
       employee: { '@id': personId },
@@ -108,7 +124,7 @@ export class SchemaService {
         addressRegion: GEO_SEO.soleLocation.region,
         addressCountry: GEO_SEO.soleLocation.countryCode,
       },
-      areaServed: GEO_SEO.areaServed,
+      areaServed: [...GEO_SEO.areaServed],
       availableLanguage: [...GEO_SEO.availableLanguage],
       sameAs: [site.links.github, site.links.linkedin],
     };
@@ -118,29 +134,19 @@ export class SchemaService {
       '@id': serviceId,
       name:
         locale === 'en'
-          ? 'Custom software development — Astra Dev'
-          : 'Desarrollo de software a medida — Astra Dev',
+          ? 'Remote custom software development — Astra Dev'
+          : 'Desarrollo de software a medida remoto — Astra Dev',
+      description:
+        locale === 'en'
+          ? 'Remote software development services for businesses in Colombia, Latin America, North America, Europe and worldwide. Based in Armenia, Quindío, Colombia.'
+          : 'Servicios remotos de desarrollo de software para empresas en Colombia, Latinoamérica, Norteamérica, Europa y el resto del mundo. Con base en Armenia, Quindío, Colombia.',
       url: this.toAbsoluteUrl('/servicios'),
       image: primaryImage,
       provider: { '@id': personId },
       brand: { '@id': orgId },
-      areaServed: GEO_SEO.areaServed,
-      serviceType: [
-        'Software Engineering',
-        'Web Development',
-        'Web Application Development',
-        'API Development',
-        'Python Development',
-        'Artificial Intelligence',
-        'AI Bot Integrations',
-        'LMS Platforms',
-        'DevOps',
-        'CI/CD',
-        'Full Stack Development',
-        'Enterprise Software',
-        'Remote Software Development',
-      ],
-      availableLanguage: ['Spanish', 'English'],
+      areaServed: [...GEO_SEO.areaServed],
+      serviceType: [...SERVICE_TYPES],
+      availableLanguage: [...GEO_SEO.availableLanguage],
     };
 
     const graph: JsonLdNode[] = [person, organization, professionalService];
@@ -152,13 +158,60 @@ export class SchemaService {
         url: `${SITE_SEO.baseUrl}/`,
         name:
           locale === 'en'
-            ? `${SITE_SEO.siteName} — Software Engineer Portfolio`
-            : `${SITE_SEO.siteName} — Portafolio Ingeniero de Software`,
+            ? `${SITE_SEO.fullName} — Software Engineer Portfolio`
+            : `${SITE_SEO.fullName} — Portafolio Ingeniero de Software`,
+        alternateName: [...PERSON_ALTERNATE_NAMES],
         description: getPageSeo('inicio', locale).description,
-        inLanguage: locale === 'en' ? 'en' : 'es',
+        inLanguage: ['es', 'en'],
         publisher: { '@id': orgId },
         author: { '@id': personId },
         image: portrait,
+      });
+    }
+
+    if (sectionId === 'tecnologias') {
+      const techs =
+        locale === 'en'
+          ? [
+              'Angular',
+              'TypeScript',
+              'Python',
+              'FastAPI',
+              'Java',
+              'Spring Boot',
+              'React',
+              'Docker',
+              'AWS',
+              'CI/CD',
+              'GitHub Actions',
+              'Artificial Intelligence',
+            ]
+          : [
+              'Angular',
+              'TypeScript',
+              'Python',
+              'FastAPI',
+              'Java',
+              'Spring Boot',
+              'React',
+              'Docker',
+              'AWS',
+              'CI/CD',
+              'GitHub Actions',
+              'Inteligencia Artificial',
+            ];
+      graph.push({
+        '@type': 'ItemList',
+        '@id': `${pageUrl}#tech-stack`,
+        name:
+          locale === 'en'
+            ? 'Technologies I work with'
+            : 'Tecnologías con las que trabajo',
+        itemListElement: techs.map((name, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name,
+        })),
       });
     }
 
@@ -166,28 +219,79 @@ export class SchemaService {
       const services =
         locale === 'en'
           ? [
-              'Web application development',
-              'REST API development',
-              'Enterprise software',
-              'LMS platforms with AI',
-              'Business chatbot integrations',
-              'DevOps and CI/CD with GitHub',
+              {
+                name: 'Custom Software Development',
+                description:
+                  'Tailored software solutions for national and international businesses.',
+              },
+              {
+                name: 'Web Application Development',
+                description:
+                  'Modern, scalable web applications for product and operations teams.',
+              },
+              {
+                name: 'Full Stack Development',
+                description:
+                  'End-to-end Angular, Python, Java and API development.',
+              },
+              {
+                name: 'Frontend Development',
+                description:
+                  'Angular and modern UI experiences focused on usability and performance.',
+              },
+              {
+                name: 'Backend & API Development',
+                description:
+                  'Secure REST APIs, integrations and enterprise backends.',
+              },
+              {
+                name: 'Cloud Solutions & Enterprise Software',
+                description:
+                  'Cloud-ready architecture, DevOps, CI/CD and production systems.',
+              },
             ]
           : [
-              'Desarrollo de aplicaciones web',
-              'Desarrollo de APIs REST',
-              'Software empresarial',
-              'LMS con capacidades de IA',
-              'Integración de bots al negocio',
-              'DevOps y CI/CD con GitHub',
+              {
+                name: 'Software a medida',
+                description:
+                  'Soluciones de software personalizadas para negocios nacionales e internacionales.',
+              },
+              {
+                name: 'Desarrollo de aplicaciones web',
+                description:
+                  'Aplicaciones web modernas y escalables para producto y operación.',
+              },
+              {
+                name: 'Desarrollo Full Stack',
+                description:
+                  'Desarrollo integral con Angular, Python, Java y APIs.',
+              },
+              {
+                name: 'Desarrollo Frontend',
+                description:
+                  'Experiencias Angular y UI modernas enfocadas en usabilidad y rendimiento.',
+              },
+              {
+                name: 'Desarrollo Backend y APIs',
+                description:
+                  'APIs REST seguras, integraciones y backends empresariales.',
+              },
+              {
+                name: 'Cloud Solutions y software empresarial',
+                description:
+                  'Arquitectura cloud-ready, DevOps, CI/CD y sistemas en producción.',
+              },
             ];
-      services.forEach((name, index) => {
+      services.forEach((service, index) => {
         graph.push({
           '@type': 'Service',
           '@id': `${SITE_SEO.baseUrl}/servicios#service-${index + 1}`,
-          name,
+          name: service.name,
+          description: service.description,
           provider: { '@id': personId },
-          areaServed: GEO_SEO.areaServed,
+          areaServed: [...GEO_SEO.areaServed],
+          availableLanguage: [...GEO_SEO.availableLanguage],
+          serviceType: SERVICE_TYPES[index] ?? 'Software Development',
         });
       });
     }
@@ -289,6 +393,7 @@ export class SchemaService {
     > = {
       'sobre-mi': { es: 'Sobre mí', en: 'About' },
       experiencia: { es: 'Experiencia', en: 'Experience' },
+      tecnologias: { es: 'Tecnologías', en: 'Technologies' },
       servicios: { es: 'Servicios', en: 'Services' },
       proyectos: { es: 'Proyectos', en: 'Projects' },
       contacto: { es: 'Contacto', en: 'Contact' },

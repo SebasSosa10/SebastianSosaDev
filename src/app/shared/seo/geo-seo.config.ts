@@ -1,8 +1,9 @@
 import type { AppLocale } from '../i18n/messages';
 
 /**
- * Base local: Armenia, Quindío, Colombia.
- * Alcance: Colombia + remoto USA / Europa / mundial.
+ * Ubicación física única: Armenia, Quindío, Colombia.
+ * Alcance de servicio: remoto a Colombia, LatAm, Norteamérica, Europa y Worldwide.
+ * No inventar oficinas ni sedes en otros países.
  */
 export const GEO_SEO = {
   soleLocation: {
@@ -11,32 +12,39 @@ export const GEO_SEO = {
     country: 'Colombia',
     countryCode: 'CO',
   },
-  availableLanguage: ['es', 'en'] as const,
+  /** Schema.org availableLanguage (nombres legibles). */
+  availableLanguage: ['Spanish', 'English'] as const,
+  /**
+   * Regiones donde se ofrecen servicios remotos (no son sedes físicas).
+   */
   areaServed: [
-    {
-      '@type': 'City' as const,
-      name: 'Armenia',
-      containedInPlace: {
-        '@type': 'AdministrativeArea' as const,
-        name: 'Quindío',
-        containedInPlace: {
-          '@type': 'Country' as const,
-          name: 'Colombia',
-        },
-      },
-    },
     { '@type': 'Country' as const, name: 'Colombia' },
-    { '@type': 'Country' as const, name: 'United States' },
-    { '@type': 'Country' as const, name: 'United Kingdom' },
-    { '@type': 'Country' as const, name: 'Spain' },
-    { '@type': 'Country' as const, name: 'Germany' },
-    { '@type': 'Country' as const, name: 'Netherlands' },
-    { '@type': 'AdministrativeArea' as const, name: 'European Union' },
+    { '@type': 'Place' as const, name: 'Latin America' },
+    { '@type': 'Place' as const, name: 'North America' },
+    { '@type': 'Place' as const, name: 'Europe' },
     { '@type': 'Place' as const, name: 'Worldwide' },
   ],
 } as const;
 
-/** Variantes de nombre para búsquedas de marca personal. */
+/** Tipos de servicio para Schema.org (búsquedas internacionales). */
+export const SERVICE_TYPES = [
+  'Software Development',
+  'Custom Software Development',
+  'Web Development',
+  'Full Stack Development',
+  'Frontend Development',
+  'Backend Development',
+  'API Development',
+  'Angular Development',
+  'Java Development',
+  'Python Development',
+  'Cloud Solutions',
+  'Enterprise Software',
+  'Web Applications',
+  'Remote Software Development',
+  'Software Consulting',
+] as const;
+
 export const PERSON_NAME_KEYWORDS =
   'Joan Sebastian Sosa Bedoya, Joan Sebastian Sosa, Joan Sebastian, Sebastian Sosa, Sebastián Sosa, Joan Sosa, Sosa Bedoya, sebastiansosadev';
 
@@ -51,23 +59,22 @@ export const PERSON_ALTERNATE_NAMES = [
   'sebastiansosadev',
 ] as const;
 
-/** Local + nacional Colombia. */
+/** SEO local Colombia / Quindío / Armenia (búsquedas objetivo). */
 export const GEO_SEO_KEYWORDS_ES =
-  'Ingeniero de Software Colombia, Ingeniero de Software Armenia, Ingeniero de Software Quindío, Desarrollador de Software Colombia, Desarrollador Web Colombia, Desarrollador Web Armenia, Full Stack Colombia, Freelance Colombia';
+  'Ingeniero de Software Armenia, Ingeniero de Software Armenia Quindío, Ingeniero de Software Colombia, Desarrollador de Software Armenia, Desarrollador de Software Quindío, Desarrollador Web Armenia, Desarrollador Full Stack Colombia, Desarrollo de Software Armenia, Desarrollo Web Colombia, Software a medida Colombia, Aplicaciones Web Colombia, Soluciones empresariales Colombia, Programador Armenia, Ingeniero de Software freelance Colombia, Latinoamérica, remoto internacional';
 
-/** Internacional EN: USA, Europa, remoto. */
+/** SEO internacional EN + remoto. */
 export const GEO_SEO_KEYWORDS_EN =
-  'Software Engineer Colombia, Software Engineer Remote, Software Engineer USA, Software Engineer United States, Software Engineer Europe, Remote Software Engineer, Hire Software Engineer Latin America, Full Stack Developer Remote, Freelance Software Developer USA, Freelance Software Developer Europe';
+  'Software Engineer Colombia, Full Stack Developer Colombia, Angular Developer Colombia, Frontend Developer Colombia, Backend Developer, Software Developer Colombia, Software Engineer Remote, Remote Software Engineer, Web Developer, Full Stack Developer, Angular Developer, Software Engineer, Software Consultant, Hire Software Engineer Latin America, Freelance Software Developer, Remote Developer North America, Remote Developer Europe';
 
-/** Skills / servicios para aparecer en búsquedas técnicas. */
 export const SKILL_SEO_KEYWORDS_ES =
-  'Desarrollador Python, Desarrollador Web, Desarrollador Angular, Desarrollador Java, Desarrollo de aplicaciones web, Desarrollo de APIs, Inteligencia Artificial, IA aplicada, bots con IA, LMS, DevOps, CI/CD, GitHub Actions, Docker, FastAPI, Spring Boot, TypeScript, Software a medida, Automatización, Cloud';
+  'Ingeniero de Software, Desarrollador de Software, Desarrollador Web, Full Stack, Software Empresarial, Aplicaciones Web, Desarrollo Web, Desarrollo de APIs, Transformación Digital, Software a Medida, Desarrollador Python, Desarrollador Angular, Desarrollador Java, Desarrollador Frontend, Desarrollador Backend, Inteligencia Artificial, DevOps, CI/CD, Cloud, TypeScript, FastAPI, Spring Boot';
 
 export const SKILL_SEO_KEYWORDS_EN =
-  'Python Developer, Web Developer, Angular Developer, Java Developer, Web Application Development, API Development, Artificial Intelligence, Applied AI, AI bots, AI integrations, LMS, DevOps Engineer, CI/CD, GitHub Actions, Docker, FastAPI, Spring Boot, TypeScript, Custom Software, Automation, Cloud';
+  'Software Engineer, Software Developer, Full Stack Developer, Angular Developer, Frontend Developer, Backend Developer, Java Developer, Python Developer, Remote Software Engineer, Web Developer, Software Consultant, Enterprise Software, Custom Software, Web Applications, API Development, Cloud Solutions, DevOps, CI/CD, TypeScript, FastAPI, Spring Boot';
 
 export function geoLocationLabel(locale: AppLocale): string {
   return locale === 'en'
-    ? 'Armenia, Quindío, Colombia · Remote worldwide'
-    : 'Armenia, Quindío, Colombia · Remoto internacional';
+    ? 'Based in Armenia, Quindío, Colombia · Available for remote projects worldwide'
+    : 'Con base en Armenia, Quindío, Colombia · Disponible para proyectos remotos internacionales';
 }

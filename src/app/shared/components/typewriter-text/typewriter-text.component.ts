@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   Component,
   DestroyRef,
+  NgZone,
   computed,
   effect,
   inject,
@@ -13,6 +14,7 @@ import {
 /**
  * Efecto máquina de escribir: tipea, pausa, borra y pasa al siguiente texto.
  * Respeta `prefers-reduced-motion` (muestra solo la primera frase).
+ * Timers fuera de Zone.js para no bloquear la hidratación (NG0506).
  */
 @Component({
   selector: 'app-typewriter-text',
@@ -49,6 +51,7 @@ export class TypewriterTextComponent {
 
   private readonly platformId = inject(PLATFORM_ID);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly ngZone = inject(NgZone);
 
   private phraseIndex = 0;
   private charIndex = 0;
@@ -99,7 +102,10 @@ export class TypewriterTextComponent {
   }
 
   private scheduleTick(list: readonly string[]): void {
-    this.timerId = setTimeout(() => this.tick(list), this.currentDelay(list));
+    const delay = this.currentDelay(list);
+    this.ngZone.runOutsideAngular(() => {
+      this.timerId = setTimeout(() => this.tick(list), delay);
+    });
   }
 
   private currentDelay(list: readonly string[]): number {
@@ -124,13 +130,17 @@ export class TypewriterTextComponent {
     if (!this.deleting) {
       if (this.charIndex < phrase.length) {
         this.charIndex += 1;
-        this.displayedText.set(phrase.slice(0, this.charIndex));
+        this.ngZone.run(() =>
+          this.displayedText.set(phrase.slice(0, this.charIndex)),
+        );
       } else {
         this.deleting = true;
       }
     } else if (this.charIndex > 0) {
       this.charIndex -= 1;
-      this.displayedText.set(phrase.slice(0, this.charIndex));
+      this.ngZone.run(() =>
+        this.displayedText.set(phrase.slice(0, this.charIndex)),
+      );
     } else {
       this.deleting = false;
       this.phraseIndex = (this.phraseIndex + 1) % list.length;

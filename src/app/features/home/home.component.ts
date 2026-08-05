@@ -29,13 +29,9 @@ import {
   ScrollRevealDirective,
   ScrollRevealGroupDirective,
 } from '../../shared/directives/scroll-reveal.directive';
+import { IMAGE_SEO, imageSeoForLocale } from '../../shared/seo/image-seo.config';
 
-const DEVICON =
-  'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons';
-
-/** Icono monocromo (Simple Icons) — se invierte en tema oscuro vía clase */
-const SI = (slug: string) =>
-  `https://cdn.jsdelivr.net/npm/simple-icons@11.6.0/icons/${slug}.svg`;
+const TECH = '/tech-icons';
 
 type TechStackItem = {
   label: string;
@@ -68,51 +64,42 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   readonly site = site;
 
-  /** Stack para el carrusel bajo el hero (iconos Devicon / Simple Icons) */
+  readonly heroImageSeo = computed(() =>
+    imageSeoForLocale(IMAGE_SEO.hero, this.locale.lang()),
+  );
+  readonly aboutImageSeo = computed(() =>
+    imageSeoForLocale(IMAGE_SEO.about, this.locale.lang()),
+  );
+  readonly headerAvatarSeo = computed(() =>
+    imageSeoForLocale(IMAGE_SEO.headerAvatar, this.locale.lang()),
+  );
+
+  /** Stack para el carrusel bajo el hero (iconos locales; evita CDN / Tracking Prevention). */
   readonly techStack: readonly TechStackItem[] = [
-    { label: 'Python', iconUrl: `${DEVICON}/python/python-original.svg` },
-    { label: 'Java', iconUrl: `${DEVICON}/java/java-original.svg` },
-    { label: 'FastAPI', iconUrl: `${DEVICON}/fastapi/fastapi-original.svg` },
-    { label: 'Django', iconUrl: `${DEVICON}/django/django-plain.svg` },
-    {
-      label: 'Spring Boot',
-      iconUrl: `${DEVICON}/spring/spring-original.svg`,
-    },
-    { label: 'Angular', iconUrl: `${DEVICON}/angular/angular-original.svg` },
-    { label: 'Serverless', iconUrl: SI('serverless'), mono: true },
-    { label: 'AI agents', iconUrl: SI('openai'), mono: true },
-    {
-      label: 'TypeScript',
-      iconUrl: `${DEVICON}/typescript/typescript-original.svg`,
-    },
-    {
-      label: 'AWS',
-      iconUrl: `${DEVICON}/amazonwebservices/amazonwebservices-original-wordmark.svg`,
-      wide: true,
-    },
-    { label: 'React', iconUrl: `${DEVICON}/react/react-original.svg` },
-    {
-      label: 'JavaScript',
-      iconUrl: `${DEVICON}/javascript/javascript-original.svg`,
-    },
-    { label: 'Node.js', iconUrl: `${DEVICON}/nodejs/nodejs-original.svg` },
-    { label: 'Docker', iconUrl: `${DEVICON}/docker/docker-original.svg` },
-    { label: 'nginx', iconUrl: `${DEVICON}/nginx/nginx-original.svg` },
-    { label: 'MongoDB', iconUrl: `${DEVICON}/mongodb/mongodb-original.svg` },
-    {
-      label: 'PostgreSQL',
-      iconUrl: `${DEVICON}/postgresql/postgresql-original.svg`,
-    },
-    {
-      label: 'Tailwind',
-      iconUrl: `${DEVICON}/tailwindcss/tailwindcss-original.svg`,
-    },
-    { label: 'Oracle', iconUrl: `${DEVICON}/oracle/oracle-original.svg` },
-    { label: 'Git', iconUrl: `${DEVICON}/git/git-original.svg` },
-    { label: 'GitLab', iconUrl: `${DEVICON}/gitlab/gitlab-original.svg` },
-    { label: 'SQL', iconUrl: `${DEVICON}/mysql/mysql-original.svg` },
-    { label: 'CSS', iconUrl: `${DEVICON}/css3/css3-original.svg` },
-    { label: 'HTML', iconUrl: `${DEVICON}/html5/html5-original.svg` },
+    { label: 'Python', iconUrl: `${TECH}/python.svg` },
+    { label: 'Java', iconUrl: `${TECH}/java.svg` },
+    { label: 'FastAPI', iconUrl: `${TECH}/fastapi.svg` },
+    { label: 'Django', iconUrl: `${TECH}/django.svg` },
+    { label: 'Spring Boot', iconUrl: `${TECH}/spring.svg` },
+    { label: 'Angular', iconUrl: `${TECH}/angular.svg` },
+    { label: 'Serverless', iconUrl: `${TECH}/serverless.svg`, mono: true },
+    { label: 'AI agents', iconUrl: `${TECH}/openai.svg`, mono: true },
+    { label: 'TypeScript', iconUrl: `${TECH}/typescript.svg` },
+    { label: 'AWS', iconUrl: `${TECH}/aws.svg`, wide: true },
+    { label: 'React', iconUrl: `${TECH}/react.svg` },
+    { label: 'JavaScript', iconUrl: `${TECH}/javascript.svg` },
+    { label: 'Node.js', iconUrl: `${TECH}/nodejs.svg` },
+    { label: 'Docker', iconUrl: `${TECH}/docker.svg` },
+    { label: 'nginx', iconUrl: `${TECH}/nginx.svg` },
+    { label: 'MongoDB', iconUrl: `${TECH}/mongodb.svg` },
+    { label: 'PostgreSQL', iconUrl: `${TECH}/postgresql.svg` },
+    { label: 'Tailwind', iconUrl: `${TECH}/tailwindcss.svg` },
+    { label: 'Oracle', iconUrl: `${TECH}/oracle.svg` },
+    { label: 'Git', iconUrl: `${TECH}/git.svg` },
+    { label: 'GitLab', iconUrl: `${TECH}/gitlab.svg` },
+    { label: 'SQL', iconUrl: `${TECH}/mysql.svg` },
+    { label: 'CSS', iconUrl: `${TECH}/css3.svg` },
+    { label: 'HTML', iconUrl: `${TECH}/html5.svg` },
   ];
 
   /** Primera línea del h1 — depende del idioma */

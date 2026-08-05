@@ -28,6 +28,7 @@ export function imageSeoForLocale(
 
 /** Catálogo de imágenes indexables (Google Images + OG + Schema). */
 export const IMAGE_SEO = {
+  /** Collage SEO / OG / Google Images */
   portrait: {
     path: '/joan-sebastian.png',
     alt: {
@@ -35,19 +36,31 @@ export const IMAGE_SEO = {
       en: 'Joan Sebastian Sosa Bedoya — Software Engineer portfolio in Armenia, Quindío, Colombia: Full Stack, Python, AI, DevOps and CI/CD',
     },
     title: {
-      es: 'Joan Sebastian Sosa Bedoya | Ingeniero de Software Colombia · Portafolio',
-      en: 'Joan Sebastian Sosa Bedoya | Software Engineer Colombia · Portfolio',
+      es: 'Joan Sebastian Sosa Bedoya | Ingeniero de Software Armenia Quindío Colombia',
+      en: 'Joan Sebastian Sosa Bedoya | Software Engineer Armenia Quindío Colombia',
+    },
+  },
+  /** Foto LCP del hero (preload + UI) */
+  hero: {
+    path: '/joan-sebastian-sosa-bedoya.png',
+    alt: {
+      es: 'Retrato de Joan Sebastian Sosa Bedoya, Ingeniero de Software y Desarrollador Full Stack en Armenia, Quindío, Colombia',
+      en: 'Portrait of Joan Sebastian Sosa Bedoya, Software Engineer and Full Stack Developer in Armenia, Quindío, Colombia',
+    },
+    title: {
+      es: 'Joan Sebastian Sosa Bedoya — Ingeniero de Software en Armenia, Quindío',
+      en: 'Joan Sebastian Sosa Bedoya — Software Engineer in Armenia, Quindío',
     },
   },
   about: {
     path: '/SebastianSosa.webp',
     alt: {
-      es: 'Sebastián Sosa — ilustración profesional Ingeniero de Software',
-      en: 'Sebastian Sosa — professional Software Engineer illustration',
+      es: 'Sebastián Sosa — ilustración profesional Ingeniero de Software en Armenia, Quindío',
+      en: 'Sebastian Sosa — professional Software Engineer illustration in Armenia, Quindío',
     },
     title: {
-      es: 'Sobre mí — Sebastián Sosa | Ingeniero de Software',
-      en: 'About — Sebastian Sosa | Software Engineer',
+      es: 'Sobre mí — Joan Sebastian Sosa Bedoya | Ingeniero de Software',
+      en: 'About — Joan Sebastian Sosa Bedoya | Software Engineer',
     },
   },
   headerAvatar: {
@@ -147,6 +160,7 @@ export const PAGE_PRIMARY_IMAGE: Record<SeoPageKey, ImageSeoKey> = {
   inicio: 'portrait',
   'sobre-mi': 'about',
   experiencia: 'portrait',
+  tecnologias: 'portrait',
   servicios: 'portrait',
   proyectos: 'projectDrCristian',
   contacto: 'portrait',
